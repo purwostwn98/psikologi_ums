@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>PSIKOLOGI - UMS</title>
+    <title>Assessme | Psychology UMS</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -29,6 +29,7 @@
     <!-- Template Main CSS File -->
     <link href="<?= base_url(); ?>/depan/assets/css/main.css" rel="stylesheet">
     <link href="<?= base_url(); ?>/depan/assets/scss/option.scss" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
 
     <!-- =======================================================
   * Template Name: Nova - v1.2.0
@@ -83,7 +84,28 @@
             color: white;
             font-weight: bold;
             border: 4px solid orange;
+        }
 
+        .btn-buatanku {
+            font-family: var(--font-default);
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 1px;
+            display: inline-block;
+            padding: 12px 40px;
+            border-radius: 50px;
+            transition: 0.5s;
+            margin: 10px;
+            color: #fff;
+            background: #2aa5df;
+        }
+
+        .small-text {
+            font-size: 13px;
+            font-style: italic;
+            color: #2aa5df;
+            margin-top: 0px;
+            padding-top: 0px;
         }
 
         @media only screen and (max-width: 700px) {
@@ -111,13 +133,11 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="portfolio.html">Portfolio</a></li>
-                    <li><a href="team.html">Team</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <li><a href="/home/index/#hero" class="active">Home</a></li>
+                    <li><a href="/home/index/#about-us">About</a></li>
+                    <li><a href="/home/index/#our-services">Services</a></li>
+                    <li><a href="/home/index/#instrument-list">Instruments</a></li>
+                    <!-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                         <ul>
                             <li><a href="#">Dropdown 1</a></li>
                             <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
@@ -133,8 +153,10 @@
                             <li><a href="#">Dropdown 3</a></li>
                             <li><a href="#">Dropdown 4</a></li>
                         </ul>
-                    </li>
-                    <li><a href="contact.html">Contact</a></li>
+                    </li> -->
+                    <li><a href="/home/index/#contact">Contact</a></li>
+                    <li><a href="/home/riwayat-netizen">My Account</a></li>
+                    <li><a href="#">Sign In</a></li>
                 </ul>
             </nav><!-- .navbar -->
 
@@ -149,11 +171,20 @@
         <div class="footer-content">
             <div class="container">
                 <div class="row gy-4">
+                    <div class="col-lg-2 col-6 footer-links text-center text-md-start">
+                        <img style="max-width: 130px;" src="https://www.ums.ac.id/wp-content/uploads/2021/12/Resmi_Logo_UMS_Color.png" alt="">
+                    </div>
                     <div class="col-lg-5 col-md-12 footer-info">
                         <a href="index.html" class="logo d-flex align-items-center">
-                            <span>Nova</span>
+                            <span>Psikologi UMS</span>
                         </a>
-                        <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+                        <p>
+                            Fakultas Psikologi,
+                            Universitas Muhammadiyah Surakarta
+
+                            Gedung Psikologi Kampus 2 – Pabelan
+                            Jl. A Yani, Pabelan, Kartasura, Surakarta 57162, Jawa Tengah – Indonesia
+                        </p>
                         <div class="social-links d-flex  mt-3">
                             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -162,36 +193,20 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-2 col-6 footer-links">
-                        <h4>Useful Links</h4>
-                        <ul>
-                            <li><i class="bi bi-dash"></i> <a href="#">Home</a></li>
-                            <li><i class="bi bi-dash"></i> <a href="#">About us</a></li>
-                            <li><i class="bi bi-dash"></i> <a href="#">Services</a></li>
-                            <li><i class="bi bi-dash"></i> <a href="#">Terms of service</a></li>
-                            <li><i class="bi bi-dash"></i> <a href="#">Privacy policy</a></li>
-                        </ul>
-                    </div>
 
                     <div class="col-lg-2 col-6 footer-links">
                         <h4>Our Services</h4>
                         <ul>
-                            <li><i class="bi bi-dash"></i> <a href="#">Web Design</a></li>
-                            <li><i class="bi bi-dash"></i> <a href="#">Web Development</a></li>
-                            <li><i class="bi bi-dash"></i> <a href="#">Product Management</a></li>
-                            <li><i class="bi bi-dash"></i> <a href="#">Marketing</a></li>
-                            <li><i class="bi bi-dash"></i> <a href="#">Graphic Design</a></li>
+                            <li><i class="bi bi-dash"></i> <a href="#">Self-Assessment</a></li>
+                            <li><i class="bi bi-dash"></i> <a href="#">For Research</a></li>
                         </ul>
                     </div>
 
                     <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
                         <h4>Contact Us</h4>
                         <p>
-                            A108 Adam Street <br>
-                            New York, NY 535022<br>
-                            United States <br><br>
-                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                            <strong>Email:</strong> info@example.com<br>
+                            <strong>Phone:</strong> +62 271-717417 ext. 3404<br>
+                            <strong>Email:</strong> psikologi@ums.ac.id<br>
                         </p>
 
                     </div>
@@ -200,10 +215,10 @@
             </div>
         </div>
 
-        <div class="footer-legal">
+        <div id="contact" class="footer-legal">
             <div class="container">
                 <div class="copyright">
-                    &copy; Copyright <strong><span>Nova</span></strong>. All Rights Reserved
+                    &copy; Copyright <strong><span>Puslogin UMS</span></strong>. All Rights Reserved
                 </div>
                 <div class="credits">
                     <!-- All the links in the footer should remain intact. -->

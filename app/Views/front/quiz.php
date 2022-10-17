@@ -3,14 +3,10 @@
 <main id="main">
 
   <!-- ======= Breadcrumbs ======= -->
-  <div class="breadcrumbs d-flex align-items-center" style="background-image: url('<?= base_url(); ?>/depan/assets/img/services-header.jpg');">
+  <div class="breadcrumbs d-flex align-items-center" style="background-image: url('<?= base_url(); ?>/depan/assets/img/blog/blog-2.jpg');">
     <div class="container position-relative d-flex flex-column align-items-center">
 
-      <h4 style="color: white;">SKALA KECENDERUNGAN PERILAKU HOMOSEKSUAL</h4>
-      <!-- <ol>
-        <li><a href="index.html">Home</a></li>
-        <li>Services</li>
-      </ol> -->
+      <h3 style="color: white;">Sexual Orientation Scale</h3>
 
     </div>
   </div><!-- End Breadcrumbs -->
@@ -19,7 +15,7 @@
   <section id="services-list" class="services-list" style="padding-top: 40px;">
     <div class="container" data-aos="fade-up">
 
-      <form id="regForm" action="/action_page.php">
+      <form id="regForm" action="/home/hasil-survei">
         <?php foreach ($pertanyaan as $z => $prt) : ?>
           <div id="bagian" class="tab huhu">
             <strong><?= $prt['pertanyaan']; ?></strong>
