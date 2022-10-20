@@ -42,6 +42,19 @@ $routes->get('/home/instrument-detail', 'Home::instrument_detail');
 $routes->get('/home/hasil-survei', 'Home::hasil_survei');
 $routes->get('/home/riwayat-netizen', 'Home::riwayat_netizen');
 
+$routes->get('/admin', 'Admin::dashboard_adm');
+$routes->get('/admin/daftar-responden', 'Admin::daftar_responden');
+$routes->get('/admin/daftar-responden-2', 'Admin::daftar_responden_2');
+$routes->get('/admin/detail-responden', 'Admin::detail_responden');
+$routes->get('/admin/data-instrumen', 'Admin::data_instrumen');
+$routes->get('/admin/detail-instrumen', 'Admin::detail_instrumen');
+$routes->get('/admin/data-pertanyaan', 'Admin::data_pertanyaan');
+$routes->get('/admin/form-tambah-instrumen', 'Admin::tambah_instrumen');
+$routes->get('/admin/manajemen-user', 'Admin::manajemen_user');
+
+$routes->post('/dinamis/form-answer-option', 'Dinamis::form_answer_option');
+$routes->post('/dinamis/tabel-pertanyaan-bahasa', 'Dinamis::tabel_pertanyaan_bahasa');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
