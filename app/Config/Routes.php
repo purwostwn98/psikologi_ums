@@ -52,6 +52,10 @@ $routes->get('/admin/data-pertanyaan', 'Admin::data_pertanyaan');
 $routes->get('/admin/form-tambah-instrumen', 'Admin::tambah_instrumen');
 $routes->get('/admin/manajemen-user', 'Admin::manajemen_user');
 
+$routes->get('/peneliti', 'Peneliti::dashboard_peneliti');
+$routes->get('/peneliti/pilih-instrumen', 'Peneliti::pilih_instrumen');
+$routes->get('/peneliti/detail-instrumen', 'Peneliti::detail_instrumen');
+
 $routes->post('/dinamis/form-answer-option', 'Dinamis::form_answer_option');
 $routes->post('/dinamis/tabel-pertanyaan-bahasa', 'Dinamis::tabel_pertanyaan_bahasa');
 

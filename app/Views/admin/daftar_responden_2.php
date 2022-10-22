@@ -9,6 +9,7 @@
                 Sexual Orientation Scale
             </small>
         </h1>
+        <div class="page-tools pt-1 mt-3 mt-sm-0 mb-sm-n1"></div>
     </div>
     <hr class="my-3">
 

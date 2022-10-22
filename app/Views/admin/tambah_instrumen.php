@@ -3,7 +3,7 @@
 <div class="page-content container bg-white">
     <div class="page-header border-0 justify-content-between">
         <h1 class="page-title text-primary-d2">
-            Form Add New Instruments
+            Form Add New Instrument
         </h1>
     </div>
     <hr class="my-4">

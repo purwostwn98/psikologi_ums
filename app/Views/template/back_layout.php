@@ -106,52 +106,74 @@ $session = \Config\Services::session();
                             </div>
                         </div>
                         <hr>
-                        <div class="nav flex-column mt-2 has-active-border" role="navigation" aria-label="Main">
-                            <!-- Sidebar Admin -->
-                            <!-- <li class="nav-item active"> -->
-                            <li class="nav-item">
-                                <a href="/admin" class="nav-link">
-                                    <i class="nav-icon 	fa fa-desktop"></i>
-                                    <span class="nav-text fadeable">
-                                        <span>Dashboard</span>
-                                    </span>
-                                </a>
-                                <b class="sub-arrow"></b>
-                            </li>
+                        <?php if ($session->get('halaman') == 'admin') { ?>
+                            <div class="nav flex-column mt-2 has-active-border" role="navigation" aria-label="Main">
+                                <li class="nav-item">
+                                    <a href="/admin" class="nav-link">
+                                        <i class="nav-icon 	fa fa-desktop"></i>
+                                        <span class="nav-text fadeable">
+                                            <span>Dashboard</span>
+                                        </span>
+                                    </a>
+                                    <b class="sub-arrow"></b>
+                                </li>
 
-                            <li class="nav-item">
-                                <a href="/admin/daftar-responden" class="nav-link">
-                                    <i class="nav-icon 	fa fa-book"></i>
-                                    <span class="nav-text fadeable">
-                                        <span>Data Respondent</span>
-                                    </span>
-                                </a>
-                                <b class="sub-arrow"></b>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/admin/data-instrumen" class="nav-link">
-                                    <i class="nav-icon 	fa fa-archive" aria-hidden="true"></i>
-                                    <span class="nav-text fadeable">
-                                        <span>Data Instrument</span>
-                                    </span>
-                                </a>
-                                <b class="sub-arrow"></b>
-                            </li>
-                            <li class="nav-item">
-                                <a href="/admin/manajemen-user" class="nav-link">
-                                    <i class="nav-icon 	fa fa-users" aria-hidden="true"></i>
-                                    <span class="nav-text fadeable">
-                                        <span>User Management</span>
-                                    </span>
-                                </a>
-                                <b class="sub-arrow"></b>
-                            </li>
-                        </div>
+                                <li class="nav-item">
+                                    <a href="/admin/daftar-responden" class="nav-link">
+                                        <i class="nav-icon 	fa fa-book"></i>
+                                        <span class="nav-text fadeable">
+                                            <span>Data Respondent</span>
+                                        </span>
+                                    </a>
+                                    <b class="sub-arrow"></b>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/admin/data-instrumen" class="nav-link">
+                                        <i class="nav-icon 	fa fa-archive" aria-hidden="true"></i>
+                                        <span class="nav-text fadeable">
+                                            <span>Data Instrument</span>
+                                        </span>
+                                    </a>
+                                    <b class="sub-arrow"></b>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/admin/manajemen-user" class="nav-link">
+                                        <i class="nav-icon 	fa fa-users" aria-hidden="true"></i>
+                                        <span class="nav-text fadeable">
+                                            <span>User Management</span>
+                                        </span>
+                                    </a>
+                                    <b class="sub-arrow"></b>
+                                </li>
+                            </div>
+                        <?php } else { ?>
+                            <div class="nav flex-column mt-2 has-active-border" role="navigation" aria-label="Main">
+                                <li class="nav-item">
+                                    <a href="/peneliti" class="nav-link">
+                                        <i class="nav-icon 	fa fa-desktop"></i>
+                                        <span class="nav-text fadeable">
+                                            <span>Dashboard</span>
+                                        </span>
+                                    </a>
+                                    <b class="sub-arrow"></b>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="/peneliti/pilih-instrumen" class="nav-link">
+                                        <i class="nav-icon 	fa fa-book"></i>
+                                        <span class="nav-text fadeable">
+                                            <span>Create Survey</span>
+                                        </span>
+                                    </a>
+                                    <b class="sub-arrow"></b>
+                                </li>
+                            </div>
+                        <?php } ?>
+
                     </div>
+
                 </div>
             </div>
-
-
 
             <div role="main" class="main-content">
                 <nav class="navbar navbar-sm navbar-expand-lg navbar-fixed navbar-white">

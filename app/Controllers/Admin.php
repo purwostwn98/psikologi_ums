@@ -15,6 +15,11 @@ class Admin extends BaseController
 
     public function dashboard_adm()
     {
+        $dapat_session = [
+            'login' => true,
+            'halaman' => 'admin'
+        ];
+        $this->session->set($dapat_session);
         return view('admin/dashboard_admin');
     }
     public function daftar_responden()
