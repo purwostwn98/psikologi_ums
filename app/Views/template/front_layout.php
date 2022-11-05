@@ -28,6 +28,7 @@
 
     <!-- Template Main CSS File -->
     <link href="<?= base_url(); ?>/depan/assets/css/main.css" rel="stylesheet">
+    <link href="<?= base_url(); ?>/depan/assets/css/login.css" rel="stylesheet">
     <link href="<?= base_url(); ?>/depan/assets/scss/option.scss" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
 
@@ -156,7 +157,7 @@
                     </li> -->
                     <li><a href="/home/index/#contact">Contact</a></li>
                     <li><a href="/home/riwayat-netizen">My Account</a></li>
-                    <li><a href="#">Sign In</a></li>
+                    <li><a href="/auth/hal_muasok/0">Sign In</a></li>
                 </ul>
             </nav><!-- .navbar -->
 

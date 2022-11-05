@@ -15,43 +15,46 @@
   <section id="services-list" class="services-list" style="padding-top: 40px;">
     <div class="container" data-aos="fade-up">
 
-      <form id="regForm" action="/home/hasil-survei">
+      <!-- <form id="regForm" action="/home/hasil-survei"> -->
+      <form id="regForm" action="/home/simpan-survei" method="POST">
         <?php foreach ($pertanyaan as $z => $prt) : ?>
           <div id="bagian" class="tab huhu">
-            <strong><?= $prt['pertanyaan']; ?></strong>
+            <strong><?= $prt['soal']; ?></strong>
             <div class="row gy-5 my-2">
               <div class="col-lg-3 col-md-6 d-flex paling_atas" data-aos="fade-up" data-aos-delay="100">
                 <div class="opt_input">
-                  <input class="form-check-input" type="radio" name="answer_<?= $z; ?>" id="option_01_<?= $z; ?>" value="4">
+                  <input class="form-check-input" type="radio" name="answer_<?= $prt['id_pertanyaan']; ?>" id="option_01_<?= $z; ?>" value="<?= $prt['bobot_pilihan_1']; ?>">
                   <label class="form-check-label" for="option_01_<?= $z; ?>">
-                    Sangat Setuju
+                    <?= $prt['judul_pilihan_1']; ?>
                   </label>
                 </div>
               </div>
               <div class="col-lg-3 col-md-6 d-flex paling_atas" data-aos="fade-up" data-aos-delay="100">
                 <div class="opt_input">
-                  <input class="form-check-input" type="radio" name="answer_<?= $z; ?>" id="option_02_<?= $z; ?>" value="3">
+                  <input class="form-check-input" type="radio" name="answer_<?= $prt['id_pertanyaan']; ?>" id="option_02_<?= $z; ?>" value="<?= $prt['bobot_pilihan_2']; ?>">
                   <label class="form-check-label" for="option_02_<?= $z; ?>">
-                    Setuju
+                    <?= $prt['judul_pilihan_2']; ?>
                   </label>
                 </div>
               </div>
               <div class="col-lg-3 col-md-6 service-item d-flex paling_atas" data-aos="fade-up" data-aos-delay="100">
                 <div class="opt_input">
-                  <input class="form-check-input" type="radio" name="answer_<?= $z; ?>" id="option_03_<?= $z; ?>" value="2">
+                  <input class="form-check-input" type="radio" name="answer_<?= $prt['id_pertanyaan']; ?>" id="option_03_<?= $z; ?>" value="<?= $prt['bobot_pilihan_3']; ?>">
                   <label class="form-check-label" for="option_03_<?= $z; ?>">
-                    Tidak Setuju
+                    <?= $prt['judul_pilihan_3']; ?>
                   </label>
                 </div>
               </div>
-              <div class="col-lg-3 col-md-6 service-item d-flex paling_atas" data-aos="fade-up" data-aos-delay="100">
-                <div class="opt_input">
-                  <input class="form-check-input" type="radio" name="answer_<?= $z; ?>" id="option_04_<?= $z; ?>" value="1">
-                  <label class="form-check-label" for="option_04_<?= $z; ?>">
-                    Sangat Tidak Setuju
-                  </label>
+              <?php if ($jumlah_pilihan == 4) { ?>
+                <div class="col-lg-3 col-md-6 service-item d-flex paling_atas" data-aos="fade-up" data-aos-delay="100">
+                  <div class="opt_input">
+                    <input class="form-check-input" type="radio" name="answer_<?= $prt['id_pertanyaan']; ?>" id="option_04_<?= $z; ?>" value="<?= $prt['bobot_pilihan_4']; ?>">
+                    <label class="form-check-label" for="option_04_<?= $z; ?>">
+                      <?= $prt['judul_pilihan_4']; ?>
+                    </label>
+                  </div>
                 </div>
-              </div>
+              <?php } ?>
             </div>
             <div class="my-2">
               <hr class="mt-5">

@@ -35,7 +35,7 @@ abstract class BaseController extends Controller
      *
      * @var array
      */
-    protected $helpers = ['form', 'url'];
+    protected $helpers = ['form', 'url', 'api_helper'];
 
     /**
      * Constructor.
@@ -48,5 +48,6 @@ abstract class BaseController extends Controller
         // Preload any models, libraries, etc, here.
 
         $this->session = \Config\Services::session();
+        $this->host_api = 'api.assessme.puslogin.com';
     }
 }

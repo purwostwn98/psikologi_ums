@@ -76,25 +76,42 @@
       <div class="section-header">
         <h2>Our Instruments</h2>
       </div>
-      <div class="row gy-5">
-        <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
-          <div class="icon flex-shrink-0"><i class="bi bi-briefcase" style="color: #f57813;"></i></div>
-          <div>
-            <h4 class="title"><a href="/home/instrument-detail" class="stretched-link">Sexual Orientation Scale</a></h4>
-            <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-            <a href="/home/instrument-detail" class="btn btn-info text-white">Get Started</a>
-          </div>
-        </div>
-        <!-- End Service Item -->
+      <?php
+      $icon = array('bi bi-briefcase', 'bi bi-card-checklist', 'bi bi-bar-chart');
+      $color = array('#f57813', '#15a04a', '#d90769');
 
-        <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
+      function limit_words($string, $word_limit)
+      {
+        $words = explode(" ", $string);
+        $words = str_replace("<p>", " ", $words);
+        $words = str_replace("</p>", " ", $words);
+        return implode(" ", array_splice($words, 0, $word_limit));
+      }
+      ?>
+      <div class="row gy-5">
+        <?php foreach ($instrumen as $ins) : ?>
+          <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon flex-shrink-0"><i class="<?= $icon[rand(0, 2)]; ?>" style="color: <?= $color[rand(0, 2)]; ?>;"></i></div>
+            <div>
+              <h4 class="title"><a href="/home/instrument-detail<?php echo $ins['action_detail']; ?>" class="stretched-link"><?= $ins['nama_instrument']; ?></a></h4>
+              <p class="description"><?= limit_words($ins['deskripsi_instrument'], 10); ?> ...</p>
+              <a href="/home/instrument-detail<?php echo $ins['action_detail']; ?>" class="btn btn-info text-white">Get Started</a>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </div>
+
+
+      <!-- End Service Item -->
+
+      <!-- <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
           <div class="icon flex-shrink-0"><i class="bi bi-card-checklist" style="color: #15a04a;"></i></div>
           <div>
             <h4 class="title"><a href="/home/instrument-detail" class="stretched-link">Religious Harmony Scale</a></h4>
             <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat tarad limino ata</p>
             <a href="/home/instrument-detail" class="btn btn-info text-white">Get Started</a>
           </div>
-        </div><!-- End Service Item -->
+        </div>
 
         <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="300">
           <div class="icon flex-shrink-0"><i class="bi bi-bar-chart" style="color: #d90769;"></i></div>
@@ -103,8 +120,8 @@
             <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
             <button type="button" class="btn btn-info text-white">Get Started</button>
           </div>
-        </div><!-- End Service Item -->
-      </div>
+        </div>
+      </div> -->
 
     </div>
   </section><!-- End Our Services Section -->

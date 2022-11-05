@@ -12,11 +12,10 @@
     <section id="services-list" class="services-list" style="padding-top: 40px;">
         <div class="container" data-aos="fade-up">
             <p>
-                This is instrument's description. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore voluptas rem culpa, eius tempora totam magni ducimus alias veritatis velit nisi in odit. Perspiciatis voluptas illo vel maiores? Deserunt, reiciendis?
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quasi nihil voluptas quam perspiciatis, libero, consectetur possimus, error necessitatibus blanditiis neque magnam dolorem obcaecati cupiditate autem velit aliquam qui officiis soluta!
+                <?= $deskripsi; ?>
             </p>
             <br>
-            <p class="text-center"><a href="/home/quiz" class="btn btn-buatanku">Take the Free Survey</a></p>
+            <p class="text-center"><a href="/home/quiz?instrument=<?= $id_instrument; ?>" class="btn btn-buatanku">Take the Free Survey</a></p>
         </div>
     </section><!-- End Our Services Section -->
 

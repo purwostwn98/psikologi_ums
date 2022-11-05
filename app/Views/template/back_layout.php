@@ -208,7 +208,7 @@ $session = \Config\Services::session();
                                     <li class="nav-item dropdown dropdown-mega">
                                         <a class="nav-link dropdown-toggle mr-1px" href="#" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                             <i class="fa fa-list-alt mr-2 d-lg-none"></i>
-                                            Purwo Setiawan
+                                            <?= $session->get('nama_user'); ?>
                                             <i class="caret fa fa-angle-down d-none d-lg-block"></i>
                                             <i class="caret fa fa-angle-left d-block d-lg-none"></i>
                                         </a>
@@ -220,7 +220,7 @@ $session = \Config\Services::session();
                                                         <span class="text-muted">Edit Profil</span>
                                                         <!-- <span class="float-right badge badge-danger radius-round text-80">- 4</span> -->
                                                     </a>
-                                                    <a href="/iniauth/logout" class="mb-0 border-0 list-group-item list-group-item-action btn-h-lighter-secondary">
+                                                    <a href="/logout" class="mb-0 border-0 list-group-item list-group-item-action btn-h-lighter-secondary">
                                                         <i class="fa fa-times bgc-pink-tp1 text-white text-110 mr-1 p-2 radius-1"></i>
                                                         <span class="text-muted">Logout</span>
                                                         <!-- <span class="float-right badge badge-info radius-round text-80">+12</span> -->

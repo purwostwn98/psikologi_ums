@@ -41,6 +41,7 @@ $routes->get('/home/quiz', 'Home::quiz');
 $routes->get('/home/instrument-detail', 'Home::instrument_detail');
 $routes->get('/home/hasil-survei', 'Home::hasil_survei');
 $routes->get('/home/riwayat-netizen', 'Home::riwayat_netizen');
+$routes->post('/home/simpan-survei', 'Home::simpan_survei');
 
 $routes->get('/admin', 'Admin::dashboard_adm');
 $routes->get('/admin/daftar-responden', 'Admin::daftar_responden');
@@ -55,6 +56,10 @@ $routes->get('/admin/manajemen-user', 'Admin::manajemen_user');
 $routes->get('/peneliti', 'Peneliti::dashboard_peneliti');
 $routes->get('/peneliti/pilih-instrumen', 'Peneliti::pilih_instrumen');
 $routes->get('/peneliti/detail-instrumen', 'Peneliti::detail_instrumen');
+
+$routes->get('/auth/hal_muasok/(:any)', 'Auth::login/$1');
+$routes->get('/logout', 'Auth::logout');
+$routes->post('/auth/cek_user', 'Auth::cek_user');
 
 $routes->post('/dinamis/form-answer-option', 'Dinamis::form_answer_option');
 $routes->post('/dinamis/tabel-pertanyaan-bahasa', 'Dinamis::tabel_pertanyaan_bahasa');
