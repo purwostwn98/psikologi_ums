@@ -40,7 +40,6 @@ class Home extends BaseController
 
     public function simpan_survei()
     {
-        dd($_POST);
 
         $curl = curl_init();
 
@@ -53,10 +52,9 @@ class Home extends BaseController
             CURLOPT_FOLLOWLOCATION => true,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => 'answer_1=3&answer_2=2&answer_3=4&answer_4=2&answer_5=2&answer_6=3&answer_7=4&answer_8=2&answer_9=2&answer_10=2&answer_11=2&answer_12=2&answer_13=2&answer_14=3&answer_15=1&answer_16=2&answer_17=3&answer_18=4&answer_19=2&answer_20=2&answer_21=3&answer_22=3&answer_23=2&answer_24=3&answer_25=2&answer_26=3',
+            CURLOPT_POSTFIELDS => $_POST,
             CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjEzNTY5OTk1MjQsIm5iZiI6MTM1NzAwMDAwMCwidWlkIjoiMjAiLCJlbWFpbCI6Inp1bGZhZmFsYWgzQGdtYWlsLmNvbSJ9.5TWX_Wgz431orddWeaXcXVytsyZOQgEKBD0bjZg00Uk',
-                'Content-Type: application/x-www-form-urlencoded'
+                "Authorization: Bearer ".$this->session->get('token'),
             ),
         ));
 

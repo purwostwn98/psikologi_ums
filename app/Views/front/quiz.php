@@ -111,18 +111,20 @@
     } else {
       document.getElementById("prevBtn").style.display = "inline";
     }
-    if (n == (numHuhu - 1)) {
-      document.getElementById("nextBtn").innerHTML = "Submit";
-      document.getElementById("nextBtn").type = "submit";
+    
+    if (n == (numHuhu-1)) {
+        //   document.getElementById("nextBtn").type = "submit";
+        document.getElementById("nextBtn").innerHTML = "Submit";
     } else {
-      var persen = (n / x.length) * 100;
+
+      document.getElementById("nextBtn").innerHTML = "<span class='bi bi-box-arrow-right'></span> | Selanjutnya";
+    }
+    var persen = (n / x.length) * 100;
       var strPersen = Math.floor(persen).toString();
       // alert(Math.floor(persen));
       $('#progress_bar').attr("aria-valuenow", strPersen);
       $('#progress_bar').attr("style", "width:" + Math.floor(persen) + "%");
       document.getElementById("progress_bar").innerHTML = strPersen + "%";
-      document.getElementById("nextBtn").innerHTML = "<span class='bi bi-box-arrow-right'></span> | Selanjutnya";
-    }
     // ... and run a function that displays the correct step indicator:
     fixStepIndicator(n)
   }
@@ -130,19 +132,27 @@
   function nextPrev(n) {
     // This function will figure out which tab to display
     var x = document.getElementsByClassName("huhu");
+    console.log(x)
     // var x = document.getElementsById("bagian");
+    
     var numHuhu = $(".huhu").length;
+    console.log(numHuhu)
     // Exit the function if any field in the current tab is invalid:
     if (n == 1 && !validateForm()) return false;
     // Hide the current tab:
-    x[currentTab].style.display = "none";
-    // Increase or decrease the current tab by 1:
     currentTab = currentTab + n;
+    var newKey = currentTab -1
+    console.log(newKey)
+    x[newKey].style.display = "none";
+    // Increase or decrease the current tab by 1:
+    console.log('currentTab', currentTab)
     // alert(x.length + currentTab);
     // if you have reached the end of the form... :
-    if (currentTab >= numHuhu) {
+    if (currentTab == numHuhu) {
       document.getElementById("regForm").submit();
       return false;
+        document.getElementById("nextBtn").innerHTML = "Submit";
+        // document.getElementById("nextBtn").type = "submit";
     }
     // Otherwise, display the correct tab:
     showTab(currentTab);
