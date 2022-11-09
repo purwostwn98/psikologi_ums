@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Libraries\ApiHelper;
 use App\Models\PertanyaanModels;
+
 
 class Home extends BaseController
 {
@@ -11,10 +13,14 @@ class Home extends BaseController
     public function __construct()
     {
         $this->pertanyaanModel = new PertanyaanModels();
+        
+        
     }
 
     public function index()
     {
+        
+        $this->ApiHelper->get(1);
         $response = api($this->host_api . "/api/list-instrument", "GET");
         $data = [
             'instrumen' => $response['data']

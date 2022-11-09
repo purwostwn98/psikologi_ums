@@ -90,7 +90,7 @@ phpunit
 #-------------------------
 
 # Modules Testing
-_modules/*
+# _modules/*
 
 # phpenv local config
 .php-version
