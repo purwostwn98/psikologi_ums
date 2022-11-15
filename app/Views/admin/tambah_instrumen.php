@@ -10,14 +10,14 @@
     <!-- stat boxes -->
     <div style="font-size: 14px;" class="row">
         <div class="col-12">
-            <form action="">
+            <form method="POST" action="">
                 <div class="form-group row">
                     <div class="col-sm-3 col-form-label text-sm-right pr-0">
                         <label style="font-weight: bold;" for="id-form-field-1" class="mb-0">Instrument Name</label>
                     </div>
 
                     <div class="col-sm-9">
-                        <input type="text" class="form-control col-sm-8 col-md-6" id="id-form-field-1">
+                        <input name="nama_instrument" required type="text" class="form-control col-sm-8 col-md-6" id="id-form-field-1">
                     </div>
                 </div>
                 <hr class="my-2">
@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="col-sm-9">
-                        <textarea class="form-control" id="id-textarea-autosize" placeholder="" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 62px;"></textarea>
+                        <textarea name="deskripsi_instrument" required class="form-control" id="id-textarea-autosize" placeholder="" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 62px;"></textarea>
                     </div>
                 </div>
                 <hr class="my-2">
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="col-sm-9">
-                        <select class="form-control col-sm-8 col-md-6 jumlah_option" id="form-field-select-1">
+                        <select required class="form-control col-sm-8 col-md-6 jumlah_option" id="form-field-select-1">
                             <option value=""></option>
                             <option value='3'>3</option>
                             <option value='4'>4</option>
@@ -59,10 +59,10 @@
                     </div>
 
                     <div class="col-sm-3">
-                        <input type="number" name="low_bawah" class="form-control col-md-12" id="id-form-field-1" placeholder="Lower limit">
+                        <input required type="number" name="result_range_low_min" class="form-control col-md-12" id="id-form-field-1" placeholder="Lower limit">
                     </div>
                     <div class="col-sm-3">
-                        <input type="number" name="low_atas" class="form-control col-md-12" id="id-form-field-1" placeholder="Upper limit">
+                        <input required type="number" name="result_range_low_max" class="form-control col-md-12" id="id-form-field-1" placeholder="Upper limit">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -71,10 +71,10 @@
                     </div>
 
                     <div class="col-sm-3">
-                        <input type="number" name="medium_bawah" class="form-control col-md-12" id="id-form-field-1" placeholder="Lower limit">
+                        <input required type="number" name="result_range_medium_min" class="form-control col-md-12" id="id-form-field-1" placeholder="Lower limit">
                     </div>
                     <div class="col-sm-3">
-                        <input type="number" name="medium_atas" class="form-control col-md-12" id="id-form-field-1" placeholder="Upper limit">
+                        <input required type="number" name="result_range_medium_max" class="form-control col-md-12" id="id-form-field-1" placeholder="Upper limit">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -83,10 +83,10 @@
                     </div>
 
                     <div class="col-sm-3">
-                        <input type="number" name="high_bawah" class="form-control col-md-12" id="id-form-field-1" placeholder="Lower limit">
+                        <input required type="number" name="result_range_high_min" class="form-control col-md-12" id="id-form-field-1" placeholder="Lower limit">
                     </div>
                     <div class="col-sm-3">
-                        <input type="number" name="high_atas" class="form-control col-md-12" id="id-form-field-1" placeholder="Upper limit">
+                        <input required type="number" name="result_range_high_max" class="form-control col-md-12" id="id-form-field-1" placeholder="Upper limit">
                     </div>
                 </div>
                 <hr class="my-2">
@@ -101,7 +101,7 @@
                     </div>
 
                     <div class="col-sm-9">
-                        <textarea class="form-control" id="id-textarea-autosize" placeholder="" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 62px;"></textarea>
+                        <textarea required name="result_description_low" class="form-control" id="id-textarea-autosize" placeholder="" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 62px;"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -110,7 +110,7 @@
                     </div>
 
                     <div class="col-sm-9">
-                        <textarea class="form-control" id="id-textarea-autosize" placeholder="" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 62px;"></textarea>
+                        <textarea required name="result_description_medium" class="form-control" id="id-textarea-autosize" placeholder="" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 62px;"></textarea>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -119,12 +119,12 @@
                     </div>
 
                     <div class="col-sm-9">
-                        <textarea class="form-control" id="id-textarea-autosize" placeholder="" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 62px;"></textarea>
+                        <textarea required name="result_description_high" class="form-control" id="id-textarea-autosize" placeholder="" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 62px;"></textarea>
                     </div>
                 </div>
                 <div class="my-2 border-t-1 brc-grey-l1 bgc-grey-l3 py-3">
                     <div class="offset-md-3 col-md-9">
-                        <button class="btn btn-info" type="button">
+                        <button class="btn btn-info" type="submit">
                             <i class="fa fa-check mr-1"></i>
                             Submit
                         </button>
@@ -138,6 +138,7 @@
 
         </div>
     </div>
+</div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script>

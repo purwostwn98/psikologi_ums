@@ -6,10 +6,11 @@
             Respondents
             <small class="page-info text-secondary-d2">
                 <i class="fa fa-angle-double-right text-80"></i>
-                Sexual Orientation Scale
+                <?=$data->nama_instrument?>
             </small>
         </h1>
-        <div class="page-tools pt-1 mt-3 mt-sm-0 mb-sm-n1"></div>
+        
+        <div class="page-tools pt-1 mt-3 mt-sm-0 mb-sm-n1"><a href="/admin/daftar-responden" class="btn btn-xs btn-secondary"><i class="fa fa-arrow-left text-110 align-text-bottom mr-1"></i> | Back</a></div>
     </div>
     <hr class="my-3">
 
@@ -31,46 +32,28 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php foreach ($data->data_respondent as $key => $value): ?>                                
                                 <tr class="d-style bgc-h-default-l4">
                                     <td>
-                                        <span class="text-105">1</span>
+                                        <span class="text-105"><?=$key+1?></span>
                                     </td>
                                     <td>
-                                        <span class="text-105">9/18/2021</span>
+                                        <span class="text-105"><?=$value->take_on?></span>
                                     </td>
                                     <td>
-                                        <span class="text-105">Purwo Setiawan</span>
+                                        <span class="text-105"><?=$value->name?></span>
                                     </td>
                                     <td>
-                                        <span class="text-105">10</span>
+                                        <span class="text-105"><?=$value->score?></span>
                                     </td>
                                     <td>
-                                        <span class="text-105">Low</span>
+                                        <span class="text-105"><?=$value->label?></span>
                                     </td>
                                     <td>
-                                        <a data-rel="tooltip" title="Lihat Detail" href="/admin/detail-responden"><i class="fa fa-eye text-blue-m1 text-120"></i> Detail</a>
+                                        <a data-rel="tooltip" title="Lihat Detail" href="/admin/detail-responden<?=$value->action_detail?>"><i class="fa fa-eye text-blue-m1 text-120"></i> Detail</a>
                                     </td>
                                 </tr>
-                                <tr class="d-style bgc-h-default-l4">
-                                    <td>
-                                        <span class="text-105">2</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-105">9/30/2021</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-105">Michael Tela</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-105">40</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-105">High</span>
-                                    </td>
-                                    <td>
-                                        <a data-rel="tooltip" title="Lihat Detail" href="/admin/detail-responden"><i class="fa fa-eye text-blue-m1 text-120"></i> Detail</a>
-                                    </td>
-                                </tr>
+                                <?php endforeach ?>
                             </tbody>
                         </table>
                     </div>

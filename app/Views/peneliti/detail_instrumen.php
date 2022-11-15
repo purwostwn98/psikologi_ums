@@ -6,7 +6,7 @@
             Instrument Details
             <small class="page-info text-secondary-d2">
                 <i class="fa fa-angle-double-right text-80"></i>
-                Sexual Orientation Scale
+                <?= $data->nama_instrument ?>
             </small>
         </h1>
         <button data-toggle="modal" data-target="#warningModal" class="btn btn-xs btn-primary"><i class="fa fa-plus text-110 align-text-bottom mr-1"></i> | Create New Survey</button>
@@ -19,20 +19,22 @@
                         <td style="font-weight: bold;">
                             Name
                         </td>
-                        <td>Sexual Orientation Scale</td>
+                        <td><?= $data->nama_instrument ?></td>
                     </tr>
                     <tr class="bgc-h-default-l3 d-style">
                         <td style="font-weight: bold;">
                             Description
                         </td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis consequuntur ex quis praesentium deleniti alias consectetur eligendi doloremque totam cum id sint repudiandae magnam, reprehenderit quaerat qui deserunt porro labore.</td>
+                        <td><?= $data->deskripsi_instrument ?></td>
                     </tr>
                     <tr class="bgc-h-default-l3 d-style">
                         <td style="font-weight: bold;">
                             Scale Range
                         </td>
                         <td>
-                            Low (26-51) <br> Medium (52-78) <br> High (79-104)
+                            <?php foreach ($data->scale_range as $key => $value) : ?>
+                                <?= ucfirst($value->label) ?> (<?= $value->low ?> - <?= $value->upper ?>) <br>
+                            <?php endforeach ?>
                         </td>
                     </tr>
                     <tr class="bgc-h-default-l3 d-style">
@@ -40,11 +42,12 @@
                             Result Description
                         </td>
                         <td>
-                            <strong>Low</strong><br>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere odio expedita facilis. Delectus dolor asperiores soluta odit facilis fugiat? Recusandae cupiditate doloribus consequuntur eum voluptatum, aut unde repellat est quae?<br><br> <strong>Medium</strong><br>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque id consectetur pariatur ducimus fuga voluptas magni unde beatae fugit natus in architecto recusandae fugiat, asperiores repudiandae minima voluptatum accusantium corporis.<br><br>
-                            <strong>High</strong><br>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, nam blanditiis nesciunt quam eius sint enim dolorem, quis non voluptate ab fuga, ad explicabo at totam suscipit consequuntur? Quam, iure!
+                            <?php foreach ($data->result_description as $key => $value) : ?>
+                                <strong> <?= ucfirst($value->label) ?> </strong> <br>
+                                <?= $value->deskripsi ?>
+                                <br>
+                                <br>
+                            <?php endforeach ?>
                         </td>
                     </tr>
                 </tbody>
@@ -75,8 +78,8 @@
     </div>
     <div class="row mt-3">
         <div class="col-12 tabel-pertanyaan">
-            <table id="example" class="display" style="width:100%; font-size: 13px;">
-                <thead>
+            <table id="datatable" class="table table-border-y text-dark-m2 text-95 border-y-1 brc-secondary-l1">
+                <thead class="text-secondary-m2 text-uppercase text-85">
                     <tr>
                         <th>No</th>
                         <th style="max-width: 500px;">Question</th>
@@ -84,38 +87,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Secara seksual, saya lebih tertarik memperhatikan penampilan lawan jenis dibandingkan penampilan sesama jenis</td>
-                        <td>
-                            <a href="#" class="btn btn-xs btn-warning text-white"><i class="fa fa-edit text-white"></i></a>
-                            <a href="#" class="btn btn-xs btn-danger text-white"><i class="fa fa-trash text-white"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Ketika berada di dekat orang sejenis (laki-laki dekat dengan laki-laki, perempuan dekat dengan perempuan) yang wajahnya cakep (tampan/cantik) jantung saya terasa berdetak lebih kencang</td>
-                        <td>
-                            <a href="#" class="btn btn-xs btn-warning text-white"><i class="fa fa-edit text-white"></i></a>
-                            <a href="#" class="btn btn-xs btn-danger text-white"><i class="fa fa-trash text-white"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Ketika berjabat tangan dengan orang sejenis yang wajahnya cakep, saya memegang tangannya lebih erat</td>
-                        <td>
-                            <a href="#" class="btn btn-xs btn-warning text-white"><i class="fa fa-edit text-white"></i></a>
-                            <a href="#" class="btn btn-xs btn-danger text-white"><i class="fa fa-trash text-white"></i></a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>etc</td>
-                        <td>etc..</td>
-                        <td>
-                            <a href="#" class="btn btn-xs btn-warning text-white"><i class="fa fa-edit text-white"></i></a>
-                            <a href="#" class="btn btn-xs btn-danger text-white"><i class="fa fa-trash text-white"></i></a>
-                        </td>
-                    </tr>
+                    <?php foreach ($data_soal as $key => $value) : ?>
+                        <tr>
+                            <td><?= $key + 1 ?></td>
+                            <td><?= $value->soal ?></td>
+                        </tr>
+                    <?php endforeach ?>
                 </tbody>
             </table>
         </div>
@@ -136,22 +113,28 @@
                 </p>
             </div>
 
+            <form action="" method="post">
+                <input type="hidden" value="<?= $_GET['instrument']?>" name="instrument">
+                <input type="hidden" value="<?= $data->survei_code ?>" name="code_survei">
             <div class="form-group row">
                 <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                    <label for="id-form-field-1" class="mb-0">Start date</label>
+                    <label for="id-form-field-1" class="mb-0">Date Range</label>
                 </div>
 
-                <div class="col-sm-9">
-                    <input type="date" name="" id="">
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                    <label for="id-form-field-1" class="mb-0">End date</label>
-                </div>
+                <div class="col-sm-8">
+                    <div id="id-daterange-wrapper" class="pos-rel">
+                        <div class="form-row">
+                            <div class="col">
+                                <input required id="id-daterange-from" name="start_date" class="form-control ex-inputs-start" placeholder="From date">
+                            </div>
+                            <div class="text-grey-l2">_</div>
+                            <div class="col">
+                                <input required id="id-daterange-to" name="end_date" class="form-control ex-inputs-end" placeholder="To date">
+                            </div>
+                        </div>
 
-                <div class="col-sm-9">
-                    <input type="date" name="" id="">
+                        <div id="id-daterange-container" class="dp-daterange-picker dp-daterange-above"></div>
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
@@ -162,9 +145,8 @@
                 <div class="col-sm-9">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">https://assessme.puslogin.com/</span>
+                            <span class="input-group-text">https://assessme.puslogin.com/survei/<?= $data->survei_code ?></span>
                         </div>
-                        <input type="text" readonly class="form-control form-control-lg" id="form-field-mask-2" inputmode="text" value="u9set1">
                     </div>
                 </div>
             </div>
@@ -175,12 +157,12 @@
                     Cencel
                 </button>
 
-                <button type="button" class="btn btn-md px-2 px-md-4 btn-light-secondary btn-h-light-success btn-a-light-success" data-dismiss="modal">
+                <button type="submit" class="btn btn-md px-2 px-md-4 btn-light-secondary btn-h-light-success btn-a-light-success">
                     Save
                     <i class="fa fa-arrow-right ml-1 text-success-m2"></i>
                 </button>
             </div>
-
+            </form>
         </div>
     </div>
 </div>
@@ -211,5 +193,42 @@
             }
         });
     });
+</script>
+<?= $this->endSection(); ?>
+
+<?= $this->section("js_page"); ?>
+<script>
+            
+    var daterange_container = document.querySelector('#id-daterange-container');
+    // Inject DateRangePicker into our container
+    DateRangePicker.DateRangePicker(daterange_container, {
+        mode: 'dp-modal'
+    })
+    .on('statechange', function (_, rp) {
+        // Update the inputs when the state changes
+        var range = rp.state;
+        var str_start_date = `${range.start.getFullYear()}-${range.start.getMonth()+1}-${range.start.getDate()}`
+        var str_end_date = `${range.end.getFullYear()}-${range.end.getMonth()+1}-${range.end.getDate()}`
+
+
+        $('#id-daterange-from').val( range.start ? str_start_date : '' );
+        $('#id-daterange-to').val( range.end ? str_end_date : '' );
+    });
+
+    $('#id-daterange-from, #id-daterange-to').on('focus', function() {    
+        daterange_container.classList.add('visible');
+    });
+
+    var daterange_wrapper = document.querySelector('#id-daterange-wrapper');
+    var previousTimeout = null;
+    $( daterange_wrapper ).on('focusout', function() {
+        if(previousTimeout) clearTimeout(previousTimeout);
+        previousTimeout = setTimeout(function() {
+            if ( !daterange_wrapper.contains(document.activeElement) ) {
+            daterange_container.classList.remove('visible');
+            }
+        }, 10);
+    });
+
 </script>
 <?= $this->endSection(); ?>

@@ -1,11 +1,14 @@
+<?php
+$locale = service('request')->getLocale();
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= $locale ?>">
 
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Assessme | Psychology UMS</title>
+    <title><?= lang('Landing.title') ?></title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -31,6 +34,7 @@
     <link href="<?= base_url(); ?>/depan/assets/css/login.css" rel="stylesheet">
     <link href="<?= base_url(); ?>/depan/assets/scss/option.scss" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 
     <!-- =======================================================
   * Template Name: Nova - v1.2.0
@@ -123,10 +127,10 @@
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-            <a href="index.html" class="logo d-flex align-items-center">
+            <a href="<?=base_url($locale)?>" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <!-- <img src="<?= base_url(); ?>/depan/assets/img/logo.png" alt=""> -->
-                <h1 class="d-flex align-items-center">Assess-Me</h1>
+                <h1 class="d-flex align-items-center">InI.expert</h1>
             </a>
 
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
@@ -134,30 +138,23 @@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="/home/index/#hero" class="active">Home</a></li>
-                    <li><a href="/home/index/#about-us">About</a></li>
-                    <li><a href="/home/index/#our-services">Services</a></li>
-                    <li><a href="/home/index/#instrument-list">Instruments</a></li>
-                    <!-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <li><a href="<?=base_url($locale)?>#hero" class="active"><?= lang('Landing.home') ?></a></li>
+                    <li><a href="<?=base_url($locale)?>#about-us"><?= lang('Landing.about') ?></a></li>
+                    <li><a href="<?=base_url($locale)?>#our-services"><?= lang('Landing.services') ?></a></li>
+                    <li><a href="<?=base_url($locale)?>#instrument-list"><?= lang('Landing.instruments') ?></a></li>
+                    <li><a href="<?=base_url($locale)?>#contact"><?= lang('Landing.contact') ?></a></li>
+                    <li><a href="<?=base_url($locale)?>/home/riwayat-netizen"><?= lang('Landing.my_account') ?></a></li>
+                    <li><a href="<?=base_url($locale)?>/auth/hal_muasok/0"><?= lang('Landing.sign_in') ?></a></li>
+                    <li id="toggle-language" class="dropdown">
+                        <a id="a_dropdown" href="#">
+                            <img src="<?= base_url(); ?>/global/in.gif" alt="" srcset="">
+                            &nbsp;<span>Indonesia</span> <i class="bi bi-chevron-down dropdown-indicator"></i>
+                        </a>
                         <ul>
-                            <li><a href="#">Dropdown 1</a></li>
-                            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                                <ul>
-                                    <li><a href="#">Deep Dropdown 1</a></li>
-                                    <li><a href="#">Deep Dropdown 2</a></li>
-                                    <li><a href="#">Deep Dropdown 3</a></li>
-                                    <li><a href="#">Deep Dropdown 4</a></li>
-                                    <li><a href="#">Deep Dropdown 5</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Dropdown 2</a></li>
-                            <li><a href="#">Dropdown 3</a></li>
-                            <li><a href="#">Dropdown 4</a></li>
+                            <li><a href="#"> <span class="option-lang"><img src="<?= base_url(); ?>/global/in.gif" style="margin-right:5px" alt="" srcset="">Indonesia</span></a></li>
+                            <li><a href="#"> <span class="option-lang"><img src="<?= base_url(); ?>/global/en.gif" style="margin-right:5px" alt="" srcset="">English</span></a></li>
                         </ul>
-                    </li> -->
-                    <li><a href="/home/index/#contact">Contact</a></li>
-                    <li><a href="/home/riwayat-netizen">My Account</a></li>
-                    <li><a href="/auth/hal_muasok/0">Sign In</a></li>
+                    </li>
                 </ul>
             </nav><!-- .navbar -->
 
@@ -196,7 +193,7 @@
 
 
                     <div class="col-lg-2 col-6 footer-links">
-                        <h4>Our Services</h4>
+                        <h4><?= lang('Landing.title_service') ?></h4>
                         <ul>
                             <li><i class="bi bi-dash"></i> <a href="#">Self-Assessment</a></li>
                             <li><i class="bi bi-dash"></i> <a href="#">For Research</a></li>
@@ -204,7 +201,7 @@
                     </div>
 
                     <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
-                        <h4>Contact Us</h4>
+                        <h4><?= lang('Landing.contact_us') ?></h4>
                         <p>
                             <strong>Phone:</strong> +62 271-717417 ext. 3404<br>
                             <strong>Email:</strong> psikologi@ums.ac.id<br>
@@ -251,3 +248,75 @@
 </body>
 
 </html>
+<script>
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+</script>
+<script>
+    if (getCookie('language') == ""){
+        document.cookie = `language=id`;
+    }
+    console.log(getCookie('language'))
+
+    const id = `<a href="#">
+                        <img src="<?= base_url(); ?>/global/in.gif" alt="" srcset=""> 
+                        &nbsp;<span>Indonesia</span> <i class="bi bi-chevron-down dropdown-indicator"></i>
+                    </a>
+                    <ul>
+                        <li><a href="#"> <span class="option-lang"><img src="<?= base_url(); ?>/global/in.gif" style="margin-right:5px" alt="" srcset="">Indonesia</span></a></li>
+                        <li><a href="#"> <span class="option-lang"><img src="<?= base_url(); ?>/global/en.gif" style="margin-right:5px" alt="" srcset="">English</span></a></li>
+                    </ul>`
+
+    const en = `<a href="#">
+                    <img src="<?= base_url(); ?>/global/en.gif" alt="" srcset=""> 
+                    &nbsp;<span>English</span> <i class="bi bi-chevron-down dropdown-indicator"></i>
+                </a>
+                <ul>
+                    <li><a href="#"> <span class="option-lang"><img src="<?= base_url(); ?>/global/in.gif" style="margin-right:5px" alt="" srcset="">Indonesia</span></a></li>
+                    <li><a href="#"> <span class="option-lang"><img src="<?= base_url(); ?>/global/en.gif" style="margin-right:5px" alt="" srcset="">English</span></a></li>
+                </ul>`
+                
+    const lang_url = `<?=$locale?>`
+    document.cookie = `language=${lang_url}`;
+    if (getCookie('language') == 'en' || lang_url == 'en' ) {
+        $('#toggle-language').html(en)
+        
+    } else {
+        $('#toggle-language').html(id)
+
+    }
+
+
+    $('#toggle-language').on('click', function(e) {
+        e.preventDefault();
+        const language_option = $(e.target)
+        if (language_option[0].className == "option-lang"){
+            const language = ($(e.target).text() == 'Indonesia') ? 'id' : 'en'
+            document.cookie = `language=${language}`;
+
+            const url_reload = location.origin
+            if (language == 'en') {
+                window.location.href = `${url_reload}/en`
+            } else if (language == 'id') {
+                window.location.href = `${url_reload}/id`
+            }
+        }
+
+
+
+    });
+</script>
+<?= $this->renderSection("js_page"); ?>

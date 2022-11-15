@@ -10,8 +10,8 @@
     <!-- stat boxes -->
     <div class="row">
         <div class="col-12">
-            <table id="example" class="display" style="width:100%; font-size: 13px;">
-                <thead>
+            <table id="datatable" class="table table-border-y text-dark-m2 text-95 border-y-1 brc-secondary-l1">
+                <thead class="text-secondary-m2 text-uppercase text-85">
                     <tr>
                         <th>No</th>
                         <th>Instrument Name</th>
@@ -19,20 +19,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach ($data as $key => $value): ?> 
                     <tr>
-                        <td>1</td>
-                        <td>Sexual Orientation Scale</td>
+                        <td><?=$value->no?></td>
+                        <td><?=$value->nama_instrument?></td>
                         <td>
-                            <a href="/peneliti/detail-instrumen" class="btn btn-xs btn-info text-white">Open Details</a>
+                            <a href="/peneliti/detail-instrumen<?=$value->action_open_detail?>" class="btn btn-xs btn-info text-white">Open Details</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Religious Harmony Scale</td>
-                        <td>
-                            <a href="/peneliti/detail-instrumen" class="btn btn-xs btn-info text-white">Open Details</a>
-                        </td>
-                    </tr>
+                    <?php endforeach ?>
                 </tbody>
             </table>
         </div>
@@ -42,7 +37,7 @@
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#example').DataTable();
+        $('#datatable').DataTable();
     });
 </script>
 <?= $this->endSection(); ?>

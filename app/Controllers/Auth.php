@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\PertanyaanModels;
+use Google_Client;
 
 class Auth extends BaseController
 {
@@ -13,12 +14,42 @@ class Auth extends BaseController
         $this->pertanyaanModel = new PertanyaanModels();
     }
 
-    public function login($a)
+    public function login()
     {
+        $clientID = '890274412815-aj1cfgo2mmjp5v7himj1fa2ijr41tvrb.apps.googleusercontent.com';
+        $clientSecret = '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';
+        $redirectUri = 'http://localhost:8080'; //Harus sama dengan yang kita daftarkan
+                
+        $google_client = new Google_Client();
+        $google_client->setClientId($clientID);
+        $google_client->setClientSecret($clientSecret);
+        $google_client->setRedirectUri($redirectUri);
+        $google_client->addScope("email");
+        $google_client->addScope("profile");
         $data = [
-            'a' => $a
+            'google_auth_url' => $google_client->createAuthUrl(),
+            'a' => 1
+            
         ];
-        return view('auth/login', $data);
+        return view('auth/login_oauth', $data);
+    }
+    
+    public function login_google()
+    {
+        $clientID = '890274412815-aj1cfgo2mmjp5v7himj1fa2ijr41tvrb.apps.googleusercontent.com';
+        $clientSecret = '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';
+        $redirectUri = 'http://localhost:8080'; //Harus sama dengan yang kita daftarkan
+                
+        $google_client = new Google_Client();
+        $google_client->setClientId($clientID);
+        $google_client->setClientSecret($clientSecret);
+        $google_client->setRedirectUri($redirectUri);
+        $google_client->addScope("email");
+        $google_client->addScope("profile");
+        $token = $google_client->fetchAccessTokenWithAuthCode($_GET['code']);
+    
+        print_r($token);
+        die;
     }
 
     public function cek_user()
@@ -101,5 +132,10 @@ class Auth extends BaseController
     {
         $this->session->destroy();
         return redirect()->to('/');
+    }
+
+    public function login_cas()
+    {
+        echo 1;
     }
 }

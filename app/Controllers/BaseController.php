@@ -29,6 +29,9 @@ abstract class BaseController extends Controller
      */
     protected $request;
 
+    protected $viewData = [];
+    
+
     /**
      * An array of helpers to be loaded automatically upon
      * class instantiation. These helpers will be available
@@ -50,5 +53,8 @@ abstract class BaseController extends Controller
 
         $this->session = \Config\Services::session();
         $this->ApiHelper = new ApiHelper();
+
+        $this->viewData['locale'] = $this->request->getLocale();
+        $this->viewData['supportedLocales'] = $request->config->supportedLocales;
     }
 }

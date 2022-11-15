@@ -1,17 +1,20 @@
 <?= $this->extend("/template/front_layout.php"); ?>
+<?php
+$locale = service('request')->getLocale();
+?>
 <?= $this->section("konten"); ?>
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="hero d-flex align-items-center">
   <div class="container">
     <div class="row">
       <div class="col-xl-4">
-        <h2 data-aos="fade-up">Get to Know Yourself</h2>
+        <h2 data-aos="fade-up"><?= lang('Landing.title_hero') ?></h2>
         <blockquote data-aos="fade-up" data-aos-delay="100">
-          <p>The Assessme is a free self-assessment that takes 10 minutes and provides a wealth of information to help you understand yourself. Assessme report provide personalized, in-depth analysis of your free results. </p>
+          <p><?= lang('Landing.deskripsi_hero') ?></p>
         </blockquote>
         <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
           <!-- <a href="/home/quiz" class="btn-get-started">Get Started</a> -->
-          <a href="#instrument-list" class="btn-get-started">Our Instruments</a>
+          <a href="#instrument-list" class="btn-get-started"><?= lang('Landing.btn_hero') ?></a>
           <!-- <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
         </div>
 
@@ -27,13 +30,13 @@
     <div class="container" data-aos="fade-up">
 
       <div class="section-header">
-        <h2>About Us</h2>
+        <h2><?= lang('Landing.title_about_us') ?></h2>
       </div>
 
       <div class="row gy-5 justify-content-center">
         <div class="col-md-8 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
           <div>
-            <p class="text-center">Deskripsi detail platform (menjelaskan diinisiasi oleh Psikologi UMS) <br> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio aut nemo cupiditate dolorem vitae? Accusamus vero voluptates magni perspiciatis natus molestiae temporibus in reprehenderit dolores voluptas minus, earum quidem corporis.</p>
+            <p class="text-center"><?= lang('Landing.about_us') ?></p>
           </div>
         </div>
 
@@ -47,19 +50,19 @@
     <div class="container" data-aos="fade-up">
       <div class="row justify-content-center">
         <div class="col-lg-10">
-          <h3 class="text-center mb-5">Our Services</h3>
+          <h3 class="text-center mb-5"><?= lang('Landing.title_service') ?></h3>
           <div class="row justify-content-center">
             <div class="col-md-6 text-center">
               <h4 class="text-warning title">Self-Assessment</h4>
               <p class="description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi provident hic dolorem ducimus, temporibus blanditiis ipsa porro distinctio eum asperiores tempore id reprehenderit suscipit saepe eaque soluta, corporis vero et!
+                <?= lang('Landing.self_assessment_description') ?>
               </p>
-              <a class="cta-btn" href="#">Get Started</a>
+              <a class="cta-btn" href="#instrument-list">Get Started</a>
             </div>
             <div class="col-md-6 text-center">
               <h4 class="text-warning title">For Research</h4>
               <p class="description">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi provident hic dolorem ducimus, temporibus blanditiis ipsa porro distinctio eum asperiores tempore id reprehenderit suscipit saepe eaque soluta, corporis vero et!
+                <?= lang('Landing.for_research_description') ?>
               </p>
               <a class="cta-btn" href="#">Get Started</a>
             </div>
@@ -74,7 +77,7 @@
   <section id="instrument-list" class="services-list">
     <div class="container" data-aos="fade-up">
       <div class="section-header">
-        <h2>Our Instruments</h2>
+        <h2><?= lang('Landing.btn_hero') ?></h2>
       </div>
       <?php
       $icon = array('bi bi-briefcase', 'bi bi-card-checklist', 'bi bi-bar-chart');
@@ -93,9 +96,9 @@
           <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="100">
             <div class="icon flex-shrink-0"><i class="<?= $icon[rand(0, 2)]; ?>" style="color: <?= $color[rand(0, 2)]; ?>;"></i></div>
             <div>
-              <h4 class="title"><a href="/home/instrument-detail<?php echo $ins['action_detail']; ?>" class="stretched-link"><?= $ins['nama_instrument']; ?></a></h4>
-              <p class="description"><?= limit_words($ins['deskripsi_instrument'], 10); ?> ...</p>
-              <a href="/home/instrument-detail<?php echo $ins['action_detail']; ?>" class="btn btn-info text-white">Get Started</a>
+              <h4 class="title"><a href="<?=$locale?>/home/instrument-detail<?php echo $ins['action_detail']; ?>" class="stretched-link"><?= $ins['nama_instrument']; ?></a></h4>
+              <p class="description"><?= limit_words($ins['deskripsi_instrument'], 10); ?>...</p>
+              <a href="<?=$locale?>/home/instrument-detail<?php echo $ins['action_detail']; ?>" class="btn btn-info text-white">Get Started</a>
             </div>
           </div>
         <?php endforeach; ?>

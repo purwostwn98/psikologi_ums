@@ -7,45 +7,48 @@
         </h1>
         <a href="/admin/form-tambah-instrumen" class="btn btn-xs btn-primary"><i class="fa fa-plus text-110 align-text-bottom mr-1"></i> | Add Instrument</a>
     </div>
-    <hr class="my-4">
+    <hr class="my-1">
     <!-- stat boxes -->
     <div class="row">
         <div class="col-12">
-            <table id="example" class="display" style="width:100%; font-size: 13px;">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Instrument Name</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Sexual Orientation Scale</td>
-                        <td>
-                            <a href="/admin/detail-instrumen" class="btn btn-xs btn-info text-white">Detail</a>
-                            <a href="/admin/data-pertanyaan" class="btn btn-xs btn-secondary text-white">Open Question</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Religious Harmony Scale</td>
-                        <td>
-                            <a href="/admin/detail-instrumen" class="btn btn-xs btn-info text-white">Detail</a>
-                            <a href="/admin/data-pertanyaan" class="btn btn-xs btn-secondary text-white">Open Question</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="mt-4 mx-md-2 border-t-1 brc-secondary-l1">
+                <div class="table-responsive-md">
+                    <table id="datatable" class="table table-border-y text-dark-m2 text-95 border-y-1 brc-secondary-l1">
+                        <thead class="text-secondary-m2 text-uppercase text-85">
+                            <tr>
+                                <th class="border-0 bgc-h-default-l3 text-strong">No</th>
+                                <th class="border-0 bgc-h-default-l3">Instrument Name</th>
+                                <th class="border-0 bgc-h-default-l3">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($data_instrument as $key => $value):?>
+                                <tr class="d-style bgc-h-default-l4">
+                                    <td class="pos-rel">
+                                        <?=$key+1?>
+                                    </td>
+                                    <td>
+                                        <span class="text-105"><?=$value->nama_instrument?></span>
+                                    </td>
+                                    <td>
+                                        <a href="/admin/detail-instrumen<?=$value->action_detail?>" class="btn btn-xs btn-info text-white">Detail</a>
+                                        <a href="/admin/data-pertanyaan<?=$value->action_open_question?>" class="btn btn-xs btn-secondary text-white">Open Question</a>
+                                    </td>
+                                </tr>
+                            <?php endforeach ?>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
 <script>
     $(document).ready(function() {
-        $('#example').DataTable();
+        $('#datatable').DataTable();
     });
 </script>
 <?= $this->endSection(); ?>

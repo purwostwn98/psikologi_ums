@@ -2,6 +2,7 @@
 
 namespace Config;
 
+use App\Filters\Localize;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\DebugToolbar;
@@ -23,6 +24,7 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'localize'      => Localize::class,
     ];
 
     /**
@@ -33,6 +35,7 @@ class Filters extends BaseConfig
      */
     public $globals = [
         'before' => [
+            'localize'
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',
@@ -68,5 +71,5 @@ class Filters extends BaseConfig
      *
      * @var array
      */
-    public $filters = [];
+    public $filters = ['/*'];
 }

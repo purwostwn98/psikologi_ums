@@ -3,9 +3,10 @@
 <div class="page-content container bg-white">
     <div class="page-header border-0 justify-content-between">
         <h1 class="text-grey-d1 pb-0 mb-0 text-130">
-            Sexual Orientation Scale
+            <?=$data->nama_instrument?>
         </h1>
-        <div class="page-tools pt-1 mt-3 mt-sm-0 mb-sm-n1"></div>
+        <div class="page-tools pt-1 mt-3 mt-sm-0 mb-sm-n1"><a href="/admin/daftar-responden-2?instrument=<?=$_GET['instrument']?>" class="btn btn-xs btn-secondary"><i class="fa fa-arrow-left text-110 align-text-bottom mr-1"></i> | Back</a></div>
+
     </div>
     <!-- stat boxes -->
     <div class="row gy-4 aos-init aos-animate" data-aos="fade-up">
@@ -14,11 +15,10 @@
         </div>
         <div class="col-lg-8">
             <div class="content ps-lg-5">
-                <h3 class="pb-0 mb-0">Purwo Setiawan</h3>
-                <span style="font-size:12px; font-weight: bold;">Score: 10 (Low)</span>
+                <h3 class="pb-0 mb-0"><?=$data->nama_respondent?></h3>
+                <span style="font-size:12px; font-weight: bold;">Score: <?=$data->score?> (<?=ucfirst($data->label)?>)</span>
                 <p>
-                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
+                    <?=$data->deskripsi?>
                 </p>
             </div>
         </div>
@@ -37,50 +37,19 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php foreach ($data->data_pertanyaan as $key => $value): ?>                                
                                 <tr class="d-style bgc-h-default-l4">
                                     <td>
-                                        <span class="text-105">1</span>
+                                        <span class="text-105"><?=$key+1?></span>
                                     </td>
                                     <td>
-                                        <span class="text-105">Secara seksual, saya lebih tertarik memperhatikan penampilan lawan jenis dibandingkan penampilan sesama jenis</span>
+                                        <span class="text-105"><?=$value->soal?></span>
                                     </td>
                                     <td>
-                                        <span class="text-105">2</span>
+                                        <span class="text-105"><?=$value->bobot_pilihan?></span>
                                     </td>
                                 </tr>
-                                <tr class="d-style bgc-h-default-l4">
-                                    <td>
-                                        <span class="text-105">2</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-105">Ketika berada di dekat orang sejenis (laki-laki dekat dengan laki-laki, perempuan dekat dengan perempuan) yang wajahnya cakep (tampan/cantik) jantung saya terasa berdetak lebih kencang</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-105">2</span>
-                                    </td>
-                                </tr>
-                                <tr class="d-style bgc-h-default-l4">
-                                    <td>
-                                        <span class="text-105">3</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-105">Ketika berjabat tangan dengan orang sejenis yang wajahnya cakep, saya memegang tangannya lebih erat</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-105">3</span>
-                                    </td>
-                                </tr>
-                                <tr class="d-style bgc-h-default-l4">
-                                    <td>
-                                        <span class="text-105">etc.</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-105">...</span>
-                                    </td>
-                                    <td>
-                                        <span class="text-105">..</span>
-                                    </td>
-                                </tr>
+                                <?php endforeach ?>
                             </tbody>
                         </table>
                     </div>
@@ -102,7 +71,7 @@
         ],
         datasets: [{
             label: 'Score',
-            data: [10, 40],
+            data: [<?=$data->score?>, 100],
             backgroundColor: [
                 'rgb(255, 99, 132)',
                 'rgb(54, 162, 235)'

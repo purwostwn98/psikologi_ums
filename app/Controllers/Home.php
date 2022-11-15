@@ -19,22 +19,23 @@ class Home extends BaseController
 
     public function index()
     {
-        
-        $this->ApiHelper->get(1);
-        $response = api($this->host_api . "/api/list-instrument", "GET");
+        $locale = $this->request->getLocale();
+        $response = $this->ApiHelper->get("/api/$locale/list-instrument");
         $data = [
             'instrumen' => $response['data']
         ];
+        
         return view('front/index', $data);
     }
 
     public function quiz()
     {
-        $a = $this->request->getVar('instrument');
+        $instrument = $this->request->getVar('instrument');
+        $locale = $this->request->getLocale();
         if ($this->session->get('login') != true) {
-            return redirect()->to("/auth/hal_muasok/$a");
+            return redirect()->to("$locale/auth/login");
         } else {
-            $data1 = api($this->host_api . "/api/id/list-pertanyaan-survei?instrument=$a", 'GET');
+            $data1 = api($this->host_api . "/api/id/list-pertanyaan-survei?instrument=$instrument", 'GET');
             $data =
                 [
                     "pertanyaan" => $data1['data']['data_result'],
@@ -72,11 +73,12 @@ class Home extends BaseController
 
     public function instrument_detail()
     {
-        $a = $this->request->getVar('instrument');
-        $response = api($this->host_api . "/api/detail-instrument?instrument=$a", "GET");
+        $instrument = $this->request->getVar('instrument');
+        $locale = $this->request->getLocale();
+        $response = $this->ApiHelper->get("/api/$locale/detail-instrument?instrument=$instrument");
         $data = [
-            "deskripsi" => $response['data']['deskripsi_instrument'],
-            "id_instrument" => $a
+            "data_instrument" => $response['data'],
+            "id_instrument" => $instrument
         ];
         return view('front/instrument_detail', $data);
     }

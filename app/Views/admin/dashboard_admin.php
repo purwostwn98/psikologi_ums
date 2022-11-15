@@ -33,7 +33,7 @@
                     </span>
                 </div>
                 <div class="mt-2px">
-                    <h2 class="text-primary pb-0"><b>2</b></h2>
+                    <h2 class="text-primary pb-0"><b><?=$today->jumlah_respondent?></b></h2>
                     <div class="text-dark-tp5 text-110">Responden Hari Ini</div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="mt-2px">
-                    <h2 class="text-blue pb-0"><b>10</b></h2>
+                    <h2 class="text-blue pb-0"><b><?=$month->jumlah_respondent?></b></h2>
                     <div class="text-dark-tp5 text-110">Responden Bulan Ini</div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                     </span>
                 </div>
                 <div class="mt-2px">
-                    <h2 class="text-orange pb-0"><b>40</b></h2>
+                    <h2 class="text-orange pb-0"><b><?=$year->jumlah_respondent?></b></h2>
                     <div class="text-dark-tp5 text-110">Responden Tahun Ini</div>
                 </div>
             </div>
@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="mt-2px">
-                    <h2 class="text-secondary pb-0">2001</b></h2>
+                    <h2 class="text-secondary pb-0"><?=$all->jumlah_respondent?></b></h2>
                     <div class="text-dark-tp5 text-110">Jumlah Responden</div>
                 </div>
             </div>
@@ -100,20 +100,23 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <!-- Statistik Program -->
 <script>
+    const data_peneliti = JSON.parse('<?=json_encode($statistik_peneliti)?>')
+    let labels = []
+    let data = []
+    data_peneliti.forEach(function(obj) 
+    { 
+        labels.push(obj.nama_instrument)
+        data.push(obj.jumlah_peneliti)
+        
+    });
     const myChart = new Chart(
         document.getElementById('myChart'), {
             type: 'bar',
             data: {
-                labels: [
-                    'Sexual Orientation Scale',
-                    'Relegious Harmony Scale'
-                ],
+                labels: labels,
                 datasets: [{
                     label: 'Jumlah Survey',
-                    data: [
-                        4,
-                        9
-                    ],
+                    data: data,
                     backgroundColor: [
                         'rgba(50,205,50)'
                     ],
@@ -136,21 +139,23 @@
 
 <!-- Statistik Pilar -->
 <script>
+    const data_respondent = JSON.parse('<?=json_encode($statistik_respondent)?>')
+    let labels_resp = []
+    let data_resp = []
+    data_respondent.forEach(function(obj) 
+    { 
+        labels_resp.push(obj.nama_instrument)
+        data_resp.push(obj.jumlah_respondent)
+        
+    });
     const myChart2 = new Chart(
         document.getElementById('myChart2'), {
             type: 'doughnut',
             data: {
-                labels: [
-                    'Sexual Orientation Scale',
-                    'Religious Harmony Scale'
-
-                ],
+                labels: labels_resp,
                 datasets: [{
                     label: 'Stats Pilar',
-                    data: [
-                        890,
-                        1400
-                    ],
+                    data: data_resp,
                     backgroundColor: [
                         'rgb(255, 99, 132)',
                         'rgb(54, 162, 235)'

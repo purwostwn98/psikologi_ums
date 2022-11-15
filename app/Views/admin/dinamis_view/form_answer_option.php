@@ -5,10 +5,10 @@
         </div>
 
         <div class="col-sm-6">
-            <input type="text" name="label[]" class="form-control col-md-12" id="id-form-field-1" placeholder="Label">
+            <input type="text" name="judul_pilihan_<?= $i + 1; ?>" class="form-control col-md-12" id="id-form-field-1" placeholder="Label">
         </div>
         <div class="col-sm-3">
-            <input type="number" name="value[]" class="form-control col-md-12" id="id-form-field-1" placeholder="Value">
+            <input type="number" name="bobot_pilihan_<?= $i + 1; ?>" class="form-control col-md-12" id="id-form-field-1" placeholder="Value">
         </div>
     </div>
 <?php } ?>
