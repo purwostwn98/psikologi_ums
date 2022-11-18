@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\PertanyaanModels;
 use Google_Client;
+use Google_Service_Oauth2;
 
 class Auth extends BaseController
 {
@@ -18,38 +19,63 @@ class Auth extends BaseController
     {
         $clientID = '890274412815-aj1cfgo2mmjp5v7himj1fa2ijr41tvrb.apps.googleusercontent.com';
         $clientSecret = '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';
-        $redirectUri = 'http://localhost:8080'; //Harus sama dengan yang kita daftarkan
-                
+        $redirectUri = 'http://localhost:8080/id/auth/login';
+
         $google_client = new Google_Client();
         $google_client->setClientId($clientID);
         $google_client->setClientSecret($clientSecret);
         $google_client->setRedirectUri($redirectUri);
         $google_client->addScope("email");
         $google_client->addScope("profile");
+        if (isset($_GET["code"])) {
+            $token = $google_client->fetchAccessTokenWithAuthCode($_GET["code"]);
+            if (!isset($token["error"])) {
+                
+                $result = $this->ApiHelper->post("/api/auth/login-google/$token[access_token]", true);
+                if($result['status'] == 200){
+                    $session_data = [
+                        'login' => true,
+                        'token' => $result['data']['token'],
+                        'email' => $result['data']['email'],
+                        'nama_user' => $result['data']['nama_lengkap'],
+                        'level_user' => $result['data']['level_user'],
+                        // 'url_callback' => false  
+                    ];
+                    $this->session->set($session_data);
+                    $locale = $this->request->getLocale();
+                    return redirect()->to("$locale/");
+
+                }
+            }
+        }
+
         $data = [
             'google_auth_url' => $google_client->createAuthUrl(),
-            'a' => 1
-            
         ];
         return view('auth/login_oauth', $data);
     }
-    
-    public function login_google()
+
+    public function update_profile_user()
     {
-        $clientID = '890274412815-aj1cfgo2mmjp5v7himj1fa2ijr41tvrb.apps.googleusercontent.com';
-        $clientSecret = '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';
-        $redirectUri = 'http://localhost:8080'; //Harus sama dengan yang kita daftarkan
-                
-        $google_client = new Google_Client();
-        $google_client->setClientId($clientID);
-        $google_client->setClientSecret($clientSecret);
-        $google_client->setRedirectUri($redirectUri);
-        $google_client->addScope("email");
-        $google_client->addScope("profile");
-        $token = $google_client->fetchAccessTokenWithAuthCode($_GET['code']);
-    
-        print_r($token);
-        die;
+        $data =  [
+            'jenis_kelamin' => $this->request->getVar('jenis_kelamin'),
+            'tanggal_lahir' => $this->request->getVar('tanggal_lahir'),
+            'negara' => $this->request->getVar('negara'),
+            'provinsi' => $this->request->getVar('provinsi'),
+            'nama_lengkap' => $this->request->getVar('nama_lengkap'),
+        ];
+        $updated = $this->ApiHelper->post('/api/auth/update-profile-user', $data);
+        if($updated){
+            $locale = $this->request->getLocale();
+            if ($locale == 'en'){
+                session()->setFlashData('success', "Your profile has been updated successfully");
+            }else{
+                session()->setFlashData('success', "Profil kamu berhasil diperbarui");
+            }
+            return redirect()->to("$locale/");
+        }
+
+        
     }
 
     public function cek_user()
@@ -134,8 +160,27 @@ class Auth extends BaseController
         return redirect()->to('/');
     }
 
-    public function login_cas()
+    public function formulir_peneliti()
     {
-        echo 1;
+        $data = [
+            'lembaga' => $this->request->getVar('lembaga'),
+            'keperluan' => $this->request->getVar('keperluan')
+        ];
+        $request = $this->ApiHelper->post("/api/auth/register-peneliti", $data, true);
+        if($request->status == 200){
+            $locale = $this->request->getLocale();
+            if ($locale == 'en'){
+                session()->setFlashData('success', "Your form has been successfully submitted");
+            }else{
+                session()->setFlashData('success', "Formulir anda berhasil di submit");
+            }
+            return redirect()->to("$locale/");
+        }
+    }
+
+    public function status_peneliti()
+    {
+        $status = $this->ApiHelper->get('/api/auth/get-peneliti');
+        echo json_encode($status);
     }
 }

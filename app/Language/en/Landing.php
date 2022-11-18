@@ -32,7 +32,20 @@ return [
         a 'researcher' and then click the desired psychological scale. Fill in the form we provide and follow the instructions for using the scale for your research
         instrument. Results from respondents can be accessed directly or contact the
         admin of Ini.expert.",
-    'contact_us' => "Contact Us"
+    'contact_us' => "Contact Us",
+    'title_update_profile' => "Let's Complete Your Profile",
+    'gender' => "Gender",
+    'country' => "Country",
+    'date_of_birth' => "Date of birth",
+    'btn_update_profile' => "Save",
+    'province' => "Province",
+    'male' => "Male",
+    'female' => "Female",
+    'title_formulir_peneliti' => 'Researcher Submission Form',
+    'agency' => "Agency",
+    'keperluan' => "Tell us why you need to do the survey",
+    'next' => "Next",
+    'previous' => "Previous"
 
 
 ];

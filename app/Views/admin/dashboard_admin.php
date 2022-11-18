@@ -1,5 +1,6 @@
 <?= $this->extend("/template/back_layout.php"); ?>
 <?= $this->section("konten"); ?>
+<?php $locale = service('request')->getLocale();?>
 <div class="page-content container">
     <div class="page-header border-0 ">
         <h1 class="page-title text-primary-d2">

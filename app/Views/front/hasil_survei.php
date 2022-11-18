@@ -5,7 +5,7 @@
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs d-flex align-items-center" style="background-image: url('<?= base_url(); ?>/depan/image/edutorium_ums.jpeg');">
         <div class="container position-relative d-flex flex-column align-items-center">
-            <h3 style="color: white;">Sexual Orientation Scale</h3>
+            <h3 style="color: white;"><?=$hasil_survei->nama_instrument?></h3>
         </div>
     </div><!-- End Breadcrumbs -->
 
@@ -18,11 +18,10 @@
                 </div>
                 <div class="col-lg-8">
                     <div class="content ps-lg-5">
-                        <h3 class="pb-0 mb-0">Low</h3>
-                        <span class="small-text">Your Score: 28</span>
+                        <h3 class="pb-0 mb-0"><?= ucfirst($hasil_survei->label)?></h3>
+                        <span class="small-text">Your Score: <?= ucfirst($hasil_survei->score)?></span>
                         <p>
-                            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
+                        <?= ucfirst($hasil_survei->deskripsi)?>
                         </p>
                     </div>
                 </div>
@@ -33,9 +32,9 @@
 
 
 </main><!-- End #main -->
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+    const sisa = 100 - <?= ucfirst($hasil_survei->score)?> 
     const data = {
         labels: [
             'Your Score',
@@ -43,7 +42,7 @@
         ],
         datasets: [{
             label: 'Your Score',
-            data: [28, 10],
+            data: [<?= ucfirst($hasil_survei->score)?>, sisa],
             backgroundColor: [
                 'rgb(255, 99, 132)',
                 'rgb(54, 162, 235)'

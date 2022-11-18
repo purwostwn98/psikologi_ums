@@ -1,12 +1,16 @@
 <?= $this->extend("/template/front_layout.php"); ?>
 <?= $this->section("konten"); ?>
+<?php
+
+$locale = service('request')->getLocale();
+?>
 <main id="main">
 
   <!-- ======= Breadcrumbs ======= -->
   <div class="breadcrumbs d-flex align-items-center" style="background-image: url('<?= base_url(); ?>/depan/assets/img/blog/blog-2.jpg');">
     <div class="container position-relative d-flex flex-column align-items-center">
 
-      <h3 style="color: white;">Sexual Orientation Scale</h3>
+      <h3 style="color: white;"><?=$nama_instrument?></h3>
 
     </div>
   </div><!-- End Breadcrumbs -->
@@ -16,7 +20,7 @@
     <div class="container" data-aos="fade-up">
 
       <!-- <form id="regForm" action="/home/hasil-survei"> -->
-      <form id="regForm" action="/home/simpan-survei" method="POST">
+      <form id="regForm" action="<?=base_url($locale)?>/home/simpan-survei?instrument=<?=$_GET['instrument']?>" method="POST">
         <?php foreach ($pertanyaan as $z => $prt) : ?>
           <div id="bagian" class="tab huhu">
             <strong><?= $prt['soal']; ?></strong>
@@ -71,12 +75,12 @@
         <div class="row align-items-center justify-content-center">
           <div class="col-auto">
             <div class="d-flex">
-              <button type="button" class="btn btn-secondary" id="prevBtn" onclick="nextPrev(-1)"><span class='bi bi-box-arrow-left'></span> | Sebelumnya</button>
+              <button type="button" class="btn btn-secondary" id="prevBtn" onclick="nextPrev(-1)"><span class='bi bi-box-arrow-left'></span> | <?= lang('Landing.previous') ?></button>
             </div>
           </div>
           <div class="col-auto">
             <div class="d-flex">
-              <button type="button" class="btn btn-success" id="nextBtn" onclick="nextPrev(1)"><span class='bi bi-box-arrow-right'></span> | Selanjutnya</button>
+              <button type="button" class="btn btn-success" id="nextBtn" onclick="nextPrev(1)"><span class='bi bi-box-arrow-right'></span> | <?= lang('Landing.next') ?></button>
             </div>
           </div>
         </div>
@@ -94,7 +98,6 @@
 
 
 </main><!-- End #main -->
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script>
   var currentTab = 0; // Current tab is set to be the first tab (0)
   showTab(currentTab); // Display the current tab
@@ -114,10 +117,10 @@
     
     if (n == (numHuhu-1)) {
         //   document.getElementById("nextBtn").type = "submit";
-        document.getElementById("nextBtn").innerHTML = "Submit";
+        document.getElementById("nextBtn").innerHTML = "<span class='bi bi-box-arrow-right'></span> | Submit";
     } else {
 
-      document.getElementById("nextBtn").innerHTML = "<span class='bi bi-box-arrow-right'></span> | Selanjutnya";
+      document.getElementById("nextBtn").innerHTML = "<span class='bi bi-box-arrow-right'></span> | <?= lang('Landing.next') ?>";
     }
     var persen = (n / x.length) * 100;
       var strPersen = Math.floor(persen).toString();

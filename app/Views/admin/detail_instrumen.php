@@ -1,5 +1,6 @@
 <?= $this->extend("/template/back_layout.php"); ?>
 <?= $this->section("konten"); ?>
+<?php $locale = service('request')->getLocale();?>
 <div class="page-content container bg-white">
     <div class="page-header border-0 justify-content-between">
         <a href="/admin/data-instrumen" class="btn btn-xs btn-secondary"><i class="fa fa-arrow-left text-110 align-text-bottom mr-1"></i> | Back</a>
@@ -196,7 +197,6 @@
 </div>
 
 
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {

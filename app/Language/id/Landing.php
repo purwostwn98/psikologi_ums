@@ -32,6 +32,22 @@ return [
         form yang kami sediakan dan ikuti petunjuk penggunaan skala untuk instrumen
         penelitianmu. Hasil dari responden dapat diakses langsung atau menghubungi
         admin InI.expert.",
-    'contact_us' => "Hubungi kami"
+    'contact_us' => "Hubungi kami",
+    'title_update_profile' => "Yuk lengkapi profilmu",
+    'gender' => "Jenis Kelamin",
+    'country' => "Negara",
+    'date_of_birth' => "Tanggal lahir",
+    'btn_update_profile' => "Simpan",
+    'province' => "Provinsi",
+    'male' => "Laki-laki",
+    'female' => "Perempuan",
+    'title_formulir_peneliti' => 'Formulir Pengajuan Peneliti',
+    'agency' => "Instansi",
+    'keperluan' => "Ceritakan keperluan anda kenapa melakukan survei",
+    'next' => "Selanjutnya",
+    'previous' => "Sebelumnya"
+
+
+
     
 ];

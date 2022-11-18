@@ -28,19 +28,15 @@ class Peneliti extends BaseController
             $data = http_build_query($data, '', '&', PHP_QUERY_RFC3986);
             $result = $this->ApiHelper->put($endpoint, $data);
             session()->setFlashData('success', $result['messages']['success']);
-            return redirect()->to(base_url("/peneliti"));
+            return redirect()->to(base_url($this->locale."/peneliti"));
         }
-        $dapat_session = [
-            'login' => true,
-            'halaman' => 'peneliti'
-        ];
-        $this->session->set($dapat_session);
+        
         $endpoint = "/api/list-survei-peneliti";
         $data_survei = $this->ApiHelper->get($endpoint, true);
+        
         $data = [
             'data_survei' => $data_survei->data
         ];
-        
         return view('peneliti/dashboard_peneliti', $data);
     }
 
@@ -65,11 +61,11 @@ class Peneliti extends BaseController
             $data = [
                 'start_date' => $this->request->getVar('start_date'),
                 'end_date' => $this->request->getVar('end_date'),
+                'language' => $this->request->getVar('language'),
             ];
-            
             $result = $this->ApiHelper->post($endpoint, $data);
             session()->setFlashData('success', $result['messages']['success']);
-            return redirect()->to(base_url("/peneliti"));
+            return redirect()->to(base_url("$this->locale/peneliti"));
          
         }
         $endpoint = "/api/detail-instrument-survei?instrument=".$this->request->getVar('instrument');

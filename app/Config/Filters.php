@@ -2,6 +2,10 @@
 
 namespace Config;
 
+use App\Filters\Auth;
+use App\Filters\AuthAdmin;
+use App\Filters\AuthPeneliti;
+use App\Filters\Cors;
 use App\Filters\Localize;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
@@ -25,6 +29,10 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'localize'      => Localize::class,
+        'cors'          => Cors::class,
+        'auth_admin'    => AuthAdmin::class,
+        'auth_peneliti' => AuthPeneliti::class,
+        'auth'          => Auth::class
     ];
 
     /**
@@ -35,7 +43,8 @@ class Filters extends BaseConfig
      */
     public $globals = [
         'before' => [
-            'localize'
+            'localize',
+            'cors'
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',

@@ -1,5 +1,6 @@
 <?= $this->extend("/template/front_layout.php"); ?>
 <?= $this->section("konten"); ?>
+<?php $locale = service('request')->getLocale(); ?>
 <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -15,24 +16,23 @@
                 <thead>
                     <tr>
                         <th>Taken On</th>
+                        <th>Name</th>
                         <th>Survey Name</th>
                         <th>Score</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>8/17/2022</td>
-                        <td>Sexual Orientation Scale</td>
-                        <td>28 (Low)</td>
-                        <td><a href="/home/hasil-survei" class="btn btn-info text-white">Open Detail</a></td>
-                    </tr>
-                    <tr>
-                        <td>9/01/2022</td>
-                        <td>Religious Harmony Scale</td>
-                        <td>67 (Medium)</td>
-                        <td><a href="/home/hasil-survei" class="btn btn-info text-white">Open Detail</a></td>
-                    </tr>
+                    <?php foreach ($riwayat as $key => $value): ?>
+                        <tr>
+                            <td><?=$value->take_on?></td>
+                            <td><?=$value->name?></td>
+                            <td><?=$value->nama_instrument?></td>
+                            <td><?=$value->score?> (<?=$value->label?>)</td>
+                            <td><a href="<?=base_url($locale)?>/home/hasil-survei?instrument=<?=$value->detail_id?>&take_on=<?=$value->take_on?>" class="btn btn-info text-white">Open Detail</a></td>
+                        </tr>
+                    <?php endforeach ?>
+                    
                 </tbody>
             </table>
         </div>
@@ -41,7 +41,6 @@
 
 
 </main><!-- End #main -->
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {

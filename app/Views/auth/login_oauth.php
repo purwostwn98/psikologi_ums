@@ -54,6 +54,7 @@
                 <h2 data-aos="fade-up">Sign In</h2>
                 <blockquote data-aos="fade-up" data-aos-delay="100">
                     <div class="card-body">
+                        <!-- <h5 data-aos="fade-up">Silakan sign in dulu ya</h5> -->
                         <div class="google-btn">
                             <a href="<?=$google_auth_url?>">
                                 <div class="google-icon-wrapper">
@@ -63,17 +64,17 @@
                             </a>
                         </div>
                         <br>
-                        <div class="google-btn">
+                        <!-- <div class="google-btn">
                             <div class="google-icon-wrapper">
                                 <img class="google-icon" src="https://www.ums.ac.id/wp-content/uploads/2021/12/Resmi_Logo_UMS_Color-150x150.png" />
                             </div>
                             <p class="btn-text"><b>Sign in with sso ums</b></p>
 
-                        </div>
+                        </div> -->
 
                         <!-- <?= form_open("/auth/cek_user", ['class' => 'form_login']); ?>
                         <?= csrf_field(); ?>
-                        <input type="hidden" name="a" value="<?= $a; ?>">
+                        <input type="hidden" name="a" value="<?//= $a; ?>">
                         <div class="input-group form-group">
                             <div class="input-group-prepend mr-2">
                                 <span class="input-group-text"><i class="bi bi-person-square"></i></span>
@@ -105,7 +106,6 @@
         </div>
     </div>
 </section><!-- End Hero Section -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script type="text/javascript">
     $('.form_login').submit(function(e) {
         e.preventDefault();

@@ -39,41 +39,45 @@ $routes->get('/', 'Home::index');
 $routes->get('{locale}/', 'Home::index');
 $routes->get('{locale}/home/quiz', 'Home::quiz');
 $routes->get('{locale}/home/instrument-detail', 'Home::instrument_detail');
-$routes->get('{locale}/home/hasil-survei', 'Home::hasil_survei');
-$routes->get('{locale}/home/riwayat-netizen', 'Home::riwayat_netizen');
-$routes->post('/home/simpan-survei', 'Home::simpan_survei');
+$routes->get('{locale}/home/hasil-survei', 'Home::hasil_survei', ['filter' => 'auth']);
+$routes->get('{locale}/home/riwayat-netizen', 'Home::riwayat_netizen', ['filter' => 'auth']);
+$routes->post('{locale}/home/simpan-survei', 'Home::simpan_survei', ['filter' => 'auth']);
+$routes->get('{locale}/survey/(:any)', 'Home::quiz_survei/$1');
 
 
 // admin
-$routes->get('/admin', 'Admin::dashboard_adm');
-$routes->get('/admin/daftar-responden', 'Admin::daftar_responden');
-$routes->get('/admin/daftar-responden-2', 'Admin::daftar_responden_2');
-$routes->get('/admin/detail-responden', 'Admin::detail_responden');
-$routes->get('/admin/data-instrumen', 'Admin::data_instrumen');
+$routes->get('{locale}/admin', 'Admin::dashboard_adm', ['filter' => 'auth_admin']);
+$routes->get('{locale}/admin/daftar-responden', 'Admin::daftar_responden', ['filter' => 'auth_admin']);
+$routes->get('{locale}/admin/daftar-responden-2', 'Admin::daftar_responden_2', ['filter' => 'auth_admin']);
+$routes->get('{locale}/admin/detail-responden', 'Admin::detail_responden', ['filter' => 'auth_admin']);
+$routes->get('{locale}/admin/data-instrumen', 'Admin::data_instrumen', ['filter' => 'auth_admin']);
 
-$routes->post('/admin/delete-pertanyaan', 'Admin::detele_pertanyaan');
-$routes->post('/admin/edit-pertanyaan', 'Admin::edit_pertanyaan');
-$routes->match(['post', 'get'], '/admin/detail-instrumen', 'Admin::detail_instrumen');
-$routes->match(['post', 'get'], '/admin/data-pertanyaan', 'Admin::data_pertanyaan');
-$routes->match(['post', 'get'], '/admin/form-tambah-instrumen', 'Admin::tambah_instrumen');
+$routes->post('{locale}/admin/delete-pertanyaan', 'Admin::detele_pertanyaan', ['filter' => 'auth_admin']);
+$routes->post('{locale}/admin/edit-pertanyaan', 'Admin::edit_pertanyaan', ['filter' => 'auth_admin']);
+$routes->match(['post', 'get'], '{locale}/admin/detail-instrumen', 'Admin::detail_instrumen', ['filter' => 'auth_admin']);
+$routes->match(['post', 'get'], '{locale}/admin/data-pertanyaan', 'Admin::data_pertanyaan', ['filter' => 'auth_admin']);
+$routes->match(['post', 'get'], '{locale}/admin/form-tambah-instrumen', 'Admin::tambah_instrumen', ['filter' => 'auth_admin']);
 
-$routes->match(['post', 'get'], '/admin/manajemen-user', 'Admin::manajemen_user');
+$routes->match(['post', 'get'], '{locale}/admin/manajemen-user', 'Admin::manajemen_user', ['filter' => 'auth_admin']);
 $routes->get('/translate-me', 'Admin::translate_me');
 // admin
 
 
 // peneliti
-$routes->match(['post', 'get'], '/peneliti', 'Peneliti::dashboard_peneliti');
-$routes->get('/peneliti/pilih-instrumen', 'Peneliti::pilih_instrumen');
-$routes->get('/peneliti/daftar-responden-survei', 'Peneliti::daftar_responden_survei');
-$routes->get('/peneliti/detail-responden-survei', 'Peneliti::detail_responden_survei');
-$routes->match(['post', 'get'], '/peneliti/detail-instrumen', 'Peneliti::detail_instrumen');
+$routes->match(['post', 'get'], '{locale}/peneliti', 'Peneliti::dashboard_peneliti', ['filter' => 'auth_peneliti']);
+$routes->get('{locale}/peneliti/pilih-instrumen', 'Peneliti::pilih_instrumen', ['filter' => 'auth_peneliti']);
+$routes->get('{locale}/peneliti/daftar-responden-survei', 'Peneliti::daftar_responden_survei', ['filter' => 'auth_peneliti']);
+$routes->get('{locale}/peneliti/detail-responden-survei', 'Peneliti::detail_responden_survei', ['filter' => 'auth_peneliti']);
+$routes->match(['post', 'get'], '{locale}/peneliti/detail-instrumen', 'Peneliti::detail_instrumen', ['filter' => 'auth_peneliti']);
 // end peneliti
 
 $routes->get('{locale}/auth/login', 'Auth::login');
-$routes->get('/logout', 'Auth::logout');
+$routes->get('{locale}/auth/logout', 'Auth::logout');
 $routes->post('/auth/cek_user', 'Auth::cek_user');
-$routes->get('/auth/login-cas', 'Auth::login_cas');
+// $routes->get('/auth/login-cas', 'Auth::login_cas');
+$routes->post('{locale}/auth/update-profile-user', 'Auth::update_profile_user');
+$routes->post('{locale}/formulir-peneliti', 'Auth::formulir_peneliti', ['filter' => 'auth']);
+$routes->get('{locale}/status-peneliti', 'Auth::status_peneliti', ['filter' => 'auth']);
 
 $routes->post('/dinamis/form-answer-option', 'Dinamis::form_answer_option');
 $routes->post('/dinamis/tabel-pertanyaan-bahasa', 'Dinamis::tabel_pertanyaan_bahasa');

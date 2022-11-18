@@ -2,7 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Models\PertanyaanModels;
 
 class Admin extends BaseController
 {
@@ -10,18 +9,14 @@ class Admin extends BaseController
 
     public function __construct()
     {
-        $this->pertanyaanModel = new PertanyaanModels();
+        
 
     }
 
 
     public function dashboard_adm()
     {
-        $dapat_session = [
-            'login' => true,
-            'halaman' => 'admin'
-        ];
-        $this->session->set($dapat_session);
+
         $year = $this->ApiHelper->get("/api/get-jumlah-respondent?filter=year", true);
         $today = $this->ApiHelper->get("/api/get-jumlah-respondent?filter=today", true);
         $month = $this->ApiHelper->get("/api/get-jumlah-respondent?filter=month", true);

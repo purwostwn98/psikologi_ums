@@ -2,6 +2,7 @@
 <html lang="en">
 <?php
 $session = \Config\Services::session();
+$locale = service('request')->getLocale();
 ?>
 
 <head>
@@ -149,10 +150,10 @@ $session = \Config\Services::session();
                             </div>
                         </div>
                         <hr>
-                        <?php if ($session->get('halaman') == 'admin') { ?>
+                        <?php if ($session->get('level_user') == 'admin') { ?>
                             <div class="nav nav-parent flex-column mt-2 has-active-border" role="navigation" aria-label="Main">
                                 <li class="nav-item">
-                                    <a href="/admin" class="nav-link">
+                                    <a href="<?=base_url($locale)?>/admin" class="nav-link">
                                         <i class="nav-icon 	fa fa-desktop"></i>
                                         <span class="nav-text fadeable">
                                             <span>Dashboard</span>
@@ -162,7 +163,7 @@ $session = \Config\Services::session();
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="/admin/daftar-responden" class="nav-link">
+                                    <a href="<?=base_url($locale)?>/admin/daftar-responden" class="nav-link">
                                         <i class="nav-icon 	fa fa-book"></i>
                                         <span class="nav-text fadeable">
                                             <span>Data Respondent</span>
@@ -171,7 +172,7 @@ $session = \Config\Services::session();
                                     <b class="sub-arrow"></b>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/data-instrumen" class="nav-link">
+                                    <a href="<?=base_url($locale)?>/admin/data-instrumen" class="nav-link">
                                         <i class="nav-icon 	fa fa-archive" aria-hidden="true"></i>
                                         <span class="nav-text fadeable">
                                             <span>Data Instrument</span>
@@ -180,7 +181,7 @@ $session = \Config\Services::session();
                                     <b class="sub-arrow"></b>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/admin/manajemen-user" class="nav-link">
+                                    <a href="<?=base_url($locale)?>/admin/manajemen-user" class="nav-link">
                                         <i class="nav-icon 	fa fa-users" aria-hidden="true"></i>
                                         <span class="nav-text fadeable">
                                             <span>User Management</span>
@@ -192,7 +193,7 @@ $session = \Config\Services::session();
                         <?php } else { ?>
                             <div class="nav nav-parent flex-column mt-2 has-active-border" role="navigation" aria-label="Main">
                                 <li class="nav-item">
-                                    <a href="/peneliti" class="nav-link">
+                                    <a href="<?=base_url($locale)?>/peneliti" class="nav-link">
                                         <i class="nav-icon 	fa fa-desktop"></i>
                                         <span class="nav-text fadeable">
                                             <span>Dashboard</span>
@@ -202,7 +203,7 @@ $session = \Config\Services::session();
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="/peneliti/pilih-instrumen" class="nav-link">
+                                    <a href="<?=base_url($locale)?>/peneliti/pilih-instrumen" class="nav-link">
                                         <i class="nav-icon 	fa fa-book"></i>
                                         <span class="nav-text fadeable">
                                             <span>Create Survey</span>
@@ -247,7 +248,7 @@ $session = \Config\Services::session();
 
                         <div class="navbar-menu collapse navbar-collapse navbar-backdrop" id="navbarMenu">
                             <div class="navbar-nav">
-                                <div class="dropdown dd-backdrop dd-backdrop-none-md">
+                            <!-- <div class="dropdown dd-backdrop dd-backdrop-none-md">
                                     <button type="button" id="id-nav-post-btn" class="btn btn-outline-primary btn-bold btn-sm mx-2 px-2 px-lg-3 radius-round dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-plus mr-lg-1"></i>
                                         <span class="d-none d-lg-inline">Language</span>
@@ -267,7 +268,8 @@ $session = \Config\Services::session();
                                             </a>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
+                                
                                 <ul class="nav has-active-border">
                                     <li class="nav-item dropdown dropdown-mega">
                                         <a class="nav-link dropdown-toggle mr-1px" href="#" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -283,7 +285,7 @@ $session = \Config\Services::session();
                                                         <i class="fa fa-users bgc-blue-tp1 text-white text-110 mr-1 p-2 radius-1"></i>
                                                         <span class="text-muted">Edit Profil</span>
                                                     </a>
-                                                    <a href="/logout" class="mb-0 border-0 list-group-item list-group-item-action btn-h-lighter-secondary">
+                                                    <a href="<?=base_url($locale)?>/auth/logout" class="mb-0 border-0 list-group-item list-group-item-action btn-h-lighter-secondary">
                                                         <i class="fa fa-times bgc-pink-tp1 text-white text-110 mr-1 p-2 radius-1"></i>
                                                         <span class="text-muted">Logout</span>
                                                     </a>
@@ -405,10 +407,11 @@ $session = \Config\Services::session();
 	$('.nav-parent').each(function() {
 		const navItem = $(this);
 		const li = navItem.find("li")
-		const location_url = location.pathname
+		const location_url = location.href
 		li.each(function() {
             const liItem = $(this)
-			const url = liItem.find("a").attr("href")						
+			const url = liItem.find("a").attr("href")	
+            					
 			if (url == location_url) {
 				liItem.addClass('active');
 			} else {

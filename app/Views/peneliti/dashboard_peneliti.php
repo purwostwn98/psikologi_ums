@@ -1,5 +1,6 @@
 <?= $this->extend("/template/back_layout.php"); ?>
 <?= $this->section("konten"); ?>
+<?php $locale = service('request')->getLocale();?>
 <div class="page-content container bg-white">
     <div class="page-header border-0 ">
         <h1 class="page-title text-primary-d2">
@@ -42,7 +43,7 @@
                             </td>
                             <td><?=$value->jumlah_respondent?></td>
                             <td>
-                                <a onclick="Edit('<?=$value->code_survei?>', '<?=$value->start_date?>', '<?=$value->end_date?>', '<?=$value->action_edit?>')" data-toggle="modal" data-target="#editSurveiModal" href="#" class="btn btn-xs btn-warning text-white">Edit</a>
+                                <a onclick="Edit('<?=$value->code_survei?>', '<?=$value->start_date?>', '<?=$value->end_date?>', '<?=$value->action_edit?>', '<?=$value->language?>')" data-toggle="modal" data-target="#editSurveiModal" href="#" class="btn btn-xs btn-warning text-white">Edit</a>
                                 <a href="/peneliti/daftar-responden-survei<?=$value->action_respondent?>" class="btn btn-xs btn-info text-white">Respondents</a>
                             </td>
                         </tr>
@@ -125,7 +126,6 @@
 </div>
 <!-- end modal edit survei -->
 
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {
@@ -133,8 +133,8 @@
     });
 </script>
 <script>
-    function Edit(code_survei, start_date, end_date, edit_endpoint){
-        const link_survei = `https://assessme.puslogin.com/survei/${code_survei}`
+    function Edit(code_survei, start_date, end_date, edit_endpoint, language){
+        const link_survei = `<?=base_url()?>/${language}/survey/${code_survei}`
         $('#link_survei').text(link_survei)
         let startDate = new Date(start_date);
         $('#id-daterange-from').val(`${startDate.getDate()}/${startDate.getMonth()+1}/${startDate.getFullYear()}`)

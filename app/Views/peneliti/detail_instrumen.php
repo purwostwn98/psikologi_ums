@@ -1,5 +1,9 @@
 <?= $this->extend("/template/back_layout.php"); ?>
 <?= $this->section("konten"); ?>
+<?php
+$session = \Config\Services::session();
+$locale = service('request')->getLocale();
+?>
 <div class="page-content container bg-white">
     <div class="page-header border-0 justify-content-between">
         <h1 class="page-title text-primary-d2">
@@ -139,13 +143,29 @@
             </div>
             <div class="form-group row">
                 <div class="col-sm-3 col-form-label text-sm-right pr-0">
+                    <label for="id-form-field-1" class="mb-0">Language</label>
+                </div>
+
+                <div class="col-sm-8">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <select style="width: 501px;" class="form-control" name="language" id="set_language">
+                                <option value="id">Indonesia</option>
+                                <option value="en">English</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3 col-form-label text-sm-right pr-0">
                     <label for="id-form-field-1" class="mb-0">Survey link</label>
                 </div>
 
                 <div class="col-sm-9">
                     <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">https://assessme.puslogin.com/survei/<?= $data->survei_code ?></span>
+                        <div  class="input-group-prepend">
+                            <span style="width: 501px;" id="link_survey" class="input-group-text"><?=base_url()?>/id/survey/<?= $data->survei_code ?></span>
                         </div>
                     </div>
                 </div>
@@ -166,11 +186,21 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#example').DataTable();
+        $('#set_language').on('change', function() {
+            
+            if(this.value == 'en'){
+                $('#link_survey').text(`<?=base_url()?>/en/survey/<?= $data->survei_code ?>`)
+
+            }else{
+                $('#link_survey').text(`<?=base_url()?>/id/survey/<?= $data->survei_code ?>`)
+
+            }
+        });
+
     });
 </script>
 <script>

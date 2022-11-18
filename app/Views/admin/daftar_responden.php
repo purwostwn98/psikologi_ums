@@ -1,5 +1,6 @@
 <?= $this->extend("/template/back_layout.php"); ?>
 <?= $this->section("konten"); ?>
+<?php $locale = service('request')->getLocale();?>
 <div class="page-content container bg-white">
     <div class="page-header border-0 ">
         <h1 class="page-title text-primary-d2">
@@ -25,7 +26,7 @@
                         <td><?=$key+1?></td>
                         <td><?=$value->nama_instrument?></td>
                         <td><?=$value->jumlah_respondent?></td>
-                        <td><a href="/admin/daftar-responden-2<?=$value->action_open_respondent?>" class="btn btn-xs btn-info text-white">Open Respondents</a></td>
+                        <td><a href="<?=base_url($locale)?>/admin/daftar-responden-2<?=$value->action_open_respondent?>" class="btn btn-xs btn-info text-white">Open Respondents</a></td>
                     </tr>
                     <?php endforeach ?>
                 </tbody>
@@ -33,7 +34,6 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {

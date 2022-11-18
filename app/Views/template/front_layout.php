@@ -1,5 +1,7 @@
 <?php
+
 $locale = service('request')->getLocale();
+$session = \Config\Services::session();
 ?>
 <!DOCTYPE html>
 <html lang="<?= $locale ?>">
@@ -28,13 +30,18 @@ $locale = service('request')->getLocale();
     <link href="<?= base_url(); ?>/depan/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="<?= base_url(); ?>/depan/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
     <link href="<?= base_url(); ?>/depan/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
+    
     <!-- Template Main CSS File -->
-    <link href="<?= base_url(); ?>/depan/assets/css/main.css" rel="stylesheet">
     <link href="<?= base_url(); ?>/depan/assets/css/login.css" rel="stylesheet">
-    <link href="<?= base_url(); ?>/depan/assets/scss/option.scss" rel="stylesheet">
+    <link href="<?= base_url(); ?>/depan/assets/css/main.css" rel="stylesheet">
+    <!-- <link href="<?= base_url(); ?>/depan/assets/scss/option.scss" rel="stylesheet"> -->
+    
     <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="<?= base_url(); ?>/depan/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    
 
     <!-- =======================================================
   * Template Name: Nova - v1.2.0
@@ -118,7 +125,34 @@ $locale = service('request')->getLocale();
                 margin-top: 20px;
             }
         }
+        .btn-select{
+            color: #000000;
+            border: 1px solid #CED4DA;
+            border-radius: 0;
+            box-shadow: none;
+            font-size: 14px;
+            padding: 12px 15px;
+        }
     </style>
+
+   <!-- css and js for toastr -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+
+
+    <script>
+        toastr.options = {
+            "debug": false,
+            "positionClass": "toast-top-center",
+            "onclick": null,
+            "fadeIn": 300,
+            "fadeOut": 1000,
+            "timeOut": 5000,
+            "extendedTimeOut": 1000
+        }
+    </script>
+    
 </head>
 
 <body class="page-index">
@@ -127,9 +161,9 @@ $locale = service('request')->getLocale();
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-            <a href="<?=base_url($locale)?>" class="logo d-flex align-items-center">
+            <a href="<?= base_url($locale) ?>" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="<?= base_url(); ?>/depan/assets/img/logo.png" alt=""> -->
+                <!-- <img src="<?//= base_url(); ?>/depan/assets/img/logo.png" alt=""> -->
                 <h1 class="d-flex align-items-center">InI.expert</h1>
             </a>
 
@@ -138,13 +172,30 @@ $locale = service('request')->getLocale();
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="<?=base_url($locale)?>#hero" class="active"><?= lang('Landing.home') ?></a></li>
-                    <li><a href="<?=base_url($locale)?>#about-us"><?= lang('Landing.about') ?></a></li>
-                    <li><a href="<?=base_url($locale)?>#our-services"><?= lang('Landing.services') ?></a></li>
-                    <li><a href="<?=base_url($locale)?>#instrument-list"><?= lang('Landing.instruments') ?></a></li>
-                    <li><a href="<?=base_url($locale)?>#contact"><?= lang('Landing.contact') ?></a></li>
-                    <li><a href="<?=base_url($locale)?>/home/riwayat-netizen"><?= lang('Landing.my_account') ?></a></li>
-                    <li><a href="<?=base_url($locale)?>/auth/hal_muasok/0"><?= lang('Landing.sign_in') ?></a></li>
+                    <li><a href="<?= base_url($locale) ?>#hero" class="active"><?= lang('Landing.home') ?></a></li>
+                    <li><a href="<?= base_url($locale) ?>#about-us"><?= lang('Landing.about') ?></a></li>
+                    <li><a href="<?= base_url($locale) ?>#our-services"><?= lang('Landing.services') ?></a></li>
+                    <li><a href="<?= base_url($locale) ?>#instrument-list"><?= lang('Landing.instruments') ?></a></li>
+                    <li><a href="<?= base_url($locale) ?>#contact"><?= lang('Landing.contact') ?></a></li>
+                    <?php if($session->get('login') == true): ?>
+                        <li><a href="<?= base_url($locale) ?>/home/riwayat-netizen"><?= lang('Landing.my_account') ?></a></li>
+                    <?php endif ?>
+                    <?php if($session->get('level_user') == 'admin'): ?>
+                        <li><a href="<?= base_url($locale) ?>/admin">Dashboard Admin</a></li>
+                    <?php endif ?>
+                    <?php //print_r($session->get()) ?>    
+                    <?php if($session->get('level_user') == 'peneliti'): ?>
+                        <li><a href="<?= base_url($locale) ?>/peneliti">Dashboard Peneliti</a></li>
+                    <?php endif ?>
+                    <?php
+                    $session = \Config\Services::session();
+                    if ($session->get('login') == true):
+                    ?>
+                    <li><a href="<?= base_url($locale) ?>/auth/logout">Sign Out</a></li>
+                    <?php else: ?>
+                    <li><a href="<?= base_url($locale) ?>/auth/login"><?= lang('Landing.sign_in') ?></a></li>
+                    <?php endif ?>
+
                     <li id="toggle-language" class="dropdown">
                         <a id="a_dropdown" href="#">
                             <img src="<?= base_url(); ?>/global/in.gif" alt="" srcset="">
@@ -162,7 +213,7 @@ $locale = service('request')->getLocale();
     </header><!-- End Header -->
 
     <?= $this->renderSection("konten"); ?>
-
+    
     <!-- ======= Footer ======= -->
     <footer id="footer" class="footer">
 
@@ -206,12 +257,15 @@ $locale = service('request')->getLocale();
                             <strong>Phone:</strong> +62 271-717417 ext. 3404<br>
                             <strong>Email:</strong> psikologi@ums.ac.id<br>
                         </p>
+                        
 
                     </div>
 
                 </div>
             </div>
         </div>
+        <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
         <div id="contact" class="footer-legal">
             <div class="container">
@@ -219,10 +273,6 @@ $locale = service('request')->getLocale();
                     &copy; Copyright <strong><span>Puslogin UMS</span></strong>. All Rights Reserved
                 </div>
                 <div class="credits">
-                    <!-- All the links in the footer should remain intact. -->
-                    <!-- You can delete the links only if you purchased the pro version. -->
-                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nova-bootstrap-business-template/ -->
                     Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
                 </div>
             </div>
@@ -234,8 +284,156 @@ $locale = service('request')->getLocale();
 
     <div id="preloader"></div>
 
+    <div id="modal_profile" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h5 style="
+                        color: #1f98d1;
+                        font-weight: 700;
+                        font-size: 25px;
+                        font-family: Montserrat, sans-serif;" class="info-item modal-title w-100">
+                        <?= lang('Landing.title_update_profile') ?>
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <div id="contact" class="contact">
+                        <div class="container position-relative" data-aos="fade-up">
+
+                            <div class="row gy-4 d-flex justify-content-end">
+
+                                <div class="col-lg-12" data-aos="fade-up" data-aos-delay="250">
+
+                                    <form action="<?= base_url("$locale/auth/update-profile-user")?>" method="POST"  class="php-email-form">
+                                        <div class="row">
+                                            <div class="col-md-6 form-group ">
+                                                <input type="text" class="form-control" name="nama_lengkap" value="<?=$session->get('nama_user')?>" id="name" placeholder="Your Name" required>
+                                            </div>
+                                            <div class="col-md-6 form-group mt-3 mt-md-0">
+                                                <input type="email" class="form-control" readonly disabled value="<?=$session->get('email')?>" id="email" placeholder="Your Email" required>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 form-group mt-3">
+                                                <select required style="
+                                                    border-radius: 0;
+                                                    box-shadow: none;
+                                                    font-size: 14px;
+                                                    padding: 12px 15px;" 
+                                                    class="form-control" name="jenis_kelamin" id="" >
+                                                    <option selected disabled value=""><?= lang('Landing.gender') ?></option>
+                                                    <option value="<?= lang('Landing.male') ?>"><?= lang('Landing.male') ?></option>
+                                                    <option value="<?= lang('Landing.female') ?>"><?= lang('Landing.female') ?></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 form-group mt-3 mt-3">
+                                                <input onfocus="(this.type='date')" type="text" class="form-control" name="tanggal_lahir" id="tanggal_lahir" placeholder="<?= lang('Landing.date_of_birth') ?>" required>
+                                            </div>
+                                        </div>
+                                        
+
+                                        <div class="form-group mt-3">
+                                            <select                                                
+                                                class="my-select form-control"
+                                                data-live-search="true"
+                                                data-style="btn-select"
+                                                name="negara"
+                                                data-size="5"
+                                                id="negara" >
+                                                <option selected disabled value=""><?= lang('Landing.country') ?></option>
+                                                <?php
+                                                $data_negara = ""
+                                                ?>
+                                                
+                                            </select>
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <span id="span_provinsi">
+                                                
+                                            </span>
+                                        </div>
+                                        
+                                        
+                                        <div class="text-center" style="
+                                            margin-top: 50px;
+                                        "><button type="submit"><?= lang('Landing.btn_update_profile') ?></button></div>
+                                    </form>
+                                </div><!-- End Contact Form -->
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="modal_peneliti" class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h5 style="
+                        color: #1f98d1;
+                        font-weight: 700;
+                        font-size: 25px;
+                        font-family: Montserrat, sans-serif;" class="info-item modal-title w-100">
+                        <?= lang('Landing.title_formulir_peneliti') ?>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="contact" class="contact">
+                        <div class="container position-relative" data-aos="fade-up">
+
+                            <div class="row gy-4 d-flex justify-content-end">
+
+                                <div class="col-lg-12" data-aos="fade-up" data-aos-delay="250">
+
+                                    <form action="<?= base_url("$locale/formulir-peneliti")?>" method="POST"  class="php-email-form">
+                                        <div class="row">
+                                            <div class="col-md-6 form-group ">
+                                                <input type="text" class="form-control" readonly disabled value="<?=$session->get('nama_user')?>" id="name" placeholder="Your Name" required>
+                                            </div>
+                                            <div class="col-md-6 form-group mt-3 mt-md-0">
+                                                <input type="email" class="form-control" readonly disabled value="<?=$session->get('email')?>" id="email" placeholder="Your Email" required>
+                                            </div>
+                                        </div>
+                                        
+
+                                        <div class="form-group mt-3">
+                                            <input type="text" class="form-control" name="lembaga" id="lembaga" placeholder="<?= lang('Landing.agency') ?>" required>
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <textarea class="form-control" name="keperluan" id="keperluan" rows="7" placeholder="<?= lang('Landing.keperluan') ?>" required></textarea>
+
+                                        </div>
+                                        <h6>Note:</h6>
+                                        <?php if ($locale == 'en'):  ?>
+                                            <p>Registration requests may take a while, please check your email periodically for notifications.</p>
+                                        <?php else: ?>
+                                            <p>Permintaan register memerlukan waktu beberapa saat, silahkan cek email anda secara berkala untuk mendapat pemberitahuan.</p>
+                                        <?php endif ?>
+                                        
+                                        
+                                        <div class="text-center" style="
+                                            margin-top: 50px;
+                                        "><button type="submit"><?= lang('Landing.btn_update_profile') ?></button></div>
+                                    </form>
+
+                                </div><!-- End Contact Form -->
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Vendor JS Files -->
-    <script src="<?= base_url(); ?>/depan/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="<?= base_url(); ?>/depan/assets/vendor/aos/aos.js"></script>
     <script src="<?= base_url(); ?>/depan/assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="<?= base_url(); ?>/depan/assets/vendor/swiper/swiper-bundle.min.js"></script>
@@ -245,10 +443,145 @@ $locale = service('request')->getLocale();
     <!-- Template Main JS File -->
     <script src="<?= base_url(); ?>/depan/assets/js/main.js"></script>
 
+    
 </body>
 
 </html>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+<?php if ($session->getFlashData('success')) : ?>
+    <script type="text/javascript">
+        toastr.success('<?= $session->getFlashData('success') ?>')
+    </script>
+<?php endif ?>
+<?php if ($session->getFlashData('error')) : ?>
+    <script type="text/javascript">
+        toastr.error('<?= $session->getFlashData('error') ?>')
+    </script>
+<?php endif ?>
+
 <script>
+    
+    function formulirPeneliti(){
+        const isLogin = `<?=$session->get('login')?>`
+        if(isLogin){
+            $.ajax({
+                url: "<?php echo base_url().'/'.$locale.'/status-peneliti'?>",
+                type: 'GET',
+                dataType: 'json',
+                success: function( response ) {
+                    if(response.data.status_peneliti){
+                        if(`<?= $locale ?>` == 'en'){
+                            toastr.info('You have filled out the form!')
+
+                        }else{
+                            toastr.info('Anda sudah mengisi formulir!')
+
+                        }
+
+                    }else{
+                        $('#modal_peneliti').modal('show')
+                    }
+                }
+
+            });
+        }else{
+            if(`<?= $locale ?>` == 'en'){
+                toastr.error('You have to sign in first!')
+
+            }else{
+                toastr.error('Anda harus sign in terlebih dahulu!')
+
+            }
+        }
+    }
+</script>
+
+<?php if(isset($data_user)): ?>
+    <?php if( $data_user != false): ?>
+        <?php if($data_user->data->jenis_kelamin == '' || $data_user->data->tanggal_lahir == '' || $data_user->data->negara == '' || $data_user->data->provinsi == ''): ?>
+
+        <script>
+            function capitalizeFirstLetter(string) {
+                return string.charAt(0).toUpperCase() + string.slice(1);
+            }
+
+            $(window).on('load', function() {
+                $('#modal_profile').modal('show');
+                $('.my-select').selectpicker();
+                $('#provinsi').selectpicker();
+
+            });
+            $('.my-select').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+                const selected = $(this).val()
+                if (selected == 'Indonesia') {
+                    $('#span_provinsi').html(`<select                                                
+                        class="my-select form-control"
+                        data-live-search="true"
+                        data-style="btn-select"
+                        name="provinsi"
+                        data-size="5"
+                        id="provinsi" >
+                        <option selected disabled value=""><?= lang('Landing.province') ?></option>
+                        
+                    </select>`)
+
+                    Object.defineProperty(String.prototype, 'capitalize', {
+                    value: function() {
+                        return this.charAt(0).toUpperCase() + this.slice(1);
+                    },
+                    enumerable: false
+                    });
+                                        
+                    $.ajax({
+                        url: "https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json",
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function( response ) {
+                            const select_provinsi = $('#provinsi')
+                            $.each(response, function(index, value) {
+                                var opt = document.createElement('option');
+                                opt.value = capitalizeFirstLetter(value.name.toLowerCase())
+                                opt.innerHTML = capitalizeFirstLetter(value.name.toLowerCase())
+                                select_provinsi.append(opt);
+                            });
+                            $("#provinsi").selectpicker("refresh");
+                        }
+        
+                    });
+                }else{
+                    $('#span_provinsi').html(`<input type="text" class="form-control" name="provinsi" id="provinsi" placeholder="<?= lang('Landing.province') ?>" required>`)
+                }
+            });
+
+            $.ajax({
+                // url: "https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json",
+                url: "https://laravel-world.com/api/countries",
+                type: 'GET',
+                dataType: 'json',
+                success: function( response ) {
+                    const select_negara = $('#negara')
+                    $.each(response.data, function(index, value) {
+                        var opt = document.createElement('option');
+                        opt.value = value.name;
+                        opt.innerHTML = value.name;
+                        select_negara.append(opt);
+                    });
+                    $(".my-select").selectpicker("refresh");
+                }
+
+            });
+            
+        </script>
+        <?php endif ?>
+    <?php endif ?>
+<?php endif ?>
+
+<script>
+    
     function getCookie(cname) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
@@ -266,11 +599,9 @@ $locale = service('request')->getLocale();
     }
 </script>
 <script>
-    if (getCookie('language') == ""){
-        document.cookie = `language=id`;
-    }
-    console.log(getCookie('language'))
 
+    const lang_url = `<?= $locale ?>`
+    console.log(lang_url)
     const id = `<a href="#">
                         <img src="<?= base_url(); ?>/global/in.gif" alt="" srcset=""> 
                         &nbsp;<span>Indonesia</span> <i class="bi bi-chevron-down dropdown-indicator"></i>
@@ -288,12 +619,13 @@ $locale = service('request')->getLocale();
                     <li><a href="#"> <span class="option-lang"><img src="<?= base_url(); ?>/global/in.gif" style="margin-right:5px" alt="" srcset="">Indonesia</span></a></li>
                     <li><a href="#"> <span class="option-lang"><img src="<?= base_url(); ?>/global/en.gif" style="margin-right:5px" alt="" srcset="">English</span></a></li>
                 </ul>`
-                
-    const lang_url = `<?=$locale?>`
+
     document.cookie = `language=${lang_url}`;
-    if (getCookie('language') == 'en' || lang_url == 'en' ) {
+    console.log(getCookie('language'))
+
+    if (lang_url == 'en') {
         $('#toggle-language').html(en)
-        
+
     } else {
         $('#toggle-language').html(id)
 
@@ -303,7 +635,7 @@ $locale = service('request')->getLocale();
     $('#toggle-language').on('click', function(e) {
         e.preventDefault();
         const language_option = $(e.target)
-        if (language_option[0].className == "option-lang"){
+        if (language_option[0].className == "option-lang") {
             const language = ($(e.target).text() == 'Indonesia') ? 'id' : 'en'
             document.cookie = `language=${language}`;
 
@@ -319,4 +651,5 @@ $locale = service('request')->getLocale();
 
     });
 </script>
+
 <?= $this->renderSection("js_page"); ?>

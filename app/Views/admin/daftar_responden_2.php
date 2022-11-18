@@ -1,5 +1,6 @@
 <?= $this->extend("/template/back_layout.php"); ?>
 <?= $this->section("konten"); ?>
+<?php $locale = service('request')->getLocale();?>
 <div class="page-content container bg-white">
     <div class="page-header border-0 justify-content-between">
         <h1 class="page-title text-primary-d2">
@@ -50,7 +51,7 @@
                                         <span class="text-105"><?=$value->label?></span>
                                     </td>
                                     <td>
-                                        <a data-rel="tooltip" title="Lihat Detail" href="/admin/detail-responden<?=$value->action_detail?>"><i class="fa fa-eye text-blue-m1 text-120"></i> Detail</a>
+                                        <a data-rel="tooltip" title="Lihat Detail" href="<?=base_url($locale)?>/admin/detail-responden<?=$value->action_detail?>"><i class="fa fa-eye text-blue-m1 text-120"></i> Detail</a>
                                     </td>
                                 </tr>
                                 <?php endforeach ?>
@@ -63,7 +64,6 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {

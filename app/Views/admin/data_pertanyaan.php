@@ -1,5 +1,6 @@
 <?= $this->extend("/template/back_layout.php"); ?>
 <?= $this->section("konten"); ?>
+<?php $locale = service('request')->getLocale();?>
 <div class="page-content container bg-white">
     <div class="page-header border-0 justify-content-between">
         <a href="/admin/data-instrumen" class="btn btn-xs btn-secondary"><i class="fa fa-arrow-left text-110 align-text-bottom mr-1"></i> | Back</a>
@@ -126,7 +127,7 @@
 <div class="modal modal-lg fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content border-width-0 border-t-4 brc-primary-m2 px-3">
-            <form action="<?=base_url('/admin/edit-pertanyaan')?>" method="post">
+            <form action="<?=base_url($locate.'/admin/edit-pertanyaan')?>" method="post">
                 <input type="hidden" name="id_pertanyaan" id="id_pertanyaan_edit">
                 <input type="hidden" name="instrument" value="<?= $data->id_instrument ?>">
                 <div class="modal-header py-2">
@@ -228,7 +229,6 @@
 </div>
 <!-- end modal delete -->
 
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {

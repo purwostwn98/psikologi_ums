@@ -1,5 +1,9 @@
 <?= $this->extend("/template/back_layout.php"); ?>
 <?= $this->section("konten"); ?>
+<?php
+$session = \Config\Services::session();
+$locale = service('request')->getLocale();
+?>
 <div class="page-content container bg-white">
     <div class="page-header border-0 justify-content-between">
         <h1 class="page-title text-primary-d2">
@@ -24,7 +28,7 @@
                         <td><?=$value->no?></td>
                         <td><?=$value->nama_instrument?></td>
                         <td>
-                            <a href="/peneliti/detail-instrumen<?=$value->action_open_detail?>" class="btn btn-xs btn-info text-white">Open Details</a>
+                            <a href="<?=base_url($locale)?>/peneliti/detail-instrumen<?=$value->action_open_detail?>" class="btn btn-xs btn-info text-white">Open Details</a>
                         </td>
                     </tr>
                     <?php endforeach ?>
@@ -33,7 +37,6 @@
         </div>
     </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {

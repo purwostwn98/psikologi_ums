@@ -54,7 +54,7 @@ abstract class BaseController extends Controller
         $this->session = \Config\Services::session();
         $this->ApiHelper = new ApiHelper();
 
-        $this->viewData['locale'] = $this->request->getLocale();
+        $this->locale = $this->request->getLocale();
         $this->viewData['supportedLocales'] = $request->config->supportedLocales;
     }
 }
