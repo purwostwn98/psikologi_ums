@@ -19,7 +19,7 @@ class Auth extends BaseController
     {
         $clientID = '890274412815-aj1cfgo2mmjp5v7himj1fa2ijr41tvrb.apps.googleusercontent.com';
         $clientSecret = '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';
-        $redirectUri = 'http://localhost:8080/id/auth/login';
+        $redirectUri = 'https://assessme.puslogin.com/id/auth/login';
 
         $google_client = new Google_Client();
         $google_client->setClientId($clientID);
