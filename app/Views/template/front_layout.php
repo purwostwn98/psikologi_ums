@@ -202,8 +202,8 @@ $session = \Config\Services::session();
                             &nbsp;<span>Indonesia</span> <i class="bi bi-chevron-down dropdown-indicator"></i>
                         </a>
                         <ul>
-                            <li><a href="#"> <span class="option-lang"><img src="<?= base_url(); ?>/depan/assets/img/in.png" style="margin-right:5px" alt="" srcset="">Indonesia</span></a></li>
-                            <li><a href="#"> <span class="option-lang"><img src="<?= base_url(); ?>/depan/assets/img/en.png" style="margin-right:5px" alt="" srcset="">English</span></a></li>
+                            <li><a href="#"> <span class="option-lang"><img src="https://www.ugm.ac.id/images/ic_bg/in.gif" style="margin-right:5px" alt="" srcset="">Indonesia</span></a></li>
+                            <li><a href="#"> <span class="option-lang"><img src="https://www.ugm.ac.id/images/ic_bg/en.gif" style="margin-right:5px" alt="" srcset="">English</span></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -603,21 +603,21 @@ $session = \Config\Services::session();
     const lang_url = `<?= $locale ?>`
     console.log(lang_url)
     const id = `<a href="#">
-                        <img src="<?= base_url(); ?>/depan/assets/img/in.png" alt="" srcset=""> 
+                        <img src="https://www.ugm.ac.id/images/ic_bg/in.gif" alt="" srcset=""> 
                         &nbsp;<span>Indonesia</span> <i class="bi bi-chevron-down dropdown-indicator"></i>
                     </a>
                     <ul>
-                        <li><a href="#"> <span class="option-lang"><img src="<?= base_url(); ?>/depan/assets/img/in.png" style="margin-right:5px" alt="" srcset="">Indonesia</span></a></li>
-                        <li><a href="#"> <span class="option-lang"><img src="<?= base_url(); ?>/depan/assets/img/en.png" style="margin-right:5px" alt="" srcset="">English</span></a></li>
+                        <li><a href="#"> <span class="option-lang"><img src="https://www.ugm.ac.id/images/ic_bg/in.gif" style="margin-right:5px" alt="" srcset="">Indonesia</span></a></li>
+                        <li><a href="#"> <span class="option-lang"><img src="https://www.ugm.ac.id/images/ic_bg/en.gif" style="margin-right:5px" alt="" srcset="">English</span></a></li>
                     </ul>`
 
     const en = `<a href="#">
-                    <img src="<?= base_url(); ?>/depan/assets/img/en.png" alt="" srcset=""> 
+                    <img src="https://www.ugm.ac.id/images/ic_bg/en.gif" alt="" srcset=""> 
                     &nbsp;<span>English</span> <i class="bi bi-chevron-down dropdown-indicator"></i>
                 </a>
                 <ul>
-                    <li><a href="#"> <span class="option-lang"><img src="<?= base_url(); ?>/depan/assets/img/in.png" style="margin-right:5px" alt="" srcset="">Indonesia</span></a></li>
-                    <li><a href="#"> <span class="option-lang"><img src="<?= base_url(); ?>/depan/assets/img/en.png" style="margin-right:5px" alt="" srcset="">English</span></a></li>
+                    <li><a href="#"> <span class="option-lang"><img src="https://www.ugm.ac.id/images/ic_bg/in.gif" style="margin-right:5px" alt="" srcset="">Indonesia</span></a></li>
+                    <li><a href="#"> <span class="option-lang"><img src="https://www.ugm.ac.id/images/ic_bg/en.gif" style="margin-right:5px" alt="" srcset="">English</span></a></li>
                 </ul>`
 
     document.cookie = `language=${lang_url}`;
