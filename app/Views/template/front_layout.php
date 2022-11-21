@@ -438,7 +438,6 @@ $session = \Config\Services::session();
     <script src="<?= base_url(); ?>/depan/assets/vendor/glightbox/js/glightbox.min.js"></script>
     <script src="<?= base_url(); ?>/depan/assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="<?= base_url(); ?>/depan/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <!-- <script src="<?= base_url(); ?>/depan/assets/vendor/php-email-form/validate.js"></script> -->
 
     <!-- Template Main JS File -->
     <script src="<?= base_url(); ?>/depan/assets/js/main.js"></script>
