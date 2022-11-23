@@ -10,7 +10,7 @@ $locale = service('request')->getLocale();
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
     <base href="<?= base_url(); ?>" />
 
-    <title>Assessme | Psychology UMS</title>
+    <title>Ini.expert | Psychology UMS</title>
 
     <!-- include common vendor stylesheets -->
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>/belakang/node_modules/bootstrap/dist/css/bootstrap.css">
@@ -76,6 +76,14 @@ $locale = service('request')->getLocale();
     <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/belakang/node_modules/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css">
     <!-- end css  -->
 
+    <!-- Script for wysiwyg -->
+	<link rel="stylesheet" type="text/css" href="<?=base_url()?>/belakang/node_modules/summernote/dist/summernote-lite.css">
+
+    <link rel="stylesheet" type="text/css" href="<?=base_url()?>/belakang/node_modules/bootstrap-markdown/css/bootstrap-markdown.min.css">
+
+    <script type="text/javascript" src="<?=base_url()?>/belakang/node_modules/summernote/dist/summernote-lite.js"></script>
+
+
 </head>
 
 <body>
@@ -124,7 +132,7 @@ $locale = service('request')->getLocale();
 
                                     <div class="text-center mt-1" id="id-user-info">
                                         <a href="#id-user-menu" class="d-style pos-rel collapsed text-blue accordion-toggle no-underline bgc-h-primary-l2 px-1 py-2px" data-toggle="collapse" aria-expanded="false">
-                                            <span class="text-95 font-bolder">Assessme</span>
+                                            <span class="text-95 font-bolder">Ini.expert</span>
                                             <i class="fa fa-caret-down text-90 d-collapsed"></i>
                                             <i class="fa fa-caret-up text-90 d-n-collapsed"></i>
                                         </a>
@@ -153,7 +161,7 @@ $locale = service('request')->getLocale();
                         <?php if ($session->get('level_user') == 'admin') { ?>
                             <div class="nav nav-parent flex-column mt-2 has-active-border" role="navigation" aria-label="Main">
                                 <li class="nav-item">
-                                    <a href="<?=base_url($locale)?>/admin" class="nav-link">
+                                    <a href="<?= base_url($locale) ?>/admin" class="nav-link">
                                         <i class="nav-icon 	fa fa-desktop"></i>
                                         <span class="nav-text fadeable">
                                             <span>Dashboard</span>
@@ -163,7 +171,7 @@ $locale = service('request')->getLocale();
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="<?=base_url($locale)?>/admin/daftar-responden" class="nav-link">
+                                    <a href="<?= base_url($locale) ?>/admin/daftar-responden" class="nav-link">
                                         <i class="nav-icon 	fa fa-book"></i>
                                         <span class="nav-text fadeable">
                                             <span>Data Respondent</span>
@@ -172,7 +180,7 @@ $locale = service('request')->getLocale();
                                     <b class="sub-arrow"></b>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="<?=base_url($locale)?>/admin/data-instrumen" class="nav-link">
+                                    <a href="<?= base_url($locale) ?>/admin/data-instrumen" class="nav-link">
                                         <i class="nav-icon 	fa fa-archive" aria-hidden="true"></i>
                                         <span class="nav-text fadeable">
                                             <span>Data Instrument</span>
@@ -180,20 +188,50 @@ $locale = service('request')->getLocale();
                                     </a>
                                     <b class="sub-arrow"></b>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="<?=base_url($locale)?>/admin/manajemen-user" class="nav-link">
+                                <li class="nav-item active open">
+                                    <a href="#" class="nav-link dropdown-toggle">
+                                        <i class="nav-icon 	fa fa-users" aria-hidden="true"></i>
+                                        <span class="nav-text fadeable">
+                                            <span>User Management</span>
+                                        </span>
+                                        <b class="caret fa fa-angle-left rt-n90"></b>
+                                    </a>
+
+                                    <div class="hideable submenu collapse show" style="">
+                                        <ul class="submenu-inner">
+                                            <li class="nav-item">
+                                                <a href="<?= base_url($locale) ?>/admin/manajemen-user" class="nav-link">
+                                                    <span class="nav-text">
+                                                        <span>Users</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+
+                                            <li class="nav-item">
+                                                <a href="<?= base_url($locale) ?>/admin/list-req-peneliti" class="nav-link">
+                                                    <span class="nav-text">
+                                                        <span>Researcher Request</span>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <b class="sub-arrow"></b>
+                                </li>
+                                <!-- <li class="nav-item">
+                                    <a href="<?= base_url($locale) ?>/admin/manajemen-user" class="nav-link">
                                         <i class="nav-icon 	fa fa-users" aria-hidden="true"></i>
                                         <span class="nav-text fadeable">
                                             <span>User Management</span>
                                         </span>
                                     </a>
                                     <b class="sub-arrow"></b>
-                                </li>
+                                </li> -->
                             </div>
                         <?php } else { ?>
                             <div class="nav nav-parent flex-column mt-2 has-active-border" role="navigation" aria-label="Main">
                                 <li class="nav-item">
-                                    <a href="<?=base_url($locale)?>/peneliti" class="nav-link">
+                                    <a href="<?= base_url($locale) ?>/peneliti" class="nav-link">
                                         <i class="nav-icon 	fa fa-desktop"></i>
                                         <span class="nav-text fadeable">
                                             <span>Dashboard</span>
@@ -203,7 +241,7 @@ $locale = service('request')->getLocale();
                                 </li>
 
                                 <li class="nav-item">
-                                    <a href="<?=base_url($locale)?>/peneliti/pilih-instrumen" class="nav-link">
+                                    <a href="<?= base_url($locale) ?>/peneliti/pilih-instrumen" class="nav-link">
                                         <i class="nav-icon 	fa fa-book"></i>
                                         <span class="nav-text fadeable">
                                             <span>Create Survey</span>
@@ -248,7 +286,7 @@ $locale = service('request')->getLocale();
 
                         <div class="navbar-menu collapse navbar-collapse navbar-backdrop" id="navbarMenu">
                             <div class="navbar-nav">
-                            <!-- <div class="dropdown dd-backdrop dd-backdrop-none-md">
+                                <!-- <div class="dropdown dd-backdrop dd-backdrop-none-md">
                                     <button type="button" id="id-nav-post-btn" class="btn btn-outline-primary btn-bold btn-sm mx-2 px-2 px-lg-3 radius-round dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-plus mr-lg-1"></i>
                                         <span class="d-none d-lg-inline">Language</span>
@@ -269,7 +307,7 @@ $locale = service('request')->getLocale();
                                         </div>
                                     </div>
                                 </div> -->
-                                
+
                                 <ul class="nav has-active-border">
                                     <li class="nav-item dropdown dropdown-mega">
                                         <a class="nav-link dropdown-toggle mr-1px" href="#" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -281,11 +319,11 @@ $locale = service('request')->getLocale();
                                         <div style="width: 13rem;" class="shadow dropdown-menu dropdown-animated dropdown-sm p-0 brc-primary-m3 border-1 border-b-2 bgc-white">
                                             <div class="tab-content tab-sliding p-0">
                                                 <div class="tab-pane mh-none show active px-md-1 pt-1" id="navbar-notif-tab-1" role="tabpanel">
-                                                    <a href="/admin/edit_profil" class="mb-0 border-0 list-group-item list-group-item-action btn-h-lighter-secondary">
+                                                    <!-- <a href="/admin/edit_profil" class="mb-0 border-0 list-group-item list-group-item-action btn-h-lighter-secondary">
                                                         <i class="fa fa-users bgc-blue-tp1 text-white text-110 mr-1 p-2 radius-1"></i>
                                                         <span class="text-muted">Edit Profil</span>
-                                                    </a>
-                                                    <a href="<?=base_url($locale)?>/auth/logout" class="mb-0 border-0 list-group-item list-group-item-action btn-h-lighter-secondary">
+                                                    </a> -->
+                                                    <a href="<?= base_url($locale) ?>/auth/logout" class="mb-0 border-0 list-group-item list-group-item-action btn-h-lighter-secondary">
                                                         <i class="fa fa-times bgc-pink-tp1 text-white text-110 mr-1 p-2 radius-1"></i>
                                                         <span class="text-muted">Logout</span>
                                                     </a>
@@ -373,7 +411,7 @@ $locale = service('request')->getLocale();
 
         <script type="text/javascript" src="<?= base_url(); ?>/belakang/node_modules/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js"></script>
         <!-- <script type="text/javascript" src="<?= base_url(); ?>/belakang/application/views/default/pages/partials/form-elements/@page-script.js"></script> -->
-        
+
     </div><!-- /.body-container -->
 </body>
 
@@ -403,39 +441,39 @@ $locale = service('request')->getLocale();
 <?php endif ?>
 
 <script>
-	//cek aktif link sidebar
-	$('.nav-parent').each(function() {
-		const navItem = $(this);
-		const li = navItem.find("li")
-		const location_url = location.href
-		li.each(function() {
+    //cek aktif link sidebar
+    $('.nav-parent').each(function() {
+        const navItem = $(this);
+        const li = navItem.find("li")
+        const location_url = location.href
+        li.each(function() {
             const liItem = $(this)
-			const url = liItem.find("a").attr("href")	
-            					
-			if (url == location_url) {
-				liItem.addClass('active');
-			} else {
-				if (url == '#') {
-					$('.submenu').each(function() {
-						const subMenu = $(this)
-						const subLi = subMenu.find("li")
-						subLi.each(function() {
-							liSubItem = $(this)
-							const urlSubItem = liSubItem.find("a").attr("href")
-							if (urlSubItem == location_url) {
-								liItem.addClass('active open');
-								subMenu.addClass("show");
-								liSubItem.addClass("active");
-							}
-						})
+            const url = liItem.find("a").attr("href")
 
-					})
-				}
-			}
+            if (url == location_url) {
+                liItem.addClass('active');
+            } else {
+                if (url == '#') {
+                    $('.submenu').each(function() {
+                        const subMenu = $(this)
+                        const subLi = subMenu.find("li")
+                        subLi.each(function() {
+                            liSubItem = $(this)
+                            const urlSubItem = liSubItem.find("a").attr("href")
+                            if (urlSubItem == location_url) {
+                                liItem.addClass('active open');
+                                subMenu.addClass("show");
+                                liSubItem.addClass("active");
+                            }
+                        })
 
-		});
-	})
-	//end cek aktif link sidebar
+                    })
+                }
+            }
+
+        });
+    })
+    //end cek aktif link sidebar
 </script>
 
 <?= $this->renderSection("js_page"); ?>

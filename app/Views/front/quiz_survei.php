@@ -72,19 +72,21 @@ $locale = service('request')->getLocale();
         <div id="peringatan" class="row" style="display: none;">
           <div class="col-12">
             <div class="alert alert-warning" role="alert">
-              Mohon maaf, Anda tidak bisa melanjutkan sebelum mengisi pertanyaan ini.
+            <?= lang('Landing.message_error_quiz') ?>instansi
+instansiinstansi
+instansi
             </div>
           </div>
         </div>
         <div class="row align-items-center justify-content-center">
           <div class="col-auto">
             <div class="d-flex">
-              <button type="button" class="btn btn-secondary" id="prevBtn" onclick="nextPrev(-1)"><span class='bi bi-box-arrow-left'></span> | Sebelumnya</button>
+              <button type="button" class="btn btn-secondary" id="prevBtn" onclick="nextPrev(-1)"><span class='bi bi-box-arrow-left'></span> | <?= lang('Landing.previous') ?></button>
             </div>
           </div>
           <div class="col-auto">
             <div class="d-flex">
-              <button type="button" class="btn btn-success" id="nextBtn" onclick="nextPrev(1)"><span class='bi bi-box-arrow-right'></span> | Selanjutnya</button>
+              <button type="button" class="btn btn-success" id="nextBtn" onclick="nextPrev(1)"><span class='bi bi-box-arrow-right'></span> | <?= lang('Landing.next') ?></button>
             </div>
           </div>
         </div>
@@ -121,10 +123,10 @@ $locale = service('request')->getLocale();
     
     if (n == (numHuhu-1)) {
         //   document.getElementById("nextBtn").type = "submit";
-        document.getElementById("nextBtn").innerHTML = "Submit";
+        document.getElementById("nextBtn").innerHTML = "<span class='bi bi-box-arrow-right'></span> | Submit";
     } else {
 
-      document.getElementById("nextBtn").innerHTML = "<span class='bi bi-box-arrow-right'></span> | Selanjutnya";
+      document.getElementById("nextBtn").innerHTML = "<span class='bi bi-box-arrow-right'></span> | <?= lang('Landing.next') ?>";
     }
     var persen = (n / x.length) * 100;
       var strPersen = Math.floor(persen).toString();

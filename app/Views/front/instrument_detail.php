@@ -61,7 +61,7 @@ $session = \Config\Services::session();
                 <li>The seriousness of choosing an alternative answer that suits your situation will determine the validity of the measurement.</li>
             </ol>
             <br>
-            <h5 class="text-center">Voluntarily and without any coercion to fill out this questionnaire, and agree that the results are used for research purposes.</h5>
+            <h5 class="text-center">After reading the brief description and instructions for filling out the questionnaire, I voluntarily and without any coercion fill out this questionnaire and agree to use the results for research purposes</h5>
             <br>
             <p class="text-center">
                 <a style="min-width: 207px; background-color: #8dadbd;" href="/en" class="btn btn-buatanku">do not consent </a>
@@ -83,7 +83,7 @@ $session = \Config\Services::session();
                 <li>Kesungguhan memilih alternatif jawaban yang sesuai dengan keadaan diri anda sangat menentukan validitas pengukuran.</li>
             </ol>
             <br>
-            <h5 class="text-center">Dengan sukarela dan tanpa paksaan apapun untuk mengisi kuisoner ini, dan menyetujui hasilnya digunakan untuk kepentingan penelitian.</h5>
+            <h5 class="text-center">Setelah membaca deskripsi singkat dan petunjuk pengisian kuesioner, saya dengan sukarela dan tanpa paksaan apapun mengisi kuesioner ini serta menyetujui hasilnya digunakan untuk kepentingan penelitian</h5>
             <br>
             <p class="text-center">
                 <a style="min-width: 207px; background-color: #8dadbd;" href="/id" class="btn btn-buatanku">Tidak bersedia</a>

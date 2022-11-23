@@ -6,7 +6,7 @@
         <h1 class="page-title text-primary-d2">
             Data Instrument
         </h1>
-        <a href="/admin/form-tambah-instrumen" class="btn btn-xs btn-primary"><i class="fa fa-plus text-110 align-text-bottom mr-1"></i> | Add Instrument</a>
+        <a href="<?=$locale?>/admin/form-tambah-instrumen" class="btn btn-xs btn-primary"><i class="fa fa-plus text-110 align-text-bottom mr-1"></i> | Add Instrument</a>
     </div>
     <hr class="my-1">
     <!-- stat boxes -->
@@ -33,7 +33,7 @@
                                     </td>
                                     <td>
                                         <a href="<?=base_url($locale)?>/admin/detail-instrumen<?=$value->action_detail?>" class="btn btn-xs btn-info text-white">Detail</a>
-                                        <a href="<?=base_url($locale)?>/admin/data-pertanyaan<?=$value->action_open_question?>" class="btn btn-xs btn-secondary text-white">Open Question</a>
+                                        <a href="<?=base_url($locale)?>/admin/data-pertanyaan<?=$value->action_open_question?>&language=id" class="btn btn-xs btn-secondary text-white">Open Question</a>
                                     </td>
                                 </tr>
                             <?php endforeach ?>

@@ -28,7 +28,7 @@ $locale = service('request')->getLocale();
                         <td><?=$value->no?></td>
                         <td><?=$value->nama_instrument?></td>
                         <td>
-                            <a href="<?=base_url($locale)?>/peneliti/detail-instrumen<?=$value->action_open_detail?>" class="btn btn-xs btn-info text-white">Open Details</a>
+                            <a href="<?=base_url($locale)?>/peneliti/detail-instrumen<?=$value->action_open_detail?>&language=id" class="btn btn-xs btn-info text-white">Open Details</a>
                         </td>
                     </tr>
                     <?php endforeach ?>

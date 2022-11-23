@@ -78,8 +78,7 @@ class Admin extends BaseController
 
     public function data_instrumen()
     {
-        $data_instrument = $this->ApiHelper->get('/api/list-instrument', True);
-
+        $data_instrument = $this->ApiHelper->get('/api/id/list-instrument', True);
         $data = [
             'data_instrument' => $data_instrument->data
         ];
@@ -100,7 +99,7 @@ class Admin extends BaseController
        
         }
 
-        $endpoint = "/api/detail-instrument?instrument=".$this->request->getVar('instrument');
+        $endpoint = "/api/id/detail-instrument?instrument=".$this->request->getVar('instrument');
         $detail_instrument = $this->ApiHelper->get($endpoint, True);
 
         $data = [
@@ -118,7 +117,7 @@ class Admin extends BaseController
             $data =  array('soal' => $this->request->getVar('soal'), 'soal_eng' => $this->request->getVar('soal_eng'));
             $result = $this->ApiHelper->post($endpoint, $data);
             session()->setFlashData('success', $result['messages']['success']);
-            $url = '/admin/data-pertanyaan?instrument='.$this->request->getVar('instrument');
+            $url = '/id/admin/data-pertanyaan?instrument='.$this->request->getVar('instrument').'&language=id';
             return redirect()->to(base_url($url));
 
         }
@@ -138,11 +137,11 @@ class Admin extends BaseController
         $result = $this->ApiHelper->delete($endpoint);
         if ($result['status'] == 200) {
             session()->setFlashData('success', $result['messages']['success']);
-            $url = '/admin/data-pertanyaan?instrument='.$this->request->getVar('instrument');
+            $url = 'id/admin/data-pertanyaan?instrument='.$this->request->getVar('instrument')."&language=id";
             return redirect()->to(base_url($url));
         }else{
             session()->setFlashData('error', 'Detele data pertanyaan error');
-            $url = '/admin/data-pertanyaan?instrument='.$this->request->getVar('instrument');
+            $url = 'id/admin/data-pertanyaan?instrument='.$this->request->getVar('instrument')."&language=id";
             return redirect()->to(base_url($url));
         }
     }
@@ -157,11 +156,11 @@ class Admin extends BaseController
         $result = $this->ApiHelper->put($endpoint, $data);
         if ($result['status'] == 200) {
             session()->setFlashData('success', $result['messages']['success']);
-            $url = '/admin/data-pertanyaan?instrument='.$this->request->getVar('instrument');
+            $url = '/id/admin/data-pertanyaan?instrument='.$this->request->getVar('instrument').'&language=id';;
             return redirect()->to(base_url($url));
         }else{
             session()->setFlashData('error', 'Detele data pertanyaan error');
-            $url = '/admin/data-pertanyaan?instrument='.$this->request->getVar('instrument');
+            $url = '/id/admin/data-pertanyaan?instrument='.$this->request->getVar('instrument').'&language=id';;
             return redirect()->to(base_url($url));
         }
     }
@@ -174,7 +173,7 @@ class Admin extends BaseController
             $result = $this->ApiHelper->post('/api/tambah-instrument', $data);
             if($result){
                 session()->setFlashData('success', $result['messages']['success']);
-                return redirect()->to(base_url('/admin/data-instrumen'));
+                return redirect()->to(base_url('/id/admin/data-instrumen'));
             }
         }
 
@@ -191,10 +190,12 @@ class Admin extends BaseController
             ];
             $data = http_build_query($data, '', '&', PHP_QUERY_RFC3986);
             $result = $this->ApiHelper->put($endpoint, $data);
-            if($result){
+            if($result['status'] == 200){
                 session()->setFlashData('success', $result['messages']['success']);
-                return redirect()->to(base_url('/admin/manajemen-user'));
+            }else{
+                session()->setFlashData('error', $result['messages']['error']);    
             }
+            return redirect()->to(base_url('/id/admin/manajemen-user'));
             
         }
         $endpoint = "/api/auth/list-user";
@@ -204,13 +205,29 @@ class Admin extends BaseController
         ];
         return view('admin/tabel_user', $data);
     }
-
-    public function translate_me()
+    
+    public function list_req_peneliti()
     {
-        $text = $this->request->getVar('text');
-        $endpoint = "/api/translate-me?text=".$text;
-        $data_translate = $this->ApiHelper->get($endpoint, true);
-        print_r($data_translate);
+        if ($_POST) {
+            $endpoint = "/api/auth/edit-peneliti/".$this->request->getVar('user');
+            $data = [
+                'level_user' => $this->request->getVar('level_user'),
+                'status' => $this->request->getVar('status')
+            ];
+            $data = http_build_query($data, '', '&', PHP_QUERY_RFC3986);
+            $result = $this->ApiHelper->put($endpoint, $data);
+            if($result){
+                session()->setFlashData('success', $result['messages']['success']);
+                return redirect()->to(base_url('/id/admin/manajemen-user'));
+            }
+            
+        }
+        $endpoint = "/api/auth/list-peneliti";
+        $data_peneliti= $this->ApiHelper->get($endpoint, true);
+        $data = [
+            'data_user' => $data_peneliti->data
+        ];
+        return view('admin/tabel_req_peneliti', $data);
         
     }
 }

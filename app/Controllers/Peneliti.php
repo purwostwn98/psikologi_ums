@@ -73,7 +73,7 @@ class Peneliti extends BaseController
 
         $endpoint_list_soal = "/api/en/list-pertanyaan?instrument=".$this->request->getVar('instrument');
         $list_soal = $this->ApiHelper->get($endpoint_list_soal, true);
-
+        
         $data = [
             'data' => $detail_instrument->data,
             'data_soal' => $list_soal->data->data_pertanyaan
@@ -106,11 +106,25 @@ class Peneliti extends BaseController
         $code_survei = $this->request->getVar('code_survei');
         $endpoint = "/api/detail-respondents-survei-peneliti?instrument=$instrument&user=$user&take_on=$take_on&code_survei=$code_survei";
         $result = $this->ApiHelper->get($endpoint, true);
-        
         $data = [
             'data' => $result->data
         ];
         return view('peneliti/detail_survei_responden.php', $data);
         
+    }
+
+    public function delete_survey()
+    {
+        $code_survei = $this->request->getVar('code_survei');
+        $endpoint = "/api/delete-survey?code_survei=$code_survei";
+        $result = $this->ApiHelper->delete($endpoint);
+        if($result['status'] == 200){
+            session()->setFlashData('success', $result['messages']['success']);
+            return redirect()->to(base_url("$this->locale/peneliti"));
+         
+        }else{
+            session()->setFlashData('error', $result['messages']['error']);
+            return redirect()->to(base_url("$this->locale/peneliti"));
+        }
     }
 }

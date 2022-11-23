@@ -11,7 +11,7 @@
             </small>
         </h1>
         
-        <div class="page-tools pt-1 mt-3 mt-sm-0 mb-sm-n1"><a href="/peneliti" class="btn btn-xs btn-secondary"><i class="fa fa-arrow-left text-110 align-text-bottom mr-1"></i> | Back</a></div>
+        <div class="page-tools pt-1 mt-3 mt-sm-0 mb-sm-n1"><a href="/id/peneliti" class="btn btn-xs btn-secondary"><i class="fa fa-arrow-left text-110 align-text-bottom mr-1"></i> | Back</a></div>
     </div>
     <hr class="my-3">
 
@@ -51,7 +51,7 @@
                                         <span class="text-105"><?=$value->label?></span>
                                     </td>
                                     <td>
-                                        <a data-rel="tooltip" title="Lihat Detail" href="/peneliti/detail-responden-survei<?=$value->action_detail?>"><i class="fa fa-eye text-blue-m1 text-120"></i> Detail</a>
+                                        <a data-rel="tooltip" title="Lihat Detail" href="/id/peneliti/detail-responden-survei<?=$value->action_detail?>"><i class="fa fa-eye text-blue-m1 text-120"></i> Detail</a>
                                     </td>
                                 </tr>
                                 <?php endforeach ?>

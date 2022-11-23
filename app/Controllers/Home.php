@@ -19,17 +19,10 @@ class Home extends BaseController
     }
 
     public function index()
-    {
-        // $this->session->remove('url_callback');
+    {        
         $url_callback = $this->session->get('url_callback');
-        // $session_data = [
-        //     'url_callback' => false,
-        // ];
-        print_r($url_callback);
-        // die;
         if($url_callback){
 
-            // $url_callback = false;
             return redirect()->to($url_callback);
         }
       
@@ -51,6 +44,17 @@ class Home extends BaseController
         $instrument = $this->request->getVar('instrument');
         $locale = $this->request->getLocale();
         if ($this->session->get('login') != true) {
+            $url_callback = base_url("$locale/home/quiz?instrument=$instrument");
+            $session_data = [
+                'url_callback' => $url_callback,
+            ];
+            $this->session->set($session_data);
+            if($locale == 'id'){
+                session()->setFlashData('error', 'Untuk mengisi survei anda harus login terlebih dahulu');
+            }else{
+                session()->setFlashData('error', 'To fill out the survey you must first login');
+
+            }
             return redirect()->to("$locale/auth/login?instrument=$instrument");
         } else {
             $data_pertanyaan = $this->ApiHelper->get("/api/$locale/list-pertanyaan-survei?instrument=$instrument");
@@ -67,7 +71,16 @@ class Home extends BaseController
 
     public function quiz_survei($code_survei)
     {
-        $this->session->remove('url_callback');
+        // check date survey expired
+        $endpoint = "/api/get-survei-peneliti?code_survei=$code_survei";
+        $data_survei = $this->ApiHelper->get($endpoint, true);
+        $end_date = strtotime($data_survei->data->end_date);
+        $result = $end_date - strtotime('today UTC');
+        $days = $result / 86400;        
+        // link survey expired
+        if($days < 0.5){
+            return view('front/quiz_expired');
+        }
 
         $locale = $this->request->getLocale();
         $url_callback = base_url("$locale/survey/$code_survei");
@@ -89,12 +102,15 @@ class Home extends BaseController
         } else {
             $data_pertanyaan = $this->ApiHelper->get("/api/$locale/list-pertanyaan-survei?code_survei=$code_survei");
             if($this->request->getVar('quiz') == 1){
+                $this->session->remove('url_callback');
+
                 $data =
                     [
                         "pertanyaan" => $data_pertanyaan['data']['data_result'],
                         "jumlah_pilihan" => $data_pertanyaan['data']['jumlah_pilihan'],
                         "nama_instrument" => $data_pertanyaan['data']['nama_instrument'],
                         "id_instrument" => $data_pertanyaan['data']['id_instrument'],
+                        "url_callback" => $url_callback
                     ];
                 return view('front/quiz_survei', $data);
 
@@ -108,6 +124,7 @@ class Home extends BaseController
 
     public function simpan_survei()
     {
+        $this->session->remove('url_callback');
         $code_survei = $this->request->getVar('survei');
         $instrument = $this->request->getVar('instrument');
 
@@ -128,11 +145,11 @@ class Home extends BaseController
 
     public function instrument_detail()
     {
-        $this->session->remove('url_callback');
 
         $instrument = $this->request->getVar('instrument');
         $locale = $this->request->getLocale();
         $response = $this->ApiHelper->get("/api/$locale/detail-instrument?instrument=$instrument");
+        
         $data = [
             "data_instrument" => $response['data'],
             "id_instrument" => $instrument

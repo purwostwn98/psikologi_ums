@@ -59,6 +59,7 @@ $routes->match(['post', 'get'], '{locale}/admin/data-pertanyaan', 'Admin::data_p
 $routes->match(['post', 'get'], '{locale}/admin/form-tambah-instrumen', 'Admin::tambah_instrumen', ['filter' => 'auth_admin']);
 
 $routes->match(['post', 'get'], '{locale}/admin/manajemen-user', 'Admin::manajemen_user', ['filter' => 'auth_admin']);
+$routes->match(['post', 'get'], '{locale}/admin/list-req-peneliti', 'Admin::list_req_peneliti', ['filter' => 'auth_admin']);
 $routes->get('/translate-me', 'Admin::translate_me');
 // admin
 
@@ -69,6 +70,7 @@ $routes->get('{locale}/peneliti/pilih-instrumen', 'Peneliti::pilih_instrumen', [
 $routes->get('{locale}/peneliti/daftar-responden-survei', 'Peneliti::daftar_responden_survei', ['filter' => 'auth_peneliti']);
 $routes->get('{locale}/peneliti/detail-responden-survei', 'Peneliti::detail_responden_survei', ['filter' => 'auth_peneliti']);
 $routes->match(['post', 'get'], '{locale}/peneliti/detail-instrumen', 'Peneliti::detail_instrumen', ['filter' => 'auth_peneliti']);
+$routes->match(['post', 'get'], '{locale}/peneliti/delete-survey', 'Peneliti::delete_survey', ['filter' => 'auth_peneliti']);
 // end peneliti
 
 $routes->get('{locale}/auth/login', 'Auth::login');
@@ -79,8 +81,8 @@ $routes->post('{locale}/auth/update-profile-user', 'Auth::update_profile_user');
 $routes->post('{locale}/formulir-peneliti', 'Auth::formulir_peneliti', ['filter' => 'auth']);
 $routes->get('{locale}/status-peneliti', 'Auth::status_peneliti', ['filter' => 'auth']);
 
-$routes->post('/dinamis/form-answer-option', 'Dinamis::form_answer_option');
-$routes->post('/dinamis/tabel-pertanyaan-bahasa', 'Dinamis::tabel_pertanyaan_bahasa');
+$routes->post('{locale}/dinamis/form-answer-option', 'Dinamis::form_answer_option');
+$routes->post('{locale}/dinamis/tabel-pertanyaan-bahasa', 'Dinamis::tabel_pertanyaan_bahasa');
 
 /*
  * --------------------------------------------------------------------

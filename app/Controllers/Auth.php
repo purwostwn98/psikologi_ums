@@ -57,12 +57,18 @@ class Auth extends BaseController
 
     public function update_profile_user()
     {
+        $this->session->set(['akademik'=>$this->request->getVar('akademik')]);
         $data =  [
             'jenis_kelamin' => $this->request->getVar('jenis_kelamin'),
             'tanggal_lahir' => $this->request->getVar('tanggal_lahir'),
             'negara' => $this->request->getVar('negara'),
             'provinsi' => $this->request->getVar('provinsi'),
             'nama_lengkap' => $this->request->getVar('nama_lengkap'),
+            'kota' => $this->request->getVar('kota'),
+            'agama' => $this->request->getVar('agama'),
+            'status_pernikahan' => $this->request->getVar('status_pernikahan'),
+            'instansi' => $this->request->getVar('instansi'),
+            'akademik' => $this->request->getVar('akademik'),
         ];
         $updated = $this->ApiHelper->post('/api/auth/update-profile-user', $data);
         if($updated){
@@ -170,9 +176,9 @@ class Auth extends BaseController
         if($request->status == 200){
             $locale = $this->request->getLocale();
             if ($locale == 'en'){
-                session()->setFlashData('success', "Your form has been successfully submitted");
+                session()->setFlashData('swal_success', "Your form has been successfully submitted");
             }else{
-                session()->setFlashData('success', "Formulir anda berhasil di submit");
+                session()->setFlashData('swal_success', "Formulir anda berhasil di submit");
             }
             return redirect()->to("$locale/");
         }

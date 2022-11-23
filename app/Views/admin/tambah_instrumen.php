@@ -28,7 +28,7 @@
                     </div>
 
                     <div class="col-sm-9">
-                        <textarea name="deskripsi_instrument" required class="form-control" id="id-textarea-autosize" placeholder="" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 62px;"></textarea>
+                        <textarea id="summernote" name="deskripsi_instrument" required class="form-control" placeholder="" style="overflow: hidden; overflow-wrap: break-word; resize: horizontal; height: 62px;"></textarea>
                     </div>
                 </div>
                 <hr class="my-2">
@@ -141,12 +141,118 @@
     </div>
 </div>
 </div>
+
+<script>
+    jQuery(function($) {
+
+        //update icons
+        $.extend($.summernote.options.icons, {
+            'align': 'fa fa-align',
+            'alignCenter': 'fa fa-align-center',
+            'alignJustify': 'fa fa-align-justify',
+            'alignLeft': 'fa fa-align-left',
+            'alignRight': 'fa fa-align-right',
+            'indent': 'fa fa-indent',
+            'outdent': 'fa fa-outdent',
+            'arrowsAlt': 'fa fa-arrows-alt',
+            'bold': 'fa fa-bold',
+            'caret': 'fa fa-caret-down text-grey-m3 ml-1',
+            'circle': 'fa fa-circle',
+            'close': 'fa fa fa-close',
+            'code': 'fa fa-code',
+            'eraser': 'fa fa-eraser',
+            'font': 'fa fa-font',
+            'italic': 'fa fa-italic',
+            'link': 'fa fa-link text-success-m1',
+            'unlink': 'fas fa-unlink',
+            'magic': 'fa fa-magic text-brown-m3',
+            'menuCheck': 'fa fa-check',
+            'minus': 'fa fa-minus',
+            'orderedlist': 'fa fa-list-ol text-blue',
+            'pencil': 'fa fa-pencil',
+            'picture': 'far fa-image text-purple',
+            'question': 'fa fa-question',
+            'redo': 'fa fa-repeat',
+            'square': 'fa fa-square',
+            'strikethrough': 'fa fa-strikethrough',
+            'subscript': 'fa fa-subscript',
+            'superscript': 'fa fa-superscript',
+            'table': 'fa fa-table text-danger-m2',
+            'textHeight': 'fa fa-text-height',
+            'trash': 'fa fa-trash',
+            'underline': 'fa fa-underline',
+            'undo': 'fa fa-undo',
+            'unorderedlist': 'fa fa-list-ul text-blue',
+            'video': 'far fa-file-video text-pink-m2'
+        });
+
+        $('#summernote').summernote({
+            height: 250,
+            minHeight: 150,
+            maxHeight: 400
+        });
+
+
+        //lightweight wysiwyg editor
+        $('#bootstrap-editor').aceWysiwyg({
+            toolbarStyle: 2,
+            toolbar: [
+                'font',
+                null,
+                'fontSize',
+                null,
+                'bold',
+                'italic',
+                null,
+                'insertunorderedlist',
+                'insertorderedlist',
+                null,
+                'createLink',
+                'unlink',
+                null,
+                'insertImage',
+                null,
+                'foreColor',
+                'backColor',
+                null,
+                'undo',
+                'redo',
+                null,
+                'viewSource'
+            ],
+
+
+            //toolbarPlacement: function(toolbarHtml) {
+            //return $(toolbarHtml).appendTo('.card-header.bgc-success-tp2')
+            //}
+        });
+
+
+
+        //markdown editor
+        $('#markdown-editor').markdown({
+            iconlibrary: 'fa'
+        }).each(function() {
+            $(this).parent().find('.btn')
+                .addClass('btn-xs bg-white btn-outline-secondary btn-h-outline-info btn-a-outline-info')
+                .removeClass('btn-default');
+
+            $(this).parent().find('.btn[title~="Heading"] > .fa').attr('class', 'fas fa-heading');
+            $(this).parent().find('.btn[title~="Image"] > .fa').attr('class', 'far fa-image');
+
+            $(this).parent().find('.md-control-fullscreen > .fa , .exit-fullscreen > .fa').addClass('text-orange-m1 text-110');
+        });
+
+
+    });
+</script>
+
 <script>
     $('.jumlah_option').change(function(e) {
         e.preventDefault();
         var jumlah = $('.jumlah_option').val();
         $.ajax({
-            url: "<?= site_url('dinamis/form-answer-option'); ?>",
+            url: "<?= site_url('/id/dinamis/form-answer-option'); ?>",
             type: "POST",
             dataType: "json",
             data: {

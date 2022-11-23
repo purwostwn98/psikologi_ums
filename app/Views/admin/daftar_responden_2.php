@@ -11,7 +11,7 @@
             </small>
         </h1>
         
-        <div class="page-tools pt-1 mt-3 mt-sm-0 mb-sm-n1"><a href="/admin/daftar-responden" class="btn btn-xs btn-secondary"><i class="fa fa-arrow-left text-110 align-text-bottom mr-1"></i> | Back</a></div>
+        <div class="page-tools pt-1 mt-3 mt-sm-0 mb-sm-n1"><a href="<?=$locale?>/admin/daftar-responden" class="btn btn-xs btn-secondary"><i class="fa fa-arrow-left text-110 align-text-bottom mr-1"></i> | Back</a></div>
     </div>
     <hr class="my-3">
 

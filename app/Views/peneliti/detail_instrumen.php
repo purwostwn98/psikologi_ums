@@ -69,15 +69,23 @@ $locale = service('request')->getLocale();
             Choose a language
         </div>
         <div class="col-md-6 col-sm-12">
+            <form action="" method="get">
+            <input type="hidden" value="<?= $_GET['instrument']?>" name="instrument"><input type="hidden" value="<?= $data->survei_code ?>" name="code_survei">        
             <div class="input-group">
-                <select class="ace-select text-dark-m1 bgc-default-l5 bgc-h-warning-l3  brc-default-m3 brc-h-warning-m1 form-control form-control-xs bahasa" id="form-field-select-11">
-                    <option value="in">Indonesia</option>
-                    <option value="en">English</option>
+                <select name="language" class="ace-select text-dark-m1 bgc-default-l5 bgc-h-warning-l3  brc-default-m3 brc-h-warning-m1 form-control form-control-xs bahasa" id="form-field-select-11">
+                    <?php if($_GET['language'] == 'en'):?>
+                        <option value="in">Indonesia</option>
+                        <option selected value="en">English</option>
+                    <?php else: ?>
+                        <option selected value="in">Indonesia</option>
+                        <option value="en">English</option>
+                    <?php endif?>
                 </select>
                 <div class="input-group-append">
-                    <button class="btn btn-secondary btn-bahasa" type="button"><i class="fa fa-calendar mr-1"></i> Go!</button>
+                    <button class="btn btn-secondary btn-bahasa" type="submit"><i class="fa fa-calendar mr-1"></i> Go!</button>
                 </div>
             </div>
+            </form>
         </div>
     </div>
     <div class="row mt-3">
@@ -86,15 +94,20 @@ $locale = service('request')->getLocale();
                 <thead class="text-secondary-m2 text-uppercase text-85">
                     <tr>
                         <th>No</th>
-                        <th style="max-width: 500px;">Question</th>
-                        <th>Action</th>
+                        <th>Question</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($data_soal as $key => $value) : ?>
                         <tr>
                             <td><?= $key + 1 ?></td>
-                            <td><?= $value->soal ?></td>
+                            <td>
+                                <?php if($_GET['language'] == 'en'):?>
+                                    <span class="text-105"><?= $value->soal_eng ?></span>
+                                <?php else: ?>
+                                    <span class="text-105"><?= $value->soal ?></span>
+                                <?php endif?>
+                            </td>
                         </tr>
                     <?php endforeach ?>
                 </tbody>
@@ -126,14 +139,14 @@ $locale = service('request')->getLocale();
                 </div>
 
                 <div class="col-sm-8">
-                    <div id="id-daterange-wrapper" class="pos-rel">
+                    <div id="id-daterange-wrapper1" class="pos-rel">
                         <div class="form-row">
                             <div class="col">
-                                <input required id="id-daterange-from" name="start_date" class="form-control ex-inputs-start" placeholder="From date">
+                                <input onfocus="(this.type='date')" type="text" required id="id-daterange-from1" name="start_date" class="form-control ex-inputs-start" placeholder="From date">
                             </div>
                             <div class="text-grey-l2">_</div>
                             <div class="col">
-                                <input required id="id-daterange-to" name="end_date" class="form-control ex-inputs-end" placeholder="To date">
+                                <input onfocus="(this.type='date')" type= "text" required id="id-daterange-to1" name="end_date" class="form-control ex-inputs-end" placeholder="To date">
                             </div>
                         </div>
 
@@ -174,7 +187,7 @@ $locale = service('request')->getLocale();
             <div class="modal-footer bg-white justify-content-between px-0 py-3">
                 <button type="button" class="btn btn-md px-2 px-md-4 btn-light-secondary btn-h-light-warning btn-a-light-danger" data-dismiss="modal">
                     <i class="fas fa-undo-alt mr-1 text-danger-m2"></i>
-                    Cencel
+                    Cancel
                 </button>
 
                 <button type="submit" class="btn btn-md px-2 px-md-4 btn-light-secondary btn-h-light-success btn-a-light-success">
@@ -187,9 +200,10 @@ $locale = service('request')->getLocale();
     </div>
 </div>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
     $(document).ready(function() {
-        $('#example').DataTable();
         $('#set_language').on('change', function() {
             
             if(this.value == 'en'){
@@ -204,7 +218,7 @@ $locale = service('request')->getLocale();
     });
 </script>
 <script>
-    $('.btn-bahasa').click(function(e) {
+    $('.btn-bahasa11').click(function(e) {
         e.preventDefault();
         var bahasa = $('.bahasa').val();
         $.ajax({
@@ -227,6 +241,12 @@ $locale = service('request')->getLocale();
 <?= $this->endSection(); ?>
 
 <?= $this->section("js_page"); ?>
+<script>
+    $(document).ready(function() {
+        $('#datatable').DataTable();
+    });
+</script>
+
 <script>
             
     var daterange_container = document.querySelector('#id-daterange-container');

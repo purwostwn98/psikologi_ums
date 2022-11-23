@@ -152,6 +152,7 @@ $session = \Config\Services::session();
             "extendedTimeOut": 1000
         }
     </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
 </head>
 
@@ -330,7 +331,51 @@ $session = \Config\Services::session();
                                                 <input onfocus="(this.type='date')" type="text" class="form-control" name="tanggal_lahir" id="tanggal_lahir" placeholder="<?= lang('Landing.date_of_birth') ?>" required>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-md-6 form-group mt-3">
+                                                <select required style="
+                                                    border-radius: 0;
+                                                    box-shadow: none;
+                                                    font-size: 14px;
+                                                    padding: 12px 15px;" 
+                                                    class="form-control" name="agama" id="" >
+                                                    <option selected disabled value=""><?= lang('Landing.agama') ?></option>
+                                                    <option value="Islam">Islam</option>
+                                                    <option value="Kristen"><?= lang('Landing.kristen') ?></option>
+                                                    <option value="Katolik"><?= lang('Landing.katolik') ?></option>
+                                                    <option value="Hindu"><?= lang('Landing.hindu') ?></option>
+                                                    <option value="Buddha"><?= lang('Landing.buddha') ?></option>
+                                                    <option value="Khonghucu"><?= lang('Landing.khonghucu') ?></option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 form-group mt-3 mt-3">
+                                                <select required style="
+                                                    border-radius: 0;
+                                                    box-shadow: none;
+                                                    font-size: 14px;
+                                                    padding: 12px 15px;" 
+                                                    class="form-control" name="status_pernikahan" id="" >
+                                                    <option selected disabled value=""><?= lang('Landing.status_pernikahan') ?></option>
+                                                    <option value="Menikah"><?= lang('Landing.menikah') ?></option>
+                                                    <option value="Belum menikah"><?= lang('Landing.belum_menikah') ?></option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group mt-3">
+                                            <select required style="
+                                                    border-radius: 0;
+                                                    box-shadow: none;
+                                                    font-size: 14px;
+                                                    padding: 12px 15px;" 
+                                                    class="form-control" name="instansi" id="instansi" >
+                                                    <option selected disabled value=""><?= lang('Landing.instansi') ?></option>
+                                                    <option value="Akademik"><?= lang('Landing.akademik') ?></option>
+                                                    <option value="Non-akademik"><?= lang('Landing.non_akademik') ?></option>
+                                                </select>
+                                        </div>
+                                        <span id="span_akademik">
                                         
+                                        </span>
 
                                         <div class="form-group mt-3">
                                             <select                                                
@@ -350,6 +395,11 @@ $session = \Config\Services::session();
                                         <div class="form-group mt-3">
                                             <span id="span_provinsi">
                                                 
+                                            </span>
+                                        </div>
+
+                                        <div class="form-group mt-3">
+                                            <span id="span_kota">
                                             </span>
                                         </div>
                                         
@@ -403,7 +453,7 @@ $session = \Config\Services::session();
                                         
 
                                         <div class="form-group mt-3">
-                                            <input type="text" class="form-control" name="lembaga" id="lembaga" placeholder="<?= lang('Landing.agency') ?>" required>
+                                            <input type="text" class="form-control" name="lembaga" id="lembaga" value="<?=$session->get('akademik')?>" placeholder="<?= lang('Landing.agency') ?>" required>
                                         </div>
                                         <div class="form-group mt-3">
                                             <textarea class="form-control" name="keperluan" id="keperluan" rows="7" placeholder="<?= lang('Landing.keperluan') ?>" required></textarea>
@@ -462,6 +512,21 @@ $session = \Config\Services::session();
     </script>
 <?php endif ?>
 
+<?php if ($session->getFlashData('swal_success')) : ?>
+    <script>
+        Swal.fire({
+            title: 'Success!',
+            html:
+                '<?= lang('Landing.pesan_peneliti') ?>' ,
+            icon: 'success',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#1F98D1'
+        })
+    </script>
+<?php endif ?>
+
+
+
 <script>
     
     function formulirPeneliti(){
@@ -504,17 +569,42 @@ $session = \Config\Services::session();
         <?php if($data_user->data->jenis_kelamin == '' || $data_user->data->tanggal_lahir == '' || $data_user->data->negara == '' || $data_user->data->provinsi == ''): ?>
 
         <script>
+            // init data negara
+            $.ajax({                
+                url: "https://laravel-world.com/api/countries",
+                type: 'GET',
+                dataType: 'json',
+                success: function( response ) {
+                    const select_negara = $('#negara')
+                    $.each(response.data, function(index, value) {
+                        var opt = document.createElement('option');
+                        opt.value = value.name;
+                        opt.innerHTML = value.name;
+                        select_negara.append(opt);
+                    });
+                    $("#negara").selectpicker("refresh");
+                }
+                
+            });
+
             function capitalizeFirstLetter(string) {
                 return string.charAt(0).toUpperCase() + string.slice(1);
             }
 
             $(window).on('load', function() {
                 $('#modal_profile').modal('show');
-                $('.my-select').selectpicker();
+                $('#negara').selectpicker();
                 $('#provinsi').selectpicker();
 
             });
-            $('.my-select').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+
+            Object.defineProperty(String.prototype, 'capitalize', {
+                    value: function() {
+                        return this.charAt(0).toUpperCase() + this.slice(1);
+                    },
+                    enumerable: false
+                    });
+            $('#negara').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
                 const selected = $(this).val()
                 if (selected == 'Indonesia') {
                     $('#span_provinsi').html(`<select                                                
@@ -527,13 +617,9 @@ $session = \Config\Services::session();
                         <option selected disabled value=""><?= lang('Landing.province') ?></option>
                         
                     </select>`)
+                    $('#provinsi').selectpicker();
 
-                    Object.defineProperty(String.prototype, 'capitalize', {
-                    value: function() {
-                        return this.charAt(0).toUpperCase() + this.slice(1);
-                    },
-                    enumerable: false
-                    });
+                    
                                         
                     $.ajax({
                         url: "https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json",
@@ -543,35 +629,69 @@ $session = \Config\Services::session();
                             const select_provinsi = $('#provinsi')
                             $.each(response, function(index, value) {
                                 var opt = document.createElement('option');
-                                opt.value = capitalizeFirstLetter(value.name.toLowerCase())
+                                opt.value = capitalizeFirstLetter(value.id)
                                 opt.innerHTML = capitalizeFirstLetter(value.name.toLowerCase())
                                 select_provinsi.append(opt);
                             });
                             $("#provinsi").selectpicker("refresh");
+
+                            $('#span_kota').html(`<select                                                
+                                    class="my-select form-control"
+                                    data-live-search="true"
+                                    data-style="btn-select"
+                                    name="kota"
+                                    data-size="5"
+                                    id="kota" >
+                                    <option selected disabled value="">Kota</option>
+                                    
+                                </select>`)
+                            $('#kota').selectpicker();
+
+                            $('#provinsi').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
+                                const selected = $(this).val()
+                                console.log(selected)
+                                $.ajax({
+                                    url: `https://www.emsifa.com/api-wilayah-indonesia/api/regencies/${selected}.json`,
+                                    type: 'GET',
+                                    dataType: 'json',
+                                    success: function( response ) {
+                                        console.log(response)
+
+                                        const select_kota = $('#kota')
+                                        $.each(response, function(index, value) {
+                                            var opt = document.createElement('option');
+                                            opt.value = capitalizeFirstLetter(value.id)
+                                            opt.innerHTML = capitalizeFirstLetter(value.name.toLowerCase())
+                                            select_kota.append(opt);
+                                        });
+                                        $("#kota").selectpicker("refresh");
+                                    }
+                    
+                                });
+                            });
                         }
         
                     });
                 }else{
                     $('#span_provinsi').html(`<input type="text" class="form-control" name="provinsi" id="provinsi" placeholder="<?= lang('Landing.province') ?>" required>`)
+                    $('#span_kota').html(`<input type="text" class="form-control" name="kota" id="kota" placeholder="Kota" required>`)
                 }
             });
 
-            $.ajax({
-                // url: "https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json",
-                url: "https://laravel-world.com/api/countries",
-                type: 'GET',
-                dataType: 'json',
-                success: function( response ) {
-                    const select_negara = $('#negara')
-                    $.each(response.data, function(index, value) {
-                        var opt = document.createElement('option');
-                        opt.value = value.name;
-                        opt.innerHTML = value.name;
-                        select_negara.append(opt);
-                    });
-                    $(".my-select").selectpicker("refresh");
-                }
+            
+            
+            
+            
+            $('#instansi').on('change', function() {
+                if( this.value == 'Akademik'){
+                    $('#span_akademik').
+                    html(`<div class="form-group mt-3">
+                            <input type="text" class="form-control" name="akademik" id="akademik" placeholder="Nama akademik" required>
+                        </div>`)
 
+                }else{
+                    $('#span_akademik').html(``)
+                }
             });
             
         </script>

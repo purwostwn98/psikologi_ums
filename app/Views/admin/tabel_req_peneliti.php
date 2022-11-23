@@ -4,27 +4,28 @@
 <div class="page-content container bg-white">
     <div class="page-header border-0 justify-content-between">
         <h1 class="page-title text-primary-d2">
-            User Management
+            Researcher Request
         </h1>
     </div>
     <hr class="my-3">
     <!-- stat boxes -->
     <div class="row">
         <div class="col-12 tabel-pertanyaan">
-            <table id="datatable" class="table table-border-y text-dark-m2 text-95 border-y-1 brc-secondary-l1">
+            <table id="datatable" class="table table-border-y text-dark-m2 text-95 border-y-1 ">
                 <thead class="text-secondary-m2 text-uppercase text-85">
                     <tr>
                         <th>No</th>
                         <th style="max-width: 500px;">Email</th>
                         <th style="max-width: 500px;">Name</th>
-                        <th style="max-width: 500px;">Level User</th>
+                        <th style="max-width: 500px;">Institusi</th>
+                        <th style="max-width: 500px;">Keperluan</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($data_user as $key => $value): ?>
                         
-                        <tr class="d-style bgc-h-default-l4">
+                        <tr class="d-style ">
                             <td class="pos-rel">
                                 <?=$key+1?>
                             </td>
@@ -35,17 +36,14 @@
                                 <span class="text-105"><?=$value->nama_lengkap?></span>
                             </td>
                             <td>
-                                <?php if ($value->level_user == 'admin'): ?> 
-                                    <span style="border: 1px solid #2087c5; padding: 4px; border-radius: 8px;" class="h6 text-primary"><i class="fa fa-user"></i> <?=$value->level_user?></span>
-                                    <i class="fa fa-star text-orange-m2"></i>
-                                <?php elseif ($value->level_user == 'peneliti'): ?> 
-                                    <span style="border: 1px solid #6bb182; padding: 4px; border-radius: 8px;" class="h6 text-success"><i class="fa fa-user"></i> <?=$value->level_user?></span>
-                                <?php else: ?>
-                                    <span style="border: 1px solid #8999AF; padding: 4px; border-radius: 8px;" class="h6 text-secondary"><i class="fa fa-user"></i> <?=$value->level_user?></span>
-                                <?php endif ?>
+                                <span class="text-105"><?=$value->lembaga?></span>
                             </td>
                             <td>
-                                <a onclick="Edit('<?=$value->email?>', '<?=$value->nama_lengkap?>', '<?=$value->level_user?>', '<?=$value->action_detail?>')"  data-toggle="modal" data-target="#editModal" href="#" class="btn btn-xs btn-warning text-white"><i class="fa fa-edit text-white"></i></a>
+                                <span class="text-105"><textarea style="background-color: white;" readonly disabled name="" id="" cols="40" rows="5"><?=$value->keperluan?></textarea></span>
+                            </td>
+                            
+                            <td>
+                                <a onclick="Edit('<?=$value->email?>', '<?=$value->nama_lengkap?>', '<?=$value->action_detail?>')"  data-toggle="modal" data-target="#editModal" href="#" class="btn btn-xs btn-warning text-white"><i class="fa fa-edit text-white"></i></a>
                             </td>
                         </tr>
                     <?php endforeach ?>
@@ -58,14 +56,14 @@
 <!-- modal edit user -->
 <style>
     .modal-lg {
-        max-width: 45%;
+        max-width: 55%;
     }
 </style>
 <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Edit Level User</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Edit Researcher Request</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
             </button>
@@ -73,6 +71,7 @@
         <div class="modal-body">
             <form method="POST" action="">
                 <input type="hidden" name="user" id="user_edit">
+                <input type="hidden" name="level_user" value="peneliti" id="user_edit">
                 <div class="form-group row">
                     <div class="col-sm-3 col-form-label text-sm-right pr-0">
                         <label style="font-weight: bold;" for="id-form-field-1" class="mb-0">Email</label>
@@ -85,7 +84,7 @@
                 
                 <div class="form-group row">
                     <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                        <label style="font-weight: bold;" for="id-form-field-1" class="mb-0">Nama Lengkap</label>
+                        <label style="font-weight: bold;" for="id-form-field-1" class="mb-0">Full Name</label>
                     </div>
 
                     <div class="col-sm-9">
@@ -94,15 +93,14 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-3 col-form-label text-sm-right pr-0">
-                        <label style="font-weight: bold;" for="id-form-field-1" class="mb-0">Level User</label>
+                        <label style="font-weight: bold;" for="id-form-field-1" class="mb-0">Researcher Request</label>
                     </div>
 
                     <div class="col-sm-9">
-                        <select name="level_user" required class="form-control col-sm-8 col-md-6 jumlah_option" id="level_user">
+                        <select name="status" required class="form-control col-sm-8 col-md-6 jumlah_option" id="level_user">
                             <option disabled selected value=""></option>
-                            <option value='netizen'>netizen</option>
-                            <option value='peneliti'>peneliti</option>
-                            <option value='admin'>admin</option>
+                            <option value=1>accepted</option>
+                            <option value=0>rejected</option>
                         </select>
                     </div>
                 </div>
@@ -110,7 +108,7 @@
                     <div class="offset-md-3 col-md-9">
                         <button class="btn btn-info" type="submit">
                             <i class="fa fa-check mr-1"></i>
-                            Edit
+                            Save
                         </button>
 
                         <button class="btn btn-secondary ml-3" type="reset">
@@ -133,10 +131,9 @@
     });
 </script>
 <script>
-    function Edit(email, nama_lengkap, level_user, user){
+    function Edit( email, nama_lengkap, user){
         $('#email').val(email)
         $('#nama_lengkap').val(nama_lengkap)
-        $('#level_user').val(level_user)
         $('#user_edit').val(user)
     }
 </script>

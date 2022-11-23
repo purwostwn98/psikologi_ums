@@ -68,7 +68,7 @@ $locale = service('request')->getLocale();
         <div id="peringatan" class="row" style="display: none;">
           <div class="col-12">
             <div class="alert alert-warning" role="alert">
-              Mohon maaf, Anda tidak bisa melanjutkan sebelum mengisi pertanyaan ini.
+            <?= lang('Landing.message_error_quiz') ?>
             </div>
           </div>
         </div>
