@@ -71,16 +71,7 @@ class Home extends BaseController
 
     public function quiz_survei($code_survei)
     {
-        // check date survey expired
-        $endpoint = "/api/get-survei-peneliti?code_survei=$code_survei";
-        $data_survei = $this->ApiHelper->get($endpoint, true);
-        $end_date = strtotime($data_survei->data->end_date);
-        $result = $end_date - strtotime('today UTC');
-        $days = $result / 86400;        
-        // link survey expired
-        if($days < 0.5){
-            return view('front/quiz_expired');
-        }
+        
 
         $locale = $this->request->getLocale();
         $url_callback = base_url("$locale/survey/$code_survei");
@@ -100,6 +91,17 @@ class Home extends BaseController
             }
             return redirect()->to("$locale/auth/login");
         } else {
+            // check date survey expired
+            $endpoint = "/api/get-survei-peneliti?code_survei=$code_survei";
+            $data_survei = $this->ApiHelper->get($endpoint, true);
+            $end_date = strtotime($data_survei->data->end_date);
+            $result = $end_date - strtotime('today UTC');
+            $days = $result / 86400;        
+            // link survey expired
+            if($days < 0.5){
+                return view('front/quiz_expired');
+            }
+            
             $data_pertanyaan = $this->ApiHelper->get("/api/$locale/list-pertanyaan-survei?code_survei=$code_survei");
             if($this->request->getVar('quiz') == 1){
                 $this->session->remove('url_callback');

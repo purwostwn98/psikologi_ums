@@ -100,7 +100,7 @@
                         <select name="status" required class="form-control col-sm-8 col-md-6 jumlah_option" id="level_user">
                             <option disabled selected value=""></option>
                             <option value=1>accepted</option>
-                            <option value=0>rejected</option>
+                            <option value='rejected'>rejected</option>
                         </select>
                     </div>
                 </div>

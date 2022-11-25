@@ -10,8 +10,7 @@ class ApiHelper
 
     public function __construct()
     {
-        // $this->host_api = 'api.assessme.puslogin.com';
-        $this->host_api = 'http://localhost:8081';
+        $this->host_api = getenv('endpoint');
         $this->session = \Config\Services::session();
         $this->curl = curl_init();
         $this->token =  $this->session->get('token');

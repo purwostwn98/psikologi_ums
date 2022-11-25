@@ -85,13 +85,13 @@
     <div class="row px-2 mt-3 bgc-white justify-align-center">
         <div class="col-lg-8 py-3">
             <h3 class="text-grey-d1 pb-0 mb-0 text-100">
-                Statistik Peneliti
+                Statistik Survey
             </h3>
             <canvas id="myChart" class="mx-n1 mx-md-0"></canvas>
         </div>
         <div class="col-lg-4 py-3">
             <h3 class="text-grey-d1 pb-0 mb-0 text-100">
-                Statistik Responden
+                Statistik Peneliti
             </h3>
             <canvas id="myChart2" class="mx-n1 mx-md-0"></canvas>
         </div>

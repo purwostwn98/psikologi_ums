@@ -164,8 +164,8 @@ $session = \Config\Services::session();
 
             <a href="<?= base_url($locale) ?>" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
-                <!-- <img src="<?//= base_url(); ?>/depan/assets/img/logo.png" alt=""> -->
-                <h1 class="d-flex align-items-center">InI.expert</h1>
+                <img src="<?= base_url(); ?>/depan/image/logo.png" alt="">
+                <!-- <h1 class="d-flex align-items-center">InI.expert</h1> -->
             </a>
 
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>

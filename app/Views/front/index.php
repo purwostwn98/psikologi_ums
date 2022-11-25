@@ -14,7 +14,7 @@ $locale = service('request')->getLocale();
                 </blockquote>
                 <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
                     <!-- <a href="/home/quiz" class="btn-get-started">Get Started</a> -->
-                    <a href="#instrument-list" class="btn-get-started"><?= lang('Landing.btn_hero') ?></a>
+                    <a href="#our-services" class="btn-get-started"><?= lang('Landing.btn_hero') ?></a>
                     <!-- <a href="https://www.youtube.com/watch?v=LXb3EKWsInQ" class="glightbox btn-watch-video d-flex align-items-center"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> -->
                 </div>
 
@@ -53,14 +53,14 @@ $locale = service('request')->getLocale();
                     <h3 class="text-center mb-5"><?= lang('Landing.title_service') ?></h3>
                     <div class="row justify-content-center">
                         <div class="col-md-6 text-center">
-                            <h4 class="text-warning title">Self-Assessment</h4>
+                            <h4 class="text-warning title"> <?= lang('Landing.title_assessment') ?></h4>
                             <p class="description">
                                 <?= lang('Landing.self_assessment_description') ?>
                             </p>
                             <a class="cta-btn" href="#instrument-list">Get Started</a>
                         </div>
                         <div class="col-md-6 text-center">
-                            <h4 class="text-warning title">For Research</h4>
+                            <h4 class="text-warning title"><?= lang('Landing.title_research') ?></h4>
                             <p class="description">
                                 <?= lang('Landing.for_research_description') ?>
                             </p>
@@ -77,7 +77,7 @@ $locale = service('request')->getLocale();
     <section id="instrument-list" class="services-list">
         <div class="container" data-aos="fade-up">
             <div class="section-header">
-                <h2><?= lang('Landing.btn_hero') ?></h2>
+                <h2><?= lang('Landing.title_instrument') ?></h2>
             </div>
             <?php
             $icon = array('bi bi-briefcase', 'bi bi-card-checklist', 'bi bi-bar-chart');
