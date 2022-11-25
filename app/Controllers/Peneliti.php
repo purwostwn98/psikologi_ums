@@ -105,7 +105,7 @@ class Peneliti extends BaseController
         $take_on = str_replace(" ","%20",$take_on);
         $code_survei = $this->request->getVar('code_survei');
         $endpoint = "/api/detail-respondents-survei-peneliti?instrument=$instrument&user=$user&take_on=$take_on&code_survei=$code_survei";
-        $result = $this->ApiHelper->get($endpoint, true);
+        $result = $this->ApiHelper->get($endpoint, true);        
         $data = [
             'data' => $result->data
         ];

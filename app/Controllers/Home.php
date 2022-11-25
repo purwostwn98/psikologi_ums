@@ -175,7 +175,7 @@ class Home extends BaseController
         $data_hasil_survei = $this->ApiHelper->get($endpoint, true);
         $data = [
                 "hasil_survei" => $data_hasil_survei->data
-            ];
+            ]; 
         return view('front/hasil_survei', $data);
     }
 

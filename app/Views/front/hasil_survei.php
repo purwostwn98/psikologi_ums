@@ -34,7 +34,6 @@
 </main><!-- End #main -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    const sisa = 100 - <?= ucfirst($hasil_survei->score)?> 
     const data = {
         labels: [
             'Your Score',
@@ -42,7 +41,7 @@
         ],
         datasets: [{
             label: 'Your Score',
-            data: [<?= ucfirst($hasil_survei->score)?>, sisa],
+            data: [<?=$hasil_survei->score?>, <?=$hasil_survei->score_tertinggi-$hasil_survei->score?>],
             backgroundColor: [
                 'rgb(255, 99, 132)',
                 'rgb(54, 162, 235)'

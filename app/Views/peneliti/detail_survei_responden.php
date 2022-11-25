@@ -140,8 +140,8 @@
             '-'
         ],
         datasets: [{
-            label: 'Score',
-            data: [<?=$data->score?>, 100],
+            
+            data: [<?=$data->score?>, <?=$data->score_tertinggi-$data->score?>],
             backgroundColor: [
                 'rgb(255, 99, 132)',
                 'rgb(54, 162, 235)'
