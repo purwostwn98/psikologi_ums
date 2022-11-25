@@ -50,10 +50,8 @@ class Admin extends BaseController
 
     public function daftar_responden_2()
     {
-        echo $this->session->get('token');
         $endpoint = "/api/list-respondent?instrument=".$this->request->getVar('instrument');
         $respondent_by_instrument = $this->ApiHelper->get($endpoint, true);
-        print_r($respondent_by_instrument);
         $data = [
             'data' => $respondent_by_instrument->data
         ];
