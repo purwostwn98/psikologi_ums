@@ -7,7 +7,7 @@ $locale = service('request')->getLocale();
 <main id="main">
 
   <!-- ======= Breadcrumbs ======= -->
-  <div class="breadcrumbs d-flex align-items-center" style="background-image: url('<?= base_url(); ?>/depan/assets/img/blog/blog-2.jpg');">
+  <div class="breadcrumbs d-flex align-items-center" style="background-image: url('https://www.ums.ac.id/wp-content/uploads/2020/09/penelitian-fku-ums.jpg');">
     <div class="container position-relative d-flex flex-column align-items-center">
 
       <h3 style="color: white;"><?=$nama_instrument?></h3>
@@ -27,7 +27,7 @@ $locale = service('request')->getLocale();
       <form id="regForm" action="<?=base_url($locale)?>/home/simpan-survei?instrument=<?=$id_instrument?>&survei=<?=$code_survei?>" method="POST">
         <?php foreach ($pertanyaan as $z => $prt) : ?>
           <div id="bagian" class="tab huhu">
-            <strong><?= $prt['soal']; ?></strong>
+            <strong style="font-size: 22px;"><?= $prt['soal']; ?></strong>
             <div class="row gy-5 my-2">
               <div class="col-lg-3 col-md-6 d-flex paling_atas" data-aos="fade-up" data-aos-delay="100">
                 <div class="opt_input">

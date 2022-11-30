@@ -14,7 +14,7 @@ $session = \Config\Services::session();
     </div><!-- End Breadcrumbs -->
 
     <section id="services-list" class="services-list" style="padding-top: 40px;">
-        <div class="container" id="section_container" data-aos="fade-up">
+        <div class="container" id="section_container" data-aos="fade-up" style="text-align: justify;">
             <p>
                 <?= $data_instrument['deskripsi_instrument']; ?>
             </p>
@@ -50,7 +50,7 @@ $session = \Config\Services::session();
         if (lang_url == 'en') {
             $('#section_container').html(`
             <h5> Questionnaire Filling Instructions</h5>
-            <ol>
+            <ol style="font-size: 18px;">
                 <li>Questionnaire Filling Instructions </li>
                 <li>Choose one of the alternative answers that you think fits your situation. <br>
                 </li>
@@ -72,7 +72,7 @@ $session = \Config\Services::session();
         }else{
             $('#section_container').html(`
             <h5> Petunjuk Pengisian Kuesioner</h5>
-            <ol>
+            <ol style="font-size: 18px;">
                 <li>Di dalam skala ini akan disajikan sejumlah pernyataan, bacalah setiap pernyataan dengan cermat. </li>
                 <li>Pilihlah salah satu alternatif jawaban yang menurut anda sesuai dengan keadaan anda. <br>
                 </li>

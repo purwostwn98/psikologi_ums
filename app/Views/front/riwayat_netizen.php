@@ -4,7 +4,7 @@
 <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('<?= base_url(); ?>/depan/assets/img/blog/blog-inside-post.jpg');">
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('https://www.ums.ac.id/wp-content/uploads/2020/09/penelitian-fku-ums.jpg');">
         <div class="container position-relative d-flex flex-column align-items-center">
             <h3 style="color: white;">My Survey Results and Reports</h3>
         </div>

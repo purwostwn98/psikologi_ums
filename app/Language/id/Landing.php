@@ -14,7 +14,7 @@ return [
     'title_about_us' => "Tentang Kami",
     'about_us' => "Aplikasi InI.expert dikembangkan untuk menjadi data based instrumen psikologis berbasis Islam dan Indigenous yang disusun oleh dosen atau berkolaborasi dengan mahasiswa fakultas psikologi, Universitas Muhammadiyah Surakarta. InI.expert adalah aplikasi asesmen diri bersifat gratis yang menyediakan banyak informasi untuk membantu memahami diri sendiri atau karakter anda dan untuk tujuan penelitian",
     'title_service' => "Layanan Kami",
-    'self_assessment_description' => "Melalui aplikasi InI.expert, anda bisa mengetahui bagaimana keadaan diri anda sesuai dengan instrumen psikologis yang telah anda pilih. Anda hanya memilih hal apa yang ingin anda ketahui dari diri anda, membaca informed-consent dan mengikuti petunjuk pengisiannya. 
+    'self_assessment_description' => "Melalui aplikasi InI.expert, anda bisa mengetahui bagaimana keadaan diri anda sesuai dengan instrumen psikologis yang telah anda pilih. Anda hanya memilih hal apa yang ingin anda ketahui dari diri anda, diawali dengan mengisi informed-consent dan mengikuti petunjuk pengisiannya. 
     Setelah selesai mengisi anda bisa mendapatkan hasil secara langsung dan disertai deskripsi agar lebih memudahkan anda atau saran tindak lanjut dari expert. 
     ",
     'for_research_description' => "Pada layanan ini, InI.expert membantu memfasilitasi skala-skala psikologis yang dibutuhkan para peneliti sebagai instrumen penelitian. Peneliti tinggal memilih opsi user sebagai ‘peneliti’ kemudian klik skala psikologis yang dikehendaki. Isi form yang kami sediakan dan ikuti petunjuk penggunaan skala untuk instrumen penelitian anda. Hasil dari responden dapat diakses langsung atau menghubungi admin InI.expert.
@@ -51,7 +51,8 @@ return [
     'pesan_peneliti' => 'Tunggu notifikasi email dari admin selama 24 jam, admin akan memverifikasi akun anda sebagai peneliti. <br> Jika selama 24 jam tidak terverifikasi, silahkan hubungi admin di nomor <b> 082137369495 a.n. Gemelli Shafa Marwa </b>',
     'title_assessment' => "Penilaian Diri",
     'title_research' => "Penelitian",
-    'title_instrument' => 'Instrumen Kami'
+    'title_instrument' => 'Instrumen Kami',
+    'expired_survey' => 'Maaf, link survei anda sudah expired'
 
 
 

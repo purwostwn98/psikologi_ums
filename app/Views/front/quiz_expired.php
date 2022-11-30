@@ -7,7 +7,7 @@ $locale = service('request')->getLocale();
 <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('<?= base_url(); ?>/depan/assets/img/blog/blog-2.jpg');">
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('https://www.ums.ac.id/wp-content/uploads/2020/09/penelitian-fku-ums.jpg');">
         <div class="container position-relative d-flex flex-column align-items-center">
 
 
@@ -18,7 +18,7 @@ $locale = service('request')->getLocale();
     <section id="services-list" class="services-list" style="padding-top: 40px;">
         <div class="container" data-aos="fade-up">
 
-        <h2 style="color: black; font-weight: 600;" class="text-center">Maaf, link survei anda sudah expired</h2>
+        <h2 style="color: black; font-weight: 600;" class="text-center"><?= lang('Landing.expired_survey') ?></h2>
         
         <?php
         $request = \Config\Services::request();
