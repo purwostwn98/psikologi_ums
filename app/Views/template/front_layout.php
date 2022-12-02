@@ -226,10 +226,9 @@ $session = \Config\Services::session();
                     </div>
                     <div class="col-lg-5 col-md-12 footer-info">
                         <a href="index.html" class="logo d-flex align-items-center">
-                            <span>Psikologi UMS</span>
+                            <span>Fakultas Psikologi</span>
                         </a>
                         <p>
-                            Fakultas Psikologi,
                             Universitas Muhammadiyah Surakarta
 
                             Gedung Psikologi Kampus 2 – Pabelan
