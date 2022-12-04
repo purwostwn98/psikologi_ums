@@ -135,18 +135,16 @@ $locale = service('request')->getLocale();
   function nextPrev(n) {
     // This function will figure out which tab to display
     var x = document.getElementsByClassName("huhu");
-    console.log(x)
     // var x = document.getElementsById("bagian");
     
     var numHuhu = $(".huhu").length;
-    console.log(numHuhu)
     // Exit the function if any field in the current tab is invalid:
     if (n == 1 && !validateForm()) return false;
     // Hide the current tab:
+    x[currentTab].style.display = "none";
     currentTab = currentTab + n;
     var newKey = currentTab -1
-    console.log(newKey)
-    x[newKey].style.display = "none";
+    // console.log(newKey)
     // Increase or decrease the current tab by 1:
     console.log('currentTab', currentTab)
     // alert(x.length + currentTab);

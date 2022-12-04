@@ -149,10 +149,10 @@ instansi
     // Exit the function if any field in the current tab is invalid:
     if (n == 1 && !validateForm()) return false;
     // Hide the current tab:
+    x[currentTab].style.display = "none";
     currentTab = currentTab + n;
     var newKey = currentTab -1
     console.log(newKey)
-    x[newKey].style.display = "none";
     // Increase or decrease the current tab by 1:
     console.log('currentTab', currentTab)
     // alert(x.length + currentTab);

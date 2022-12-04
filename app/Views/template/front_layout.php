@@ -230,7 +230,7 @@ $session = \Config\Services::session();
                         </a>
                         <p>
                             Universitas Muhammadiyah Surakarta
-
+                            <br>
                             Gedung Psikologi Kampus 2 – Pabelan
                             Jl. A Yani, Pabelan, Kartasura, Surakarta 57162, Jawa Tengah – Indonesia
                         </p>
@@ -648,13 +648,11 @@ $session = \Config\Services::session();
 
                             $('#provinsi').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
                                 const selected = $(this).val()
-                                console.log(selected)
                                 $.ajax({
                                     url: `https://www.emsifa.com/api-wilayah-indonesia/api/regencies/${selected}.json`,
                                     type: 'GET',
                                     dataType: 'json',
                                     success: function( response ) {
-                                        console.log(response)
 
                                         const select_kota = $('#kota')
                                         $.each(response, function(index, value) {
@@ -719,7 +717,6 @@ $session = \Config\Services::session();
 <script>
 
     const lang_url = `<?= $locale ?>`
-    console.log(lang_url)
     const id = `<a href="#">
                         <img src="<?= base_url(); ?>/depan/image/in.gif" alt="" srcset=""> 
                         &nbsp;<span>Indonesia</span> <i class="bi bi-chevron-down dropdown-indicator"></i>
@@ -739,7 +736,6 @@ $session = \Config\Services::session();
                 </ul>`
 
     document.cookie = `language=${lang_url}`;
-    console.log(getCookie('language'))
 
     if (lang_url == 'en') {
         $('#toggle-language').html(en)
