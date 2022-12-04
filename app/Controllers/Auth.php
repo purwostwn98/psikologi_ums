@@ -24,7 +24,7 @@ class Auth extends BaseController
         $google_client = new Google_Client();
         $google_client->setClientId($clientID);
         $google_client->setClientSecret($clientSecret);
-        $google_client->setRedirectUri('http://localhost:8080/id/auth/login');
+        $google_client->setRedirectUri($redirectUri);
         $google_client->addScope("email");
         $google_client->addScope("profile");
         if (isset($_GET["code"])) {
