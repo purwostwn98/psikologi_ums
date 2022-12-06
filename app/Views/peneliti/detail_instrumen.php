@@ -41,7 +41,7 @@ $locale = service('request')->getLocale();
                     </form>
                 </div>
             </div>
-            <table style="font-size: 13px;" id="simple-table" class="table table-bordered-x table-hover text-dark-m2">
+            <table style="font-size: 13px;" id="simple-table" class="table table-bordered-x table-hover text-dark-m2 mt-3">
                 <tbody>
                     <tr class="bgc-h-default-l3 d-style">
                         <td style="font-weight: bold;">
