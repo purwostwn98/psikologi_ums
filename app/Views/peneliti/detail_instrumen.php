@@ -25,7 +25,7 @@ $locale = service('request')->getLocale();
                     <form action="" method="get">
                     <input type="hidden" value="<?= $_GET['instrument']?>" name="instrument"><input type="hidden" value="<?= $data->survei_code ?>" name="code_survei">        
                     <div class="input-group">
-                        <select name="language" class="ace-select text-dark-m1 bgc-default-l5 bgc-h-warning-l3  brc-default-m3 brc-h-warning-m1 form-control form-control-xs bahasa" id="form-field-select-11">
+                        <select style="padding-bottom: 0px;" name="language" class="ace-select text-dark-m1 bgc-default-l5 bgc-h-warning-l3  brc-default-m3 brc-h-warning-m1 form-control form-control-xs bahasa" id="form-field-select-11">
                             <?php if($_GET['language'] == 'en'):?>
                                 <option value="in">Indonesia</option>
                                 <option selected value="en">English</option>
