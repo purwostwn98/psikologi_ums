@@ -70,6 +70,8 @@ class Peneliti extends BaseController
         }
         $language = $this->request->getVar('language');
         $endpoint = "/api/".$language."/detail-instrument-survei?instrument=".$this->request->getVar('instrument');
+        print_r($endpoint);
+        die;
         $detail_instrument = $this->ApiHelper->get($endpoint, true);
         $endpoint_list_soal = "/api/en/list-pertanyaan?instrument=".$this->request->getVar('instrument');
         $list_soal = $this->ApiHelper->get($endpoint_list_soal, true);
