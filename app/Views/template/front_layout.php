@@ -246,8 +246,8 @@ $session = \Config\Services::session();
                     <div class="col-lg-2 col-6 footer-links">
                         <h4><?= lang('Landing.title_service') ?></h4>
                         <ul>
-                            <li><i class="bi bi-dash"></i> <a href="#">Self-Assessment</a></li>
-                            <li><i class="bi bi-dash"></i> <a href="#">For Research</a></li>
+                            <li><i class="bi bi-dash"></i> <a href="#"><?= lang('Landing.title_assessment') ?></a></li>
+                            <li><i class="bi bi-dash"></i> <a href="#"><?= lang('Landing.title_research') ?></a></li>
                         </ul>
                     </div>
 

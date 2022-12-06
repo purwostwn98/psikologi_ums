@@ -49,7 +49,7 @@ return [
     'non_akademik' => 'Non-academic',
     'pesan_peneliti' => 'Wait for email notification from admin for 24 hours, admin will verify your account as researcher. <br> If for 24 hours it is not verified, please contact the admin at the number <b> 082137369495 a.n. Gemelli Shafa Marwa </b>',
     'title_assessment' => "Self Assessment",
-    'title_research' => "For Research",
+    'title_research' => "Research",
     'title_instrument' => 'Our Instruments',
     'expired_survey' => 'Sorry, your survey link has expired'
 

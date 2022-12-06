@@ -17,6 +17,30 @@ $locale = service('request')->getLocale();
     </div>
     <div class="row">
         <div class="col-12">
+            <div style="font-size: 13px;" class="row mt-3">
+                <div class="col-md-3 col-sm-12">
+                    Choose a language
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <form action="" method="get">
+                    <input type="hidden" value="<?= $_GET['instrument']?>" name="instrument"><input type="hidden" value="<?= $data->survei_code ?>" name="code_survei">        
+                    <div class="input-group">
+                        <select name="language" class="ace-select text-dark-m1 bgc-default-l5 bgc-h-warning-l3  brc-default-m3 brc-h-warning-m1 form-control form-control-xs bahasa" id="form-field-select-11">
+                            <?php if($_GET['language'] == 'en'):?>
+                                <option value="in">Indonesia</option>
+                                <option selected value="en">English</option>
+                            <?php else: ?>
+                                <option selected value="in">Indonesia</option>
+                                <option value="en">English</option>
+                            <?php endif?>
+                        </select>
+                        <div class="input-group-append">
+                            <button class="btn btn-secondary btn-bahasa" type="submit"><i class="fa fa-calendar mr-1"></i> Go!</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
             <table style="font-size: 13px;" id="simple-table" class="table table-bordered-x table-hover text-dark-m2">
                 <tbody>
                     <tr class="bgc-h-default-l3 d-style">
@@ -64,30 +88,7 @@ $locale = service('request')->getLocale();
             List of Questions
         </div>
     </div>
-    <div style="font-size: 13px;" class="row mt-3">
-        <div class="col-md-3 col-sm-12">
-            Choose a language
-        </div>
-        <div class="col-md-6 col-sm-12">
-            <form action="" method="get">
-            <input type="hidden" value="<?= $_GET['instrument']?>" name="instrument"><input type="hidden" value="<?= $data->survei_code ?>" name="code_survei">        
-            <div class="input-group">
-                <select name="language" class="ace-select text-dark-m1 bgc-default-l5 bgc-h-warning-l3  brc-default-m3 brc-h-warning-m1 form-control form-control-xs bahasa" id="form-field-select-11">
-                    <?php if($_GET['language'] == 'en'):?>
-                        <option value="in">Indonesia</option>
-                        <option selected value="en">English</option>
-                    <?php else: ?>
-                        <option selected value="in">Indonesia</option>
-                        <option value="en">English</option>
-                    <?php endif?>
-                </select>
-                <div class="input-group-append">
-                    <button class="btn btn-secondary btn-bahasa" type="submit"><i class="fa fa-calendar mr-1"></i> Go!</button>
-                </div>
-            </div>
-            </form>
-        </div>
-    </div>
+    
     <div class="row mt-3">
         <div class="col-12 tabel-pertanyaan">
             <table id="datatable" class="table table-border-y text-dark-m2 text-95 border-y-1 brc-secondary-l1">

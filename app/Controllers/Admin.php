@@ -93,8 +93,11 @@ class Admin extends BaseController
             $data_instrument =  http_build_query($data_instrument, '', '&', PHP_QUERY_RFC3986);
             $endpoint = "/api/edit-instrument?instrument=".$this->request->getVar('instrument');
             $result = $this->ApiHelper->put($endpoint, $data_instrument);
+            $locale = $this->request->getLocale();
             if($result){
                 session()->setFlashData('success', $result['messages']['success']);
+                return redirect()->to(base_url(base_url().'/'.$locale."/admin/detail-instrumen?instrument=".$this->request->getVar('instrument')));
+
             }
        
         }

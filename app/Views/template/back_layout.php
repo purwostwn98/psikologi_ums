@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="en">
 <?php
+
+use Google\Service\Analytics\Resource\Data;
+
 $session = \Config\Services::session();
 $locale = service('request')->getLocale();
 ?>
@@ -131,10 +134,8 @@ $locale = service('request')->getLocale();
                                     </div>
 
                                     <div class="text-center mt-1" id="id-user-info">
-                                        <a href="#id-user-menu" class="d-style pos-rel collapsed text-blue accordion-toggle no-underline bgc-h-primary-l2 px-1 py-2px" data-toggle="collapse" aria-expanded="false">
+                                        <a href="<?=base_url('/')?>" class="d-style pos-rel collapsed text-blue accordion-toggle no-underline bgc-h-primary-l2 px-1 py-2px" >
                                             <span class="text-95 font-bolder">Ini.expert</span>
-                                            <i class="fa fa-caret-down text-90 d-collapsed"></i>
-                                            <i class="fa fa-caret-up text-90 d-n-collapsed"></i>
                                         </a>
                                         <div class="text-muted text-80">Universitas Muhammadiyah Surakarta</div>
                                     </div><!-- /#id-user-info -->
@@ -344,8 +345,8 @@ $locale = service('request')->getLocale();
                 <footer class="footer d-none d-sm-block">
                     <div class="footer-inner">
                         <div class="h-100 pt-3 border-none border-t-1 brc-default-l1 bgc-white-tp1">
-                            <span class="text-primary-m2 font-bolder text-120">Assessme</span>
-                            <span class="text-muted">Psikologi Universitas Muhammadiyah Surakarta &copy; 2022</span>
+                            <span class="text-primary-m2 font-bolder text-120">Ini.expert </span>
+                            <span class="text-muted">Psikologi Universitas Muhammadiyah Surakarta &copy;<?=Date('Y')?></span>
                         </div>
                     </div><!-- .footer-inner -->
                 </footer>

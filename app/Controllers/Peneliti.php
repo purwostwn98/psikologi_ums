@@ -68,9 +68,9 @@ class Peneliti extends BaseController
             return redirect()->to(base_url("$this->locale/peneliti"));
          
         }
-        $endpoint = "/api/detail-instrument-survei?instrument=".$this->request->getVar('instrument');
+        $language = $this->request->getVar('language');
+        $endpoint = "/api/".$language."/detail-instrument-survei?instrument=".$this->request->getVar('instrument');
         $detail_instrument = $this->ApiHelper->get($endpoint, true);
-
         $endpoint_list_soal = "/api/en/list-pertanyaan?instrument=".$this->request->getVar('instrument');
         $list_soal = $this->ApiHelper->get($endpoint_list_soal, true);
         
