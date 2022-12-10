@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-4">
-                <h2 data-aos="fade-up">Sign In</h2>
+                <h2 data-aos="fade-up">Login</h2>
                 <blockquote data-aos="fade-up" data-aos-delay="100">
                     <div class="card-body">
                         <?= form_open("/auth/cek_user", ['class' => 'form_login']); ?>

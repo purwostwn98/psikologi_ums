@@ -29,7 +29,7 @@ $locale = service('request')->getLocale();
     <!-- include vendor stylesheets used in "Dashboard 2" page. see "application/views/default/pages/partials/dashboard-2/@vendor-stylesheets.hbs" -->
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>/belakang/dist/css/ace-font.css">
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>/belakang/dist/css/ace.css">
-    <link rel="icon" type="image/png" href="<?= base_url(); ?>/belakang/assets/favicon.png" />
+    <link rel="icon" type="image/png" href="<?=base_url('belakang/assets/image/InI.expert (Icon Blue).png')?>" />
     <!-- "Dashboard 2" page styles specific to this page for demo purposes -->
     <link rel="stylesheet" type="text/css" href="<?= base_url(); ?>/belakang/dist/css/ace-themes.css">
     <!-- data table js -->
@@ -123,14 +123,14 @@ $locale = service('request')->getLocale();
                     <div class="pt-2 flex-grow-1 ace-scroll" ace-scroll>
                         <div class="sidebar-section-item mx-0  fadeable-left fadeable-top">
                             <div class="fadeinable">
-                                <img src="https://www.ums.ac.id/wp-content/uploads/2021/12/Resmi_Logo_UMS_Color.png" style="max-width: 40px;" class="p-2px border-2 brc-primary-tp2 radius-round" />
+                                <img src="<?=base_url('belakang/assets/image/InI.expert (Icon Blue).png')?>" style="max-width: 40px;" class="p-2px border-2 brc-primary-tp2 radius-round" />
                             </div>
 
                             <div class="fadeable hideable">
 
                                 <div class="py-2 d-flex flex-column align-items-center">
                                     <div>
-                                        <img src="https://www.ums.ac.id/wp-content/uploads/2021/12/Resmi_Logo_UMS_Color.png" style="max-height: 70px;" class="p-2px pb-2" />
+                                        <img src="<?=base_url('belakang/assets/image/InI.expert (Icon Blue).png')?>" style="max-height: 53px;" class="p-2px pb-2" />
                                     </div>
 
                                     <div class="text-center mt-1" id="id-user-info">
@@ -269,7 +269,7 @@ $locale = service('request')->getLocale();
                             </button>
 
                             <a class="navbar-brand d-xl-none mx-1 text-grey-d3 text-130" href="#">
-                                <img src="https://www.ums.ac.id/wp-content/uploads/2021/12/Resmi_Logo_UMS_Color.png" style="max-height: 50px;" class="p-2px pb-2" />
+                                <img src="<?=base_url('belakang/assets/image/InI.expert (Icon Blue).png')?>" style="max-height: 50px;" class="p-2px pb-2" />
                             </a>
 
                             <button type="button" class="btn text-grey-m2 btn-burger align-self-center mx-2 d-none d-xl-flex btn-h-light-primary" data-toggle="sidebar" data-target="#sidebar" aria-controls="sidebar" aria-expanded="true" aria-label="Toggle sidebar">

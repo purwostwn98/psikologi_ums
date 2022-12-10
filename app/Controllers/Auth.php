@@ -17,8 +17,8 @@ class Auth extends BaseController
 
     public function login()
     {
-        $clientID = '890274412815-aj1cfgo2mmjp5v7himj1fa2ijr41tvrb.apps.googleusercontent.com';
-        $clientSecret = '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';
+        $clientID = '836699979978-dcrv2lruitpr983nnk6fbpmfa9adfkfi.apps.googleusercontent.com';
+        $clientSecret = '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';
         $redirectUri = getenv('redirectUri');
 
         $google_client = new Google_Client();

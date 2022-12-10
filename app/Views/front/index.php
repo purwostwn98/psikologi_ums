@@ -57,14 +57,14 @@ $locale = service('request')->getLocale();
                             <p class="description">
                                 <?= lang('Landing.self_assessment_description') ?>
                             </p>
-                            <a class="cta-btn" href="#instrument-list">Get Started</a>
+                            <a class="cta-btn" href="#instrument-list"><?= lang('Landing.title_started') ?></a>
                         </div>
                         <div class="col-md-6 text-center">
                             <h4 class="text-warning title"><?= lang('Landing.title_research') ?></h4>
                             <p class="description">
                                 <?= lang('Landing.for_research_description') ?>
                             </p>
-                            <a style="cursor:pointer ;" class="cta-btn" onclick="formulirPeneliti()" >Get Started</a>
+                            <a style="cursor:pointer ;" class="cta-btn" onclick="formulirPeneliti()" ><?= lang('Landing.title_started') ?></a>
                         </div>
                     </div>
                 </div>

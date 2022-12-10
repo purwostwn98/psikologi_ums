@@ -51,16 +51,16 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-4">
-                <h2 data-aos="fade-up">Sign In</h2>
+                <h2 data-aos="fade-up">Login</h2>
                 <blockquote data-aos="fade-up" data-aos-delay="100">
                     <div class="card-body">
-                        <!-- <h5 data-aos="fade-up">Silakan sign in dulu ya</h5> -->
+                        <!-- <h5 data-aos="fade-up">Silakan login dulu ya</h5> -->
                         <div class="google-btn">
                             <a href="<?=$google_auth_url?>">
                                 <div class="google-icon-wrapper">
                                     <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" />
                                 </div>
-                                <p class="btn-text"><b>Sign in with google</b></p>
+                                <p class="btn-text"><b>Login with google</b></p>
                             </a>
                         </div>
                         <br>
@@ -68,7 +68,7 @@
                             <div class="google-icon-wrapper">
                                 <img class="google-icon" src="https://www.ums.ac.id/wp-content/uploads/2021/12/Resmi_Logo_UMS_Color-150x150.png" />
                             </div>
-                            <p class="btn-text"><b>Sign in with sso ums</b></p>
+                            <p class="btn-text"><b>Login with sso ums</b></p>
 
                         </div> -->
 

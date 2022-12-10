@@ -7,7 +7,7 @@ return [
     'instruments' => "Instrumen",
     'contact' => "Kontak",
     'my_account' => "My Account",
-    'sign_in' => "Sign In",
+    'sign_in' => "Login",
     'title_hero' => "Ayo Kenali Diri Sendiri",
     'deskripsi_hero' => "Ini.expert adalah aplikasi asesmen diri gratis yang menyediakan banyak informasi untuk membantu Anda memahami diri sendiri atau untuk tujuan penelitian. Anda hanya perlu memilih instrumen psikologis apa yang anda butuhkan dan mengisi informed-consent.",
     'btn_hero' => "Layanan Kami",
@@ -52,7 +52,8 @@ return [
     'title_assessment' => "Penilaian Diri",
     'title_research' => "Penelitian",
     'title_instrument' => 'Instrumen Kami',
-    'expired_survey' => 'Maaf, link survei anda sudah expired'
+    'expired_survey' => 'Maaf, link survei anda sudah expired',
+    'title_started' => "Mulai"
 
 
 

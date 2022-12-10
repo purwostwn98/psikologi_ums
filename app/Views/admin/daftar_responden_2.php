@@ -67,7 +67,7 @@
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#example').DataTable();
+        $('#datatable').DataTable();
     });
 </script>
 <?= $this->endSection(); ?>

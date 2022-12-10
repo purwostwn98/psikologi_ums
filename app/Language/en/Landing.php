@@ -7,7 +7,7 @@ return [
     'instruments' => "Instruments",
     'contact' => "Contact",
     'my_account' => "My Account",
-    'sign_in' => "Sign In",
+    'sign_in' => "Login",
     'title_hero' => "Get to Know Yourself",
     'deskripsi_hero' => "The InI.expert is a free self-assessment that provides a wealth of information to help you understand yourself or for research purposes. You just need to choose the option and fill out the informed-consent.",
     'btn_hero' => "Our Service",
@@ -47,11 +47,12 @@ return [
     'instansi' => 'agency',
     'akademik' => 'academic',
     'non_akademik' => 'Non-academic',
-    'pesan_peneliti' => 'Wait for email notification from admin for 24 hours, admin will verify your account as researcher. <br> If for 24 hours it is not verified, please contact the admin at the number <b> 082137369495 a.n. Gemelli Shafa Marwa </b>',
+    'pesan_peneliti' => "Admin will verify your request as a researcher. If for 24 hours it is not confirmed, don't hesitate to get in touch with the admin at the number <b> 082137369495 a.n. Gemelli Shafa Marwa </b>",
     'title_assessment' => "Self Assessment",
     'title_research' => "Research",
     'title_instrument' => 'Our Instruments',
-    'expired_survey' => 'Sorry, your survey link has expired'
+    'expired_survey' => 'Sorry, your survey link has expired',
+    'title_started' => "Get Started"
 
     
 

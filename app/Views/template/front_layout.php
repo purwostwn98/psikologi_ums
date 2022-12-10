@@ -15,7 +15,7 @@ $session = \Config\Services::session();
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="<?= base_url(); ?>/depan/assets/img/favicon.png" rel="icon">
+    <link href="<?=base_url('belakang/assets/image/InI.expert (Icon Blue).png')?>" rel="icon">
     <link href="<?= base_url(); ?>/depan/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
@@ -553,10 +553,10 @@ $session = \Config\Services::session();
             });
         }else{
             if(`<?= $locale ?>` == 'en'){
-                toastr.error('You have to sign in first!')
+                toastr.error('You have to login first!')
 
             }else{
-                toastr.error('Anda harus sign in terlebih dahulu!')
+                toastr.error('Anda harus login terlebih dahulu!')
 
             }
         }
