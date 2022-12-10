@@ -307,7 +307,7 @@ $session = \Config\Services::session();
                                     <form action="<?= base_url("$locale/auth/update-profile-user")?>" method="POST"  class="php-email-form">
                                         <div class="row">
                                             <div class="col-md-6 form-group ">
-                                                <input type="text" class="form-control" name="nama_lengkap" value="<?=$session->get('nama_user')?>" id="name" placeholder="Your Name" required>
+                                                <input type="text" class="form-control" name="nama_lengkap" value="<?=ucwords(strtolower($session->get('nama_user')))?>" id="name" placeholder="Your Name" required>
                                             </div>
                                             <div class="col-md-6 form-group mt-3 mt-md-0">
                                                 <input type="email" class="form-control" readonly disabled value="<?=$session->get('email')?>" id="email" placeholder="Your Email" required>
@@ -593,7 +593,7 @@ $session = \Config\Services::session();
             $(window).on('load', function() {
                 $('#modal_profile').modal('show');
                 $('#negara').selectpicker();
-                $('#provinsi').selectpicker();
+                // $('#provinsi').selectpicker();
 
             });
 
@@ -627,10 +627,7 @@ $session = \Config\Services::session();
                         success: function( response ) {
                             const select_provinsi = $('#provinsi')
                             $.each(response, function(index, value) {
-                                var opt = document.createElement('option');
-                                opt.value = capitalizeFirstLetter(value.id)
-                                opt.innerHTML = capitalizeFirstLetter(value.name.toLowerCase())
-                                select_provinsi.append(opt);
+                                select_provinsi.append(`<option data-idprov=${value.id} value="${capitalizeFirstLetter(value.name.toLowerCase())}">${capitalizeFirstLetter(value.name.toLowerCase())}</option>`);
                             });
                             $("#provinsi").selectpicker("refresh");
 
@@ -647,17 +644,17 @@ $session = \Config\Services::session();
                             $('#kota').selectpicker();
 
                             $('#provinsi').on('changed.bs.select', function (e, clickedIndex, isSelected, previousValue) {
-                                const selected = $(this).val()
+                                
+                                const selected = $(this).find(':selected').data('idprov')                                
                                 $.ajax({
                                     url: `https://www.emsifa.com/api-wilayah-indonesia/api/regencies/${selected}.json`,
                                     type: 'GET',
                                     dataType: 'json',
                                     success: function( response ) {
-
                                         const select_kota = $('#kota')
                                         $.each(response, function(index, value) {
                                             var opt = document.createElement('option');
-                                            opt.value = capitalizeFirstLetter(value.id)
+                                            opt.value = capitalizeFirstLetter(value.name.toLowerCase())
                                             opt.innerHTML = capitalizeFirstLetter(value.name.toLowerCase())
                                             select_kota.append(opt);
                                         });

@@ -70,6 +70,7 @@ class Auth extends BaseController
             'instansi' => $this->request->getVar('instansi'),
             'akademik' => $this->request->getVar('akademik'),
         ];
+        print_r($data); die;
         $updated = $this->ApiHelper->post('/api/auth/update-profile-user', $data);
         if($updated){
             $locale = $this->request->getLocale();
