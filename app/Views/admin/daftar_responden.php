@@ -1,8 +1,8 @@
 <?= $this->extend("/template/back_layout.php"); ?>
 <?= $this->section("konten"); ?>
-<?php $locale = service('request')->getLocale();?>
+<?php $locale = service('request')->getLocale(); ?>
 <div class="page-content container bg-white">
-    <div class="page-header border-0 ">
+    <div class="page-header border-0 justify-content-between">
         <h1 class="page-title text-primary-d2">
             Data Respondents
         </h1>
@@ -21,13 +21,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($data_respondents as $key => $value): ?> 
-                    <tr>
-                        <td><?=$key+1?></td>
-                        <td><?=$value->nama_instrument?></td>
-                        <td><?=$value->jumlah_respondent?></td>
-                        <td><a href="<?=base_url($locale)?>/admin/daftar-responden-2<?=$value->action_open_respondent?>" class="btn btn-xs btn-info text-white">Open Respondents</a></td>
-                    </tr>
+                    <?php foreach ($data_respondents as $key => $value) : ?>
+                        <tr>
+                            <td><?= $key + 1 ?></td>
+                            <td><?= $value->nama_instrument ?></td>
+                            <td><?= $value->jumlah_respondent ?></td>
+                            <td><a href="<?= base_url($locale) ?>/admin/daftar-responden-2<?= $value->action_open_respondent ?>" class="btn btn-xs btn-info text-white">Open Respondents</a></td>
+                        </tr>
                     <?php endforeach ?>
                 </tbody>
             </table>

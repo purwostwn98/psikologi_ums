@@ -34,8 +34,6 @@ class CallInfo extends \Google\Collection
    * @var string
    */
   public $calendarEventId;
-  protected $chatConfigType = ChatConfig::class;
-  protected $chatConfigDataType = '';
   protected $coActivityType = CoActivity::class;
   protected $coActivityDataType = '';
   protected $collaborationType = Collaboration::class;
@@ -46,10 +44,6 @@ class CallInfo extends \Google\Collection
    * @var int
    */
   public $maxJoinedDevices;
-  /**
-   * @var string
-   */
-  public $mediaBackendInfo;
   /**
    * @var string
    */
@@ -160,20 +154,6 @@ class CallInfo extends \Google\Collection
     return $this->calendarEventId;
   }
   /**
-   * @param ChatConfig
-   */
-  public function setChatConfig(ChatConfig $chatConfig)
-  {
-    $this->chatConfig = $chatConfig;
-  }
-  /**
-   * @return ChatConfig
-   */
-  public function getChatConfig()
-  {
-    return $this->chatConfig;
-  }
-  /**
    * @param CoActivity
    */
   public function setCoActivity(CoActivity $coActivity)
@@ -228,20 +208,6 @@ class CallInfo extends \Google\Collection
   public function getMaxJoinedDevices()
   {
     return $this->maxJoinedDevices;
-  }
-  /**
-   * @param string
-   */
-  public function setMediaBackendInfo($mediaBackendInfo)
-  {
-    $this->mediaBackendInfo = $mediaBackendInfo;
-  }
-  /**
-   * @return string
-   */
-  public function getMediaBackendInfo()
-  {
-    return $this->mediaBackendInfo;
   }
   /**
    * @param string
