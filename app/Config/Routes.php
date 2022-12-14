@@ -51,6 +51,7 @@ $routes->get('{locale}/admin/daftar-responden', 'Admin::daftar_responden', ['fil
 $routes->get('{locale}/admin/daftar-responden-2', 'Admin::daftar_responden_2', ['filter' => 'auth_admin']);
 $routes->get('{locale}/admin/detail-responden', 'Admin::detail_responden', ['filter' => 'auth_admin']);
 $routes->get('{locale}/admin/data-instrumen', 'Admin::data_instrumen', ['filter' => 'auth_admin']);
+$routes->get('{locale}/admin/export_excel', 'Admin::export_excel', ['filter' => 'auth_admin']);
 
 $routes->post('{locale}/admin/delete-pertanyaan', 'Admin::detele_pertanyaan', ['filter' => 'auth_admin']);
 $routes->post('{locale}/admin/edit-pertanyaan', 'Admin::edit_pertanyaan', ['filter' => 'auth_admin']);
@@ -71,6 +72,7 @@ $routes->get('{locale}/peneliti/daftar-responden-survei', 'Peneliti::daftar_resp
 $routes->get('{locale}/peneliti/detail-responden-survei', 'Peneliti::detail_responden_survei', ['filter' => 'auth_peneliti']);
 $routes->match(['post', 'get'], '{locale}/peneliti/detail-instrumen', 'Peneliti::detail_instrumen', ['filter' => 'auth_peneliti']);
 $routes->match(['post', 'get'], '{locale}/peneliti/delete-survey', 'Peneliti::delete_survey', ['filter' => 'auth_peneliti']);
+$routes->get('{locale}/peneliti/export_excel', 'Peneliti::export_excel', ['filter' => 'auth_peneliti']);
 // end peneliti
 
 $routes->get('{locale}/auth/login', 'Auth::login');
